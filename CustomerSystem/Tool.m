@@ -18,9 +18,9 @@
     }
 }
 
-+(NSString *)timeIntervalToString:(NSTimeInterval)interval{
++(NSString *)timeIntervalToString:(NSTimeInterval)interval dateformat:(NSString *)dateformat{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    [dateFormatter setDateFormat:dateformat];
     return [dateFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:interval]];
 }
 

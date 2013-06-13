@@ -118,8 +118,8 @@
     cell.imgViewStatus.image = [UIImage imageNamed:@"stop.png"];
     cell.lblReason.text = [record objectForKey:@"reason"];
     cell.lblContinuousTime.text = [Tool secondsToHour:[[record objectForKey:@"stopDuration"] longValue]];
-    cell.lblStopTime.text = [Tool timeIntervalToString:[[record objectForKey:@"stopTime"] doubleValue]];
-    cell.lblRestoreTime.text = [Tool timeIntervalToString:[[record objectForKey:@"recoverTime"] doubleValue]];
+    cell.lblStopTime.text = [Tool timeIntervalToString:[[record objectForKey:@"stopTime"] doubleValue]/1000 dateformat:kDateFormatFull];
+    cell.lblRestoreTime.text = [Tool timeIntervalToString:[[record objectForKey:@"recoverTime"] doubleValue]/1000 dateformat:kDateFormatFull];
     return cell;
 }
 

@@ -192,14 +192,29 @@
 //    function drawLineChart(todayPrice,dates,advicePrices,realPrices)
     NSString *todayPrice = [self.currentProduct objectForKey:@"advicePrice"];//今日推荐售价
     NSArray *prices = [self.currentProduct objectForKey:@"chardata"];
-    NSMutableArray *advicePrice = [NSMutableArray arrayWithCapacity:prices.count];
-    NSMutableArray *realPrice = [NSMutableArray arrayWithCapacity:prices.count];
-    for (NSDictionary *dict in prices) {
-        [advicePrice addObject:[dict objectForKey:@"advicePrice"]];
-        [realPrice addObject:[dict objectForKey:@"price"]];
-        [dict objectForKey:@"time"];
+    NSMutableString *advicePrice = [NSMutableString string];
+    NSMutableString *realPrice = [NSMutableString string];
+    NSMutableString *dates = [NSMutableString string];
+//    for (NSDictionary *dict in prices) {
+//        [advicePrice addObject:[dict objectForKey:@"advicePrice"]];
+//        [realPrice addObject:[dict objectForKey:@"price"]];
+//        [dates addObject:[Tool timeIntervalToString:[[dict objectForKey:@"time"] doubleValue] dateformat:kDateFormatDay]];
+//    }
+    NSDictionary *dict = nil;
+    for (int i=0; i<prices.count; i++) {
+        dict = [prices objectAtIndex:i];
+        [advicePrice appendFormat:@"%.0qf",[[dict objectForKey:@"advicePrice"] doubleValue]];
+        [realPrice appendFormat:@"%.0f",[[dict objectForKey:@"price"] doubleValue]];
+        [dates appendString:[Tool timeIntervalToString:[[dict objectForKey:@"time"] doubleValue] dateformat:kDateFormatDay]];
+        if (i!=prices.count-1) {
+            [advicePrice appendString:@","];
+            [realPrice appendString:@","];
+            [dates appendString:@","];
+        }
     }
-    NSString *js = [@"drawLineChart(" stringByAppendingFormat:@"'%@','%@'%@",data,todayPrice,@")"];
+    
+    NSString *js = [@"drawLineChart(" stringByAppendingFormat:@"'%@','%@','%@','%@'%@",todayPrice,dates,advicePrice,realPrice,@")"];
+    debugLog(@"dates is %@",js);
     [webView stringByEvaluatingJavaScriptFromString:js];
 }
 

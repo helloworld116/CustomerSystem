@@ -19,7 +19,7 @@
 
 + (NSDictionary *)stringToDictionary:(NSString *) str;
 
-+ (NSString *)timeIntervalToString:(NSTimeInterval) interval;
++ (NSString *)timeIntervalToString:(NSTimeInterval) interval dateformat:(NSString *)dateformat;
 
 + (NSString *)secondsToHour:(long) second;
 @end
