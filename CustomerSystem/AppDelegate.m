@@ -42,8 +42,8 @@
     
 //    [Tool getSeachDateByYear:2013 quarter:2];
     debugLog(@"time is %f",[[NSDate date] timeIntervalSince1970]);
-    1371117504
-    1369238400000
+//    1371117504
+//    1369238400000
     //网络观察者
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(reachabilityChanged:)name: kReachabilityChangedNotification object: nil];
     Reachability *hostReach = [Reachability reachabilityWithHostName:kCheckNetworkWebsite];
