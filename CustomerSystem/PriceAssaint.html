@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <script type="text/javascript" src="ichart.1.1.min.js">
+        </script>
+        <script type="text/javascript">
+            Array.prototype.max = function() {
+                return Math.max.apply(null, this);
+            };
+            
+            Array.prototype.min = function() {
+                return Math.min.apply(null, this);
+            };
+            function drawLineChart(todayPrice,dates,advicePrices,realPrices){
+                dates = dates.split(',');
+                advicePrices = advicePrices.split(',');
+                realPrices = realPrices.split(',');
+                max1 = advicePrices.max();
+                max2 = realPrices.max();
+                max = max1>max2?max1:max2;
+                min1 = advicePrices.min();
+                min2 = realPrices.min();
+                min = min1<min2?min1:min2;
+                var data = [{
+                    'name': '推荐售价',
+                    'value': advicePrices,
+                    'color': '#aad0db',
+                    'line_width': 2
+                    },
+                    {
+                    name: '实际售价',
+                    value: realPrices,
+                    color: '#f68f70',
+                    line_width: 2
+                    }];
+                var chart = new iChart.LineBasic2D({
+                   render: 'canvasDiv',
+                   animation: true,
+                   gradient: true,
+                   //                                                 labels:labels,
+                   data: data,
+                   align: 'center',
+                   title:'推荐售价'+todayPrice+'元/吨',
+                   //                    title: 'A网站近5天流量趋势,按每2小时分组统计',
+                   //                    subtitle: '平均每个人访问2-3个页面(访问量单位：万)',
+                   //                                                 width : 305,
+                   //                                                 height : 380,
+                   fit: true,
+                   background_color: '#FEFEFE',
+                   //                                                 tip:{
+                   //                                                 enable:true,
+                   ////                                                 shadow:true,
+                   //                                                 move_duration:400,
+                   //                                                 border:{
+                   //                                                 enable:true,
+                   //                                                 radius : 5,
+                   //                                                 width:2,
+                   //                                                 color:'#3f8695'
+                   //                                                 },
+                   //     listeners: {
+                   //         //tip:提示框对象、name:数据名称、value:数据值、text:当前文本、i:数据点的索引
+                   //         parseText: function(tip, name, value, text, i) {
+                   //             return name + "访问量:" + value + "万";
+                   //         }
+                   //     }
+                   // },
+                   //                                                 tipMocker:function(tips,i){
+                   //                                                 return "<div style='font-weight:600'>"+
+                   //                                                 labels[Math.floor(i/12)]+" "+//日期
+                   //                                                 (((i%12)*2<10?"0":"")+(i%12)*2)+":00"+//时间
+                   //                                                 "</div>"+tips.join("<br/>");
+                   //                                                 },
+                   legend: {
+                   enable: true,
+                   row: 1,
+                   //设置在一行上显示，与column配合使用
+                   column: 'max',
+                   valign: 'top',
+                   sign: 'bar',
+                   background_color: null,
+                   //设置透明背景
+                   offsetx: -80,
+                   //设置x轴偏移，满足位置需要
+                   border: true
+                   },
+                   crosshair: {
+                   enable: true,
+                   line_color: '#62bce9' //十字线的颜色
+                   },
+                   sub_option: {
+                   label: false,
+                   point_size: 8,
+                   //连接点的大小
+                   hollow: true //连接点是否为空心
+                   },
+                   coordinate: {
+                   width: 1005,
+                   height: 400,
+                   axis: {
+                   color: '#dcdcdc',
+                   width: 1
+                   },
+                   scale: [{
+                           position: 'left',
+                           which: 'v',
+                           start_scale: min,
+                           end_scale: max,
+                           scale_space: Math.floor((max-min)/10),
+                           scale_size: 2,
+                           scale_color: '#9f9f9f'
+                           },
+                           {
+                           position: 'bottom',
+                           label : {
+                           fontsize:11,
+                           textAlign:'right',
+                           textBaseline:'middle',
+                           rotate:-45
+                           },
+                           labels: dates
+                           }]
+                   }
+                   });
+                //开始画图
+                chart.draw();
+            }
+
+//            $(function() {
+//                var pv = [],
+//                ip = [],
+//                t;
+//                //创建随机数据
+//                for (var i = 0; i < 15; i++) {
+//                    t = Math.floor(Math.random() * (30 + ((i % 12) * 5))) + 10;
+//                    pv.push(t);
+//                    t = Math.floor(Math.random() * (30 + ((i % 12) * 5))) + 10
+//                    //              t = t-Math.floor((Math.random()*t)/2);
+//                    ip.push(t);
+//                }
+//
+//                
+//                var data = [{
+//                    'name': '推荐售价',
+//                    'value': pv,
+//                    'color': '#aad0db',
+//                    'line_width': 2
+//                },
+//                {
+//                    name: '实际售价',
+//                    value: ip,
+//                    color: '#f68f70',
+//                    line_width: 2
+//                }];
+//
+//                //创建x轴标签文本
+//                var date = new Date();
+//                date.setDate(date.getDate() - 15);
+//                var labels = [];
+//                for (var i = 0; i < 15; i++) {
+//                    date.setDate(date.getDate() + 1);
+//                    //              labels.push(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate());
+//                    labels.push((date.getMonth() + 1) + "-" + date.getDate());
+//                }
+//                var chart = new iChart.LineBasic2D({
+//                    render: 'canvasDiv',
+//                    animation: true,
+//                    gradient: true,
+//                    //                                                 labels:labels,
+//                    data: data,
+//                    align: 'center',
+//                   title:'推荐售价234元/吨',
+//                   //                    title: 'A网站近5天流量趋势,按每2小时分组统计',
+//                   //                    subtitle: '平均每个人访问2-3个页面(访问量单位：万)',
+//                    //                                                 width : 305,
+//                    //                                                 height : 380,
+//                    fit: true,
+//                    background_color: '#FEFEFE',
+//                    //                                                 tip:{
+//                    //                                                 enable:true,
+//                    ////                                                 shadow:true,
+//                    //                                                 move_duration:400,
+//                    //                                                 border:{
+//                    //                                                 enable:true,
+//                    //                                                 radius : 5,
+//                    //                                                 width:2,
+//                    //                                                 color:'#3f8695'
+//                    //                                                 },
+//                    //     listeners: {
+//                    //         //tip:提示框对象、name:数据名称、value:数据值、text:当前文本、i:数据点的索引
+//                    //         parseText: function(tip, name, value, text, i) {
+//                    //             return name + "访问量:" + value + "万";
+//                    //         }
+//                    //     }
+//                    // },
+//                    //                                                 tipMocker:function(tips,i){
+//                    //                                                 return "<div style='font-weight:600'>"+
+//                    //                                                 labels[Math.floor(i/12)]+" "+//日期
+//                    //                                                 (((i%12)*2<10?"0":"")+(i%12)*2)+":00"+//时间
+//                    //                                                 "</div>"+tips.join("<br/>");
+//                    //                                                 },
+//                    legend: {
+//                        enable: true,
+//                        row: 1,
+//                        //设置在一行上显示，与column配合使用
+//                        column: 'max',
+//                        valign: 'top',
+//                        sign: 'bar',
+//                        background_color: null,
+//                        //设置透明背景
+//                        offsetx: -80,
+//                        //设置x轴偏移，满足位置需要
+//                        border: true
+//                    },
+//                    crosshair: {
+//                        enable: true,
+//                        line_color: '#62bce9' //十字线的颜色
+//                    },
+//                    sub_option: {
+//                        label: false,
+//                        point_size: 8,
+//                        //连接点的大小
+//                        hollow: true //连接点是否为空心
+//                    },
+//                    coordinate: {
+//                        width: 1005,
+//                        height: 400,
+//                        axis: {
+//                            color: '#dcdcdc',
+//                            width: 1
+//                        },
+//                        scale: [{
+//                            position: 'left',
+//                            which: 'v',
+//                            start_scale: 20,
+//                            end_scale: 100,
+//                            scale_space: 50,
+//                            scale_size: 2,
+//                            scale_color: '#9f9f9f'
+//                        },
+//                        {
+//                            position: 'bottom',
+//                            label : {
+//                              fontsize:11,
+//                              textAlign:'right',
+//                              textBaseline:'middle',
+//                              rotate:-45
+//                            },
+//                            labels: labels
+//                        }]
+//                    }
+//                });
+//                //开始画图
+//                chart.draw();
+//            });
+        </script>
+    </head>
+    <body onload="drawLineChart(234,'6-2,6-3,6-4,6-5,6-6,6-7,6-8,6-9,6-10,6-11,6-12,6-13','201,202,203,204,205,206,207,208,209,210,211,212','208,209,210,211,212,235,202,205,209,205,211,212')">
+        <div id='canvasDiv'>
+        </div>
+    </body>
+</html>

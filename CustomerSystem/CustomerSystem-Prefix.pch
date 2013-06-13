@@ -11,4 +11,56 @@
 #ifdef __OBJC__
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
+    #import "Reachability.h"
+    #import "ASIHTTPRequest.h"
+    #import "ASIFormDataRequest.h"
+    #import "ASIHTTPRequestDelegate.h"
+    #import "ASIHTTPRequestConfig.h"
+    #import "LoadMoreTableFooterView.h"
+    #import "EGORefreshTableHeaderView.h"
+    #import "MBProgressHUD.h"
+    #import "SVProgressHUD.h"
+    #import "InsetsTextField.h"
+    #import "AppDelegate.h"
+    #import "CorePlot-CocoaTouch.h"
+    #import "Tool.h"
+
+    #define IS_IPHONE_5 ( fabs( ( double )[ [ UIScreen mainScreen ] bounds ].size.height - ( double )568 ) < DBL_EPSILON )
+    #define IS_Pad (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
+    #define kNavBarHeight 44
+    #define kTabBarHeight 49
+    #define kStatusBarHeight 20
+    #define REFRESHINGVIEW_HEIGHT 88
+    #define kLoadmoreFooterHeight 44
+    #define kScreenWidth [[UIScreen mainScreen] bounds].size.width
+    #define kScreenHeight [[UIScreen mainScreen] bounds].size.height
+    #define kPageSize 20
+//#define DEBUG 0
+    #ifdef DEBUG
+    #define debugLog(...) NSLog(__VA_ARGS__)
+    #define debugMethod() NSLog(@"%s", __func__)
+    #else
+    #define debugLog(...)
+    #define debugMethod()
+    #endif
+//#define myDEBUG 1
+//#ifdef myDEBUG
+//#define debugLog(...) NSLog(__VA_ARGS__)
+//#define debugMethod() NSLog(@"%s", __func__)
+//#else
+//#define debugLog(...)
+//#define debugMethod()
+//#endif
+    #define kSharedApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])
+
+//接口地址
+#define kServerURL @"http://192.168.1.90:8080/dynamicmeasurement/"
+#define kLoginURL [kServerURL stringByAppendingString:@"mobile/login"]
+#define kEquipmentList [kServerURL stringByAppendingString:@"mobile/equipment/list"]
+#define kEquipmentStopRecord [kServerURL stringByAppendingString:@"/mobile/equipment/stoprecord"]
+#define kProductRecommendPrice [kServerURL stringByAppendingString:@"/mobile/pricing"]
+
+//检测网络是否存在使用网址
+#define kCheckNetworkWebsite @"www.baidu.com"
+
 #endif
