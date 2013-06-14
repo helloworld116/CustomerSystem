@@ -11,6 +11,5 @@
 
 @interface ProductOverviewViewController2 : UIViewController
 @property (strong, nonatomic) IBOutlet UIFolderTableView *overviewTableView;
-@property (strong, nonatomic) IBOutlet UITableView *productListTableView;
 
 @end

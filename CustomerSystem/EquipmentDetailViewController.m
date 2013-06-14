@@ -41,13 +41,13 @@
     viewFrame.size.height = 55;
     self.view.frame = viewFrame;
     
-    self.lblSN.text = @"SH17RRX0227";
-    self.lblSetflow.text = @"70T/H";
-    self.lblMomentflow.text = @"100T/H";
-    self.lblMonthlyAccumulation.text = @"30000吨";
-    self.lblMonthlyStopNum.text = @"9";
-    self.lblMonthlyStopTime.text = @"78小时";
-    self.lblContinuousTime.text = @"258.5小时";
+    self.lblSN.text = [self.equipment objectForKey:@"sn"];
+    self.lblSetflow.text = [NSString stringWithFormat:@"%.1f",[[self.equipment objectForKey:@"settingFlowRate"] doubleValue]];
+    self.lblMomentflow.text = [NSString stringWithFormat:@"%.1f",[[self.equipment objectForKey:@"instantFlowRate"] doubleValue]];
+    self.lblMonthlyAccumulation.text = [NSString stringWithFormat:@"%.1f",[[self.equipment objectForKey:@"partialOutput"] doubleValue]];
+    self.lblMonthlyStopNum.text = [NSString stringWithFormat:@"%d",[[self.equipment objectForKey:@"stopCountMonthly"] intValue]];
+    self.lblMonthlyStopTime.text = [Tool secondsToHour:[[self.equipment objectForKey:@"stopDurationMonthly"] longValue]];
+    self.lblContinuousTime.text = [Tool secondsToHour:[[self.equipment objectForKey:@"runDuration"] longValue]];
 }
 
 -(void) stopRecord:(id)sender{

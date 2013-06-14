@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E022C1D176AAC94006394FC /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E022C1A176AAC94006394FC /* SVProgressHUD.bundle */; };
+		0E022C1E176AAC94006394FC /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E022C1C176AAC94006394FC /* SVProgressHUD.m */; };
 		0E089BB9176464DA007FF9E9 /* equipment.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0E089BB8176464D6007FF9E9 /* equipment.jpg */; };
 		0E3378EE1724C6F5000E3769 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3378ED1724C6F5000E3769 /* UIKit.framework */; };
 		0E3378F01724C6F5000E3769 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E3378EF1724C6F5000E3769 /* Foundation.framework */; };
@@ -97,7 +99,6 @@
 		0E95F4A11749B4D80083413B /* ProductCostItemDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0E95F4A01749B4D80083413B /* ProductCostItemDetailView.xib */; };
 		0E95F4A9174A1E070083413B /* ProductViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E95F4A8174A1E070083413B /* ProductViewController.m */; };
 		0E96B2601741DE0F00161950 /* PriceAssaint2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E96B25F1741DE0F00161950 /* PriceAssaint2ViewController.m */; };
-		0E9DA5D5172A81F200CF1B06 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9DA5D4172A81F200CF1B06 /* SVProgressHUD.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0E9E41EE17349B82008D8739 /* EquipmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E41ED17349B82008D8739 /* EquipmentDetailViewController.m */; };
 		0E9E41F11734DC1F008D8739 /* EquipmentStopRecordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E41F01734DC1F008D8739 /* EquipmentStopRecordViewController.m */; };
 		0E9E41F41734EF14008D8739 /* EquipmentStopRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E41F31734EF14008D8739 /* EquipmentStopRecordCell.m */; };
@@ -171,6 +172,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E022C1A176AAC94006394FC /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
+		0E022C1B176AAC94006394FC /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
+		0E022C1C176AAC94006394FC /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		0E089BB8176464D6007FF9E9 /* equipment.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = equipment.jpg; sourceTree = "<group>"; };
 		0E3378E91724C6F5000E3769 /* CustomerSystem.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CustomerSystem.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E3378ED1724C6F5000E3769 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -377,8 +381,6 @@
 		0E95F4A8174A1E070083413B /* ProductViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductViewController.m; sourceTree = "<group>"; };
 		0E96B25E1741DE0F00161950 /* PriceAssaint2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriceAssaint2ViewController.h; sourceTree = "<group>"; };
 		0E96B25F1741DE0F00161950 /* PriceAssaint2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriceAssaint2ViewController.m; sourceTree = "<group>"; };
-		0E9DA5D3172A81F200CF1B06 /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
-		0E9DA5D4172A81F200CF1B06 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		0E9E41EC17349B82008D8739 /* EquipmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentDetailViewController.h; sourceTree = "<group>"; };
 		0E9E41ED17349B82008D8739 /* EquipmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentDetailViewController.m; sourceTree = "<group>"; };
 		0E9E41EF1734DC1F008D8739 /* EquipmentStopRecordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentStopRecordViewController.h; sourceTree = "<group>"; };
@@ -905,8 +907,9 @@
 		0E9DA5D1172A81DD00CF1B06 /* SVProgressHUD */ = {
 			isa = PBXGroup;
 			children = (
-				0E9DA5D3172A81F200CF1B06 /* SVProgressHUD.h */,
-				0E9DA5D4172A81F200CF1B06 /* SVProgressHUD.m */,
+				0E022C1A176AAC94006394FC /* SVProgressHUD.bundle */,
+				0E022C1B176AAC94006394FC /* SVProgressHUD.h */,
+				0E022C1C176AAC94006394FC /* SVProgressHUD.m */,
 			);
 			name = SVProgressHUD;
 			sourceTree = "<group>";
@@ -1136,6 +1139,7 @@
 				0E6F390217647731005CCFC5 /* backButton_selected@2x.png in Resources */,
 				0E6F390317647731005CCFC5 /* backButton.png in Resources */,
 				0E6F390417647731005CCFC5 /* backButton@2x.png in Resources */,
+				0E022C1D176AAC94006394FC /* SVProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1168,7 +1172,6 @@
 				0E4F73C2172619A000918069 /* SearchDate.m in Sources */,
 				0E4F73C617267DA900918069 /* UpdatePasswordViewController.m in Sources */,
 				0E90BC821728CDFD0036119F /* EquipmentListViewController.m in Sources */,
-				0E9DA5D5172A81F200CF1B06 /* SVProgressHUD.m in Sources */,
 				0EA04A32172BCDD300A296CA /* EquipmentView.m in Sources */,
 				0EA04A35172BCDF600A296CA /* EquipmentCell.m in Sources */,
 				0E9E41EE17349B82008D8739 /* EquipmentDetailViewController.m in Sources */,
@@ -1205,6 +1208,7 @@
 				0EA4C3181761D70D00B79AB5 /* InsetsTextField.m in Sources */,
 				0E5FD7931763216700EF4DC0 /* EquipmentViewController.m in Sources */,
 				0EC5A2EE1769553600ADB6E2 /* ProductOverviewViewController2.m in Sources */,
+				0E022C1E176AAC94006394FC /* SVProgressHUD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

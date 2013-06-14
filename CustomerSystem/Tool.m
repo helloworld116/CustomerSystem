@@ -25,7 +25,11 @@
 }
 
 + (NSString *)secondsToHour:(long) second{
-    return [NSString stringWithFormat:@"%.1f小时",second/3600.0];
+    if (second==0) {
+        return @"---";
+    }else{
+        return [NSString stringWithFormat:@"%.1f小时",second/3600.0];
+    }
 }
 
 //2013第一季度得到起止日期

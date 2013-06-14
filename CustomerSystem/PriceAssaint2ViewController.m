@@ -22,6 +22,8 @@
 @property (nonatomic,retain) ASIFormDataRequest *request;
 @end
 
+//{\"error\":0,\"message\":null,\"data\":{\"products\":[{\"advicePrice\":\"234\",\"chardata\":[{\"advicePrice\":245,\"time\":1369238400000,\"price\":243},{\"advicePrice\":246,\"time\":1369324800000,\"price\":240},{\"advicePrice\":245,\"time\":1369411200000,\"price\":244},{\"advicePrice\":246,\"time\":1369497600000,\"price\":243},{\"advicePrice\":245,\"time\":1369584000000,\"price\":241},{\"advicePrice\":246,\"time\":1369670400000,\"price\":243},{\"advicePrice\":248,\"time\":1369756800000,\"price\":240},{\"advicePrice\":245,\"time\":1369843200000,\"price\":241},{\"advicePrice\":248,\"time\":1369929600000,\"price\":242},{\"advicePrice\":247,\"time\":1370016000000,\"price\":241},{\"advicePrice\":248,\"time\":1370102400000,\"price\":241},{\"advicePrice\":245,\"time\":1370188800000,\"price\":244},{\"advicePrice\":246,\"time\":1370275200000,\"price\":243},{\"advicePrice\":246,\"time\":1370361600000,\"price\":244},{\"advicePrice\":246,\"time\":1370448000000,\"price\":240}],\"productName\":\"P.O42.5普通硅酸盐水泥\",\"productId\":1},{\"advicePrice\":\"240\",\"chardata\":[{\"advicePrice\":245,\"time\":1369238400000,\"price\":241},{\"advicePrice\":249,\"time\":1369324800000,\"price\":244},{\"advicePrice\":249,\"time\":1369411200000,\"price\":242},{\"advicePrice\":245,\"time\":1369497600000,\"price\":241},{\"advicePrice\":248,\"time\":1369584000000,\"price\":242},{\"advicePrice\":248,\"time\":1369670400000,\"price\":242},{\"advicePrice\":245,\"time\":1369756800000,\"price\":243},{\"advicePrice\":247,\"time\":1369843200000,\"price\":240},{\"advicePrice\":249,\"time\":1369929600000,\"price\":243},{\"advicePrice\":245,\"time\":1370016000000,\"price\":242},{\"advicePrice\":249,\"time\":1370102400000,\"price\":243},{\"advicePrice\":249,\"time\":1370188800000,\"price\":241},{\"advicePrice\":246,\"time\":1370275200000,\"price\":243},{\"advicePrice\":247,\"time\":1370361600000,\"price\":242},{\"advicePrice\":245,\"time\":1370448000000,\"price\":242}],\"productName\":\"P.C32.5复合硅酸盐水泥\",\"productId\":2}]}}
+
 @implementation PriceAssaint2ViewController
 
 - (void)testProducts{
@@ -155,7 +157,7 @@
     //    NSString *responseString = [request responseString];
     NSDictionary *dict = [Tool stringToDictionary:request.responseString];
     if ([[dict objectForKey:@"error"] intValue]==0) {
-        [SVProgressHUD dismissWithSuccess:@"解析成功"];
+        [SVProgressHUD showSuccessWithStatus: @"解析成功"];
         self.products = [NSArray arrayWithArray:[[dict objectForKey:@"data"] objectForKey:@"products"]];
         self.webviewHasLoaded = [[NSMutableArray alloc] initWithCapacity:self.products.count];
         for (int i=0; i<self.products.count; i++) {
@@ -163,7 +165,7 @@
         }
         [self productList];
     }else{
-        [SVProgressHUD dismissWithError:@"解析失败"];
+        [SVProgressHUD showErrorWithStatus:@"解析失败"];
         debugLog(@"");
     }
 }
@@ -171,6 +173,7 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     //    NSError *error = [request error];
+    [SVProgressHUD showErrorWithStatus:@"网络错误"];
 }
 
 #pragma mark begin webviewDelegate

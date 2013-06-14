@@ -50,15 +50,15 @@
     }
     ProductCell * cell = (ProductCell *)[bundle objectAtIndex:0];
     NSDictionary *product = [self.products objectAtIndex:indexPath.row];
-    cell.lblTagName.hidden = NO;
-    cell.lblTagCost.hidden = NO;
-    cell.lblTagTotalOutput.hidden = NO;
-    cell.lblTagUnitCost.hidden = NO;
+//    cell.lblTagName.hidden = NO;
+//    cell.lblTagCost.hidden = NO;
+//    cell.lblTagTotalOutput.hidden = NO;
+//    cell.lblTagUnitCost.hidden = NO;
     cell.imgView.image = [UIImage imageNamed:@"shuini.png"];
     cell.lblName.text = [product objectForKey:@"name"];
     cell.lblCost.text = [product objectForKey:@"zcb"];
     cell.lblOutput.text = [product objectForKey:@"zcl"];
-    cell.lblUnitCost.text = [product objectForKey:@"dwcb"];
+//    cell.lblUnitCost.text = [product objectForKey:@"dwcb"];
     return cell;
 }
 

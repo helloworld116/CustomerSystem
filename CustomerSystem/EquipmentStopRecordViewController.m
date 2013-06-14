@@ -17,6 +17,7 @@
 @property BOOL isLoadingmore;//是否有更多页
 @end
 
+//{\"error\":0,\"message\":null,\"data\":{\"totalCount\":7,\"stopRecords\":[{\"reason\":\"检修\",\"stopDuration\":2099700,\"recoverTime\":1369207875218,\"stopTime\":1369205775518},{\"reason\":\"故障\",\"stopDuration\":2099700,\"recoverTime\":1369207895218,\"stopTime\":1369205875518},{\"reason\":\"停电\",\"stopDuration\":2099700,\"recoverTime\":1369227875218,\"stopTime\":1369205895518}]}}
 @implementation EquipmentStopRecordViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
@@ -191,7 +192,7 @@
     //    NSString *responseString = [request responseString];
     NSDictionary *dict = [Tool stringToDictionary:request.responseString];
     if ([[dict objectForKey:@"error"] intValue]==0) {
-        [SVProgressHUD dismissWithSuccess:@"解析成功"];
+        [SVProgressHUD showSuccessWithStatus:@"解析成功"];
         NSDictionary *data = [dict objectForKey:@"data"];
         [self.records addObjectsFromArray:[data objectForKey:@"stopRecords"]];
         [self.tableView reloadData];
@@ -201,7 +202,7 @@
             self.isLoadingmore = NO;
         }
     }else{
-        [SVProgressHUD dismissWithError:@"解析失败"];
+        [SVProgressHUD showErrorWithStatus:@"解析失败"];
         debugLog(@"");
     }
 }
@@ -209,6 +210,7 @@
 - (void)requestFailed:(ASIHTTPRequest *)request
 {
     //    NSError *error = [request error];
+    [SVProgressHUD showErrorWithStatus:@"网络错误"];
 }
 
 @end

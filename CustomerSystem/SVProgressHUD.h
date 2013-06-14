@@ -10,8 +10,11 @@
 #import <UIKit/UIKit.h>
 #import <AvailabilityMacros.h>
 
-// To disable SVProgressHUD's control of the network activity indicator by default,
-// add -DSVPROGRESSHUD_DISABLE_NETWORK_INDICATOR to CFLAGS in build settings.
+extern NSString * const SVProgressHUDDidReceiveTouchEventNotification;
+extern NSString * const SVProgressHUDWillDisappearNotification;
+extern NSString * const SVProgressHUDDidDisappearNotification;
+
+extern NSString * const SVProgressHUDStatusUserInfoKey;
 
 enum {
     SVProgressHUDMaskTypeNone = 1, // allow user interactions while HUD is displayed
@@ -24,21 +27,34 @@ typedef NSUInteger SVProgressHUDMaskType;
 
 @interface SVProgressHUD : UIView
 
-+ (void)show;
-+ (void)showWithStatus:(NSString*)status;
-+ (void)showWithStatus:(NSString*)status networkIndicator:(BOOL)show;
-+ (void)showWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType;
-+ (void)showWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType networkIndicator:(BOOL)show;
-+ (void)showWithMaskType:(SVProgressHUDMaskType)maskType;
-+ (void)showWithMaskType:(SVProgressHUDMaskType)maskType networkIndicator:(BOOL)show;
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 50000
+@property (readwrite, nonatomic, retain) UIColor *hudBackgroundColor NS_AVAILABLE_IOS(5_0) UI_APPEARANCE_SELECTOR;
+@property (readwrite, nonatomic, retain) UIColor *hudForegroundColor NS_AVAILABLE_IOS(5_0) UI_APPEARANCE_SELECTOR;
+@property (readwrite, nonatomic, retain) UIColor *hudStatusShadowColor NS_AVAILABLE_IOS(5_0) UI_APPEARANCE_SELECTOR;
+@property (readwrite, nonatomic, retain) UIFont *hudFont NS_AVAILABLE_IOS(5_0) UI_APPEARANCE_SELECTOR;
+@property (readwrite, nonatomic, retain) UIImage *hudSuccessImage NS_AVAILABLE_IOS(5_0) UI_APPEARANCE_SELECTOR;
+@property (readwrite, nonatomic, retain) UIImage *hudErrorImage NS_AVAILABLE_IOS(5_0) UI_APPEARANCE_SELECTOR;
+#endif
 
-+ (void)showSuccessWithStatus:(NSString*)string;
++ (void)show;
++ (void)showWithMaskType:(SVProgressHUDMaskType)maskType;
++ (void)showWithStatus:(NSString*)status;
++ (void)showWithStatus:(NSString*)status maskType:(SVProgressHUDMaskType)maskType;
+
++ (void)showProgress:(CGFloat)progress;
++ (void)showProgress:(CGFloat)progress status:(NSString*)status;
++ (void)showProgress:(CGFloat)progress status:(NSString*)status maskType:(SVProgressHUDMaskType)maskType;
+
 + (void)setStatus:(NSString*)string; // change the HUD loading status while it's showing
 
-+ (void)dismiss; // simply dismiss the HUD with a fade+scale out animation
-+ (void)dismissWithSuccess:(NSString*)successString; // also displays the success icon image
-+ (void)dismissWithSuccess:(NSString*)successString afterDelay:(NSTimeInterval)seconds;
-+ (void)dismissWithError:(NSString*)errorString; // also displays the error icon image
-+ (void)dismissWithError:(NSString*)errorString afterDelay:(NSTimeInterval)seconds;
+// stops the activity indicator, shows a glyph + status, and dismisses HUD 1s later
++ (void)showSuccessWithStatus:(NSString*)string;
++ (void)showErrorWithStatus:(NSString *)string;
++ (void)showImage:(UIImage*)image status:(NSString*)status; // use 28x28 white pngs
+
++ (void)popActivity;
++ (void)dismiss;
+
++ (BOOL)isVisible;
 
 @end

@@ -146,7 +146,7 @@
 
 #pragma mark ASIHTTPRequestDelegate
 -(void) requestFailed:(ASIHTTPRequest *)request{
-    [SVProgressHUD dismissWithError:@"网络请求出错"];
+    [SVProgressHUD showErrorWithStatus:@"网络请求出错"];
 }
 
 -(void)requestLogin:(ASIHTTPRequest *)request{
@@ -154,7 +154,7 @@
     
     NSDictionary *dict = [Tool stringToDictionary:request.responseString];
     if ([[dict objectForKey:@"status"] intValue]==1) {
-        [SVProgressHUD dismissWithSuccess:@"登录成功"];
+        [SVProgressHUD showSuccessWithStatus:@"登录成功"];
        
     }else{
       

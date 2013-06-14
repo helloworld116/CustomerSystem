@@ -34,7 +34,7 @@
     #define kLoadmoreFooterHeight 44
     #define kScreenWidth [[UIScreen mainScreen] bounds].size.width
     #define kScreenHeight [[UIScreen mainScreen] bounds].size.height
-    #define kPageSize 20
+    #define kPageSize 5
     #define kDateFormatFull @"yyyy-MM-dd HH:mm:ss"
     #define kDateFormatDay @"MM-dd"
 //#define DEBUG 0
@@ -59,8 +59,10 @@
 #define kServerURL @"http://192.168.1.90:8080/dynamicmeasurement/"
 #define kLoginURL [kServerURL stringByAppendingString:@"mobile/login"]
 #define kEquipmentList [kServerURL stringByAppendingString:@"mobile/equipment/list"]
-#define kEquipmentStopRecord [kServerURL stringByAppendingString:@"/mobile/equipment/stoprecord"]
-#define kProductRecommendPrice [kServerURL stringByAppendingString:@"/mobile/pricing"]
+#define kEquipmentStopRecord [kServerURL stringByAppendingString:@"mobile/equipment/stoprecord"]
+#define kProductRecommendPrice [kServerURL stringByAppendingString:@"mobile/pricing"]
+#define kProductOverview [kServerURL stringByAppendingString:@"mobile/overview"]
+#define kProductDetail [kServerURL stringByAppendingString:@"mobile/product/detail"]
 
 //检测网络是否存在使用网址
 #define kCheckNetworkWebsite @"www.baidu.com"

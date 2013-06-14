@@ -15,6 +15,7 @@
 @property BOOL keyboardWasShown;
 @property CGRect inputElementFrame;
 @end
+//{"error":0,"message":null,"data":{"factoryId":1,"accessToken":"sertf231412312342wer","expiresIn":10000,"modules":["productionView","priceAssistant","equipmentManagement"]}}
 
 @implementation LoginViewController
 
@@ -82,7 +83,7 @@
         [self.request setDidFailSelector:@selector(requestFailed:)];
         [self.request setDidFinishSelector:@selector(requestLogin:)];
         [self.request startAsynchronous];
-        [SVProgressHUD showWithStatus:@"正在登录..."];
+        [SVProgressHUD showWithStatus:@"正在登录..." maskType:SVProgressHUDMaskTypeGradient];
     }
 }
 
@@ -124,7 +125,7 @@
 }
 
 -(void) requestFailed:(ASIHTTPRequest *)request{
-    [SVProgressHUD dismissWithError:@"网络请求出错"];
+    [SVProgressHUD showErrorWithStatus:@"网络请求出错"];
     self.password.text = nil;
 }
 
@@ -132,7 +133,7 @@
     debugLog(@"the string is %@",request.responseString);
     NSDictionary *dict = [Tool stringToDictionary:request.responseString];
     if ([[dict objectForKey:@"error"] intValue]==0) {
-        [SVProgressHUD dismissWithSuccess:@"登录成功"];
+        [SVProgressHUD showSuccessWithStatus:@"登录成功"];
         kSharedApp.accessToken = [[dict objectForKey:@"data"] objectForKey:@"accessToken"];
         kSharedApp.factoryId = [[dict objectForKey:@"data"] objectForKey:@"factoryId"];
         UITabBarController *tab = [kSharedApp.storyboard instantiateViewControllerWithIdentifier:@"tab"];
@@ -148,7 +149,7 @@
     }else{
         self.password.text = nil;
         NSString *msg = [dict objectForKey:@"description"];
-        [SVProgressHUD dismissWithSuccess:msg];
+        [SVProgressHUD showErrorWithStatus:msg];
     }
 
 //    [SVProgressHUD dismissWithSuccess:@"登录成功"];
