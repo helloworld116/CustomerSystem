@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <PonyDebugger/PonyDebugger.h>
 
 @implementation AppDelegate
 
