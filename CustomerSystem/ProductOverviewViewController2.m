@@ -8,6 +8,7 @@
 
 #import "ProductOverviewViewController2.h"
 #import "ProductCell.h"
+#import "ProductViewController.h"
 //生产总览
 //{\"error\":0,\"message\":null,\"data\":{\"overview\":{\"costHuanbiIncrement\":34656,\"outputTongbiIncrement\":5066,\"totalCost\":623589,\"totalOutput\":60000,\"outputTongbiRate\":0.28,\"outputHuanbiRate\":0.21,\"costTongbiIncrement\":54123,\"costTongbiRate\":0.24,\"costHuanbiRate\":0.13,\"outputHuanbiIncrement\":3452},\"products\":[{\"totalCost\":323589,\"outputTongbiRate\":0.28,\"outputHuanbiRate\":0.21,\"costTongbiRate\":0.24,\"costPercent\":0.5,\"id\":1,\"costHuanbiIncrement\":34656,\"outputTongbiIncrement\":5066,\"unitCost\":232,\"costTongbiIncrement\":54123,\"output\":30000,\"costHuanbiRate\":0.13,\"productName\":\"P.O42.5普通硅酸盐水泥\",\"outputHuanbiIncrement\":3452},{\"totalCost\":300000,\"outputTongbiRate\":0.28,\"outputHuanbiRate\":0.21,\"costTongbiRate\":0.24,\"costPercent\":0.5,\"id\":2,\"costHuanbiIncrement\":34656,\"outputTongbiIncrement\":5066,\"unitCost\":232,\"costTongbiIncrement\":54123,\"output\":30000,\"costHuanbiRate\":0.13,\"productName\":\"P.C32.5复合硅酸盐水泥\",\"outputHuanbiIncrement\":3452}],\"costItems\":[{\"costHuanbiIncrement\":24656,\"itemName\":\"原材料\",\"percent\":0.75,\"quantityUnit\":\"T\",\"costTongbiIncrement\":14123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"useQuantity\":\"48267\",\"cost\":\"523589l\"},{\"costHuanbiIncrement\":24656,\"itemName\":\"电耗\",\"percent\":0.15,\"quantityUnit\":\"KWH\",\"costTongbiIncrement\":14123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"useQuantity\":\"38267\",\"cost\":\"523589l\"},{\"costHuanbiIncrement\":4656,\"itemName\":\"固定成本\",\"percent\":0.05,\"costTongbiIncrement\":4123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"cost\":\"23589l\"},{\"costHuanbiIncrement\":4656,\"itemName\":\"管理成本\",\"percent\":0.05,\"costTongbiIncrement\":4123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"cost\":\"43589l\"}]}}
 //产品详情
@@ -17,6 +18,8 @@
 @property (nonatomic,retain) NSDictionary *overview;
 @property (nonatomic,retain) NSMutableArray *costItems;
 @property (nonatomic,retain) ASIFormDataRequest *request;
+
+@property (nonatomic,retain) UIImageView *leftArrowView;
 @end
 
 @implementation ProductOverviewViewController2
@@ -54,6 +57,12 @@
     self.costItems = [[NSMutableArray alloc] init];
     self.overviewTableView.delegate = self;
     self.overviewTableView.dataSource = self;
+    
+    UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
+    bgView.frame = self.view.bounds;
+    [self.view insertSubview:bgView atIndex:0];
+    
+    self.overviewTableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg.png"]];
     //send request
     [self sendRequest];
 }
@@ -99,24 +108,29 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"overview"];
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
-        UIImageView *leftArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
-        leftArrowView.frame = CGRectMake(10, 10, 20, 20);
-        
-        UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(180, 5, 100, 30)];
-        rightView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@""]];
-        UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 80, 30)];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"top.png"]];
+        self.leftArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arr3.png"]];
+        self.leftArrowView.frame = CGRectMake(15, 8, 14, 14);
+        UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(230, 5, 73, 20)];
+        rightView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"box.png"]];
+        UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 60, 20)];
+        lblDate.font = [UIFont systemFontOfSize:11.f];
+        lblDate.backgroundColor = [UIColor clearColor];
+        lblDate.textColor = [UIColor whiteColor];
         lblDate.text = @"2013年5月";
-        UIImageView *rightArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@""]];
-        rightArrowView.frame = CGRectMake(85, 5, 10, 30);
+        UIImageView *rightArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arr2.png"]];
+        rightArrowView.frame = CGRectMake(63, 8, 5, 4);
         [rightView addSubview:lblDate];
         [rightView addSubview:rightArrowView];
         
-        [cell addSubview:leftArrowView];
+        [cell addSubview:self.leftArrowView];
         [cell addSubview:rightView];
         return cell;
     }else{
         ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
+        productCell.backgroundColor = [UIColor clearColor];
+        productCell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSDictionary *product = [self.products objectAtIndex:indexPath.row];
         productCell.lblName.text = [product objectForKey:@"productName"];
         productCell.lblCost.text = [NSString stringWithFormat:@"%.2f",[[product objectForKey:@"totalCost"] doubleValue]];
@@ -143,7 +157,7 @@
         if (IS_Pad) {
             return 120.f;
         }else{
-            return 40.f;
+            return 30.f;
         }
     }else{
         if (IS_Pad) {
@@ -156,6 +170,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section==0) {
+        //旋转代码
+        CGAffineTransform transform = self.leftArrowView.transform;
+        transform = CGAffineTransformRotate(transform, (M_PI / 2.0)); 
+        self.leftArrowView.transform = transform;
 //    EquipmentDetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"equipmentDetailViewController"];
 //    detailViewController.equipment = [self.equipments objectAtIndex:indexPath.row];
 //    self.tableView.scrollEnabled = NO;
@@ -176,6 +194,8 @@
 //    detailViewController.hidesBottomBarWhenPushed = YES;
 //    detailViewController.equipment = [self.equipments objectAtIndex:indexPath.row];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
+        NSDictionary *product = [self.products objectAtIndex:indexPath.row];
+        
     }
 }
 
