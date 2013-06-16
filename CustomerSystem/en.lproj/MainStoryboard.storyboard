@@ -623,8 +623,12 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="p6w-Yh-VTX" customClass="UIFolderTableView">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="background.png" id="dfK-Y1-CrV">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="uNs-N5-MKy" customClass="UIFolderTableView">
+                                <rect key="frame" x="10" y="10" width="300" height="347"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
@@ -633,26 +637,90 @@
                     </view>
                     <navigationItem key="navigationItem" id="7sV-HN-Ez5"/>
                     <connections>
-                        <outlet property="overviewTableView" destination="p6w-Yh-VTX" id="DnZ-B7-Mc8"/>
+                        <outlet property="overviewTableView" destination="uNs-N5-MKy" id="Kkt-h7-alJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IQV-5l-NtU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-114" y="-1233"/>
         </scene>
-        <!--View Controller-->
+        <!--Product View Controller-->
         <scene sceneID="w8E-WZ-N5f">
             <objects>
-                <viewController id="FM8-kZ-hCI" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="productViewController" id="FM8-kZ-hCI" customClass="ProductViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SQU-R2-dpP">
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="background.png" id="V38-Bp-2hY">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="xnz-Zf-kZ0">
+                                <rect key="frame" x="10" y="10" width="300" height="350"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="P6s-wP-Wxz">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2013年5月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L81-D8-EAi">
+                                                <rect key="frame" x="20" y="5" width="100" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wc5-Ct-lqy">
+                                                <rect key="frame" x="186" y="5" width="100" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <state key="highlighted">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="changeView:" destination="FM8-kZ-hCI" eventType="touchUpInside" id="pcS-eS-mcS"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="基本信息" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="XFt-Gq-gbl">
+                                                <rect key="frame" x="186" y="5" width="80" height="20"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="arr2.png" id="cat-uU-0Bg">
+                                                <rect key="frame" x="268" y="12" width="5" height="5"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.50980392156862742" green="0.61176470588235299" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="CsS-aM-pbx">
+                                        <rect key="frame" x="0.0" y="29" width="300" height="321"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </scrollView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="bgContainer" destination="xnz-Zf-kZ0" id="pRB-bz-Ekb"/>
+                        <outlet property="imgViewArr" destination="cat-uU-0Bg" id="wM9-jh-IjA"/>
+                        <outlet property="lblDate" destination="L81-D8-EAi" id="dVt-eP-Kb0"/>
+                        <outlet property="lblTipInfo" destination="XFt-Gq-gbl" id="x7g-7l-Ozt"/>
+                        <outlet property="scrollViewContainer" destination="CsS-aM-pbx" id="QF9-t9-H6K"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nT4-eY-0pD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="369" y="-1337"/>
+            <point key="canvasLocation" x="318" y="-1344"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="XMO-Gd-0VQ">
@@ -662,6 +730,46 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="iGg-D7-BlG">
+                            <rect key="frame" x="0.0" y="396" width="320" height="30"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="production_top.png" id="xKC-st-2MW">
+                                    <rect key="frame" x="0.0" y="0.0" width="304" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="X6s-h3-sTf">
+                                    <rect key="frame" x="20" y="5" width="100" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tht-bY-peh">
+                                    <rect key="frame" x="186" y="5" width="100" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                    <state key="normal">
+                                        <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <state key="highlighted">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="基本信息" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8qN-pO-eCz">
+                                    <rect key="frame" x="186" y="5" width="80" height="20"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="uW3-7a-eN9">
+                                    <rect key="frame" x="271" y="10" width="10" height="10"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        </view>
                         <sections>
                             <tableViewSection id="wrw-84-iJq">
                                 <cells>
@@ -927,9 +1035,122 @@
         <image name="login.png" width="226" height="33"/>
         <image name="priceAssaint.png" width="20" height="21"/>
         <image name="productOverview.png" width="19" height="21"/>
+        <image name="production_top.png" width="301" height="28"/>
         <image name="top.png" width="301" height="15"/>
         <image name="userinfo.png" width="14" height="16"/>
     </resources>
+    <classes>
+        <class className="ConditionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConditionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="endDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="startDate" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EquipmentDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lblContinuousTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblMomentflow" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblMonthlyAccumulation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblMonthlyStopNum" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblMonthlyStopTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblSN" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblSetflow" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EquipmentListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UIFolderTableView"/>
+            </relationships>
+        </class>
+        <class className="EquipmentStopRecordViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentStopRecordViewController.h"/>
+        </class>
+        <class className="EquipmentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bgImgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="headerImgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="InsetsTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InsetsTextField.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouch:"/>
+                <relationship kind="action" name="doLogin:"/>
+                <relationship kind="outlet" name="btnLogin" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="continerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="password" candidateClass="InsetsTextField"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="titleImgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="username" candidateClass="InsetsTextField"/>
+            </relationships>
+        </class>
+        <class className="PriceAssaint2ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PriceAssaint2ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="contentScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="titleScrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="PriceAssaintViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PriceAssaintViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="productPriceTableview" candidateClass="UIFolderTableView"/>
+            </relationships>
+        </class>
+        <class className="ProductOverviewViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductOverviewViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="productDetailView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="ProductOverviewViewController2" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductOverviewViewController2.h"/>
+            <relationships>
+                <relationship kind="outlet" name="overviewTableView" candidateClass="UIFolderTableView"/>
+            </relationships>
+        </class>
+        <class className="ProductPriceDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductPriceDetailViewController.h"/>
+        </class>
+        <class className="ProductViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changeView:"/>
+                <relationship kind="outlet" name="bgContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="imgViewArr" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblTipInfo" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollViewContainer" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="UIFolderTableView" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIFolderTableView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="folderDelegate"/>
+            </relationships>
+        </class>
+        <class className="UpdatePasswordViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UpdatePasswordViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouch:"/>
+                <relationship kind="action" name="doUpdatePassword:"/>
+                <relationship kind="outlet" name="nPassword2TextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nPasswordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="oldPasswordTextfield" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

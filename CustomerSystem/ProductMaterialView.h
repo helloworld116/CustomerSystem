@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductMaterialView : UIWebView
+@interface ProductMaterialView : UIWebView<UIWebViewDelegate>
 
 @end

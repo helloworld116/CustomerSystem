@@ -9,6 +9,7 @@
 #import "ProductOverviewViewController2.h"
 #import "ProductCell.h"
 #import "ProductViewController.h"
+#import <QuartzCore/QuartzCore.h>
 //生产总览
 //{\"error\":0,\"message\":null,\"data\":{\"overview\":{\"costHuanbiIncrement\":34656,\"outputTongbiIncrement\":5066,\"totalCost\":623589,\"totalOutput\":60000,\"outputTongbiRate\":0.28,\"outputHuanbiRate\":0.21,\"costTongbiIncrement\":54123,\"costTongbiRate\":0.24,\"costHuanbiRate\":0.13,\"outputHuanbiIncrement\":3452},\"products\":[{\"totalCost\":323589,\"outputTongbiRate\":0.28,\"outputHuanbiRate\":0.21,\"costTongbiRate\":0.24,\"costPercent\":0.5,\"id\":1,\"costHuanbiIncrement\":34656,\"outputTongbiIncrement\":5066,\"unitCost\":232,\"costTongbiIncrement\":54123,\"output\":30000,\"costHuanbiRate\":0.13,\"productName\":\"P.O42.5普通硅酸盐水泥\",\"outputHuanbiIncrement\":3452},{\"totalCost\":300000,\"outputTongbiRate\":0.28,\"outputHuanbiRate\":0.21,\"costTongbiRate\":0.24,\"costPercent\":0.5,\"id\":2,\"costHuanbiIncrement\":34656,\"outputTongbiIncrement\":5066,\"unitCost\":232,\"costTongbiIncrement\":54123,\"output\":30000,\"costHuanbiRate\":0.13,\"productName\":\"P.C32.5复合硅酸盐水泥\",\"outputHuanbiIncrement\":3452}],\"costItems\":[{\"costHuanbiIncrement\":24656,\"itemName\":\"原材料\",\"percent\":0.75,\"quantityUnit\":\"T\",\"costTongbiIncrement\":14123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"useQuantity\":\"48267\",\"cost\":\"523589l\"},{\"costHuanbiIncrement\":24656,\"itemName\":\"电耗\",\"percent\":0.15,\"quantityUnit\":\"KWH\",\"costTongbiIncrement\":14123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"useQuantity\":\"38267\",\"cost\":\"523589l\"},{\"costHuanbiIncrement\":4656,\"itemName\":\"固定成本\",\"percent\":0.05,\"costTongbiIncrement\":4123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"cost\":\"23589l\"},{\"costHuanbiIncrement\":4656,\"itemName\":\"管理成本\",\"percent\":0.05,\"costTongbiIncrement\":4123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"cost\":\"43589l\"}]}}
 //产品详情
@@ -52,6 +53,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
+    self.overviewTableView.layer.cornerRadius = 15;
+    self.overviewTableView.layer.masksToBounds = YES;
     //init local var
     self.products = [[NSMutableArray alloc] init];
     self.costItems = [[NSMutableArray alloc] init];
@@ -132,6 +135,7 @@
         productCell.backgroundColor = [UIColor clearColor];
         productCell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSDictionary *product = [self.products objectAtIndex:indexPath.row];
+        productCell.imgView.image = [UIImage imageNamed:@"shuini.png"];
         productCell.lblName.text = [product objectForKey:@"productName"];
         productCell.lblCost.text = [NSString stringWithFormat:@"%.2f",[[product objectForKey:@"totalCost"] doubleValue]];
         productCell.lblOutput.text = [NSString stringWithFormat:@"%.2f",[[product objectForKey:@"output"]doubleValue]];
@@ -163,7 +167,8 @@
         if (IS_Pad) {
             return 120.f;
         }else{
-            return 92.f;
+            ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
+            return productCell.frame.size.height;
         }
     }
 }
@@ -194,8 +199,9 @@
 //    detailViewController.hidesBottomBarWhenPushed = YES;
 //    detailViewController.equipment = [self.equipments objectAtIndex:indexPath.row];
 //    [self.navigationController pushViewController:detailViewController animated:YES];
-        NSDictionary *product = [self.products objectAtIndex:indexPath.row];
-        
+        ProductViewController *productViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"productViewController"];
+        productViewController.productBasicInfo = [self.products objectAtIndex:indexPath.row];
+        [self.navigationController pushViewController:productViewController animated:YES];
     }
 }
 

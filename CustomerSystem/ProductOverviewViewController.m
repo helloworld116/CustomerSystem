@@ -214,7 +214,7 @@
     [self.webview stringByEvaluatingJavaScriptFromString:js];
 }
 
-- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)err{
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
     
 }
 #pragma mark end webviewDelegate
