@@ -10,6 +10,8 @@
 #import "ProductCell.h"
 #import "ProductViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "JWFolders.h"
+#import "OverviewChild1ViewController.h"
 
 #define kDuration 0.7   // 动画持续时间(秒)
 //生产总览
@@ -79,6 +81,12 @@
     //set container background
     self.viewBgContainer.layer.cornerRadius = 15;
     self.viewBgContainer.layer.masksToBounds = YES;
+    //set right box view
+    self.viewRightBox.layer.shadowOffset = CGSizeMake(1, 1);
+    self.viewRightBox.layer.shadowOpacity = 1;
+    self.viewRightBox.layer.shadowColor = [UIColor colorWithRed:166.0/255 green:187.0/255 blue:200.0/255 alpha:1.0].CGColor;
+    self.viewRightBox.layer.borderWidth = 1;
+    self.viewRightBox.layer.borderColor = [UIColor colorWithRed:75.0/255 green:102.0/255 blue:121.0/255 alpha:1.0].CGColor;
     //init local var
     self.products = [[NSMutableArray alloc] init];
     self.costItems = [[NSMutableArray alloc] init];
@@ -108,6 +116,7 @@
     [self setImgViewRightArrow:nil];
     [self setProductsTableView:nil];
     [self setViewContainer:nil];
+    [self setViewRightBox:nil];
     [super viewDidUnload];
 }
 
@@ -269,6 +278,15 @@
 }
 
 - (IBAction)changeDate:(id)sender {
+    debugLog(@"changeDate");
+}
+
+- (IBAction)expandOverview:(id)sender {
+    OverviewChild1ViewController *child1 = [[OverviewChild1ViewController alloc] initWithNibName:NSStringFromClass([OverviewChild1ViewController class]) bundle:nil];
+    CGPoint openPoint = CGPointMake(0,29); //arbitrary point,x不起作用，y是展开的起始点
+    //展开
+    [JWFolders openFolderWithContentView:child1.view position:openPoint containerView:self.viewBgContainer sender:self direction:1];
+
 }
 
 - (void)changeView:(id)sender{

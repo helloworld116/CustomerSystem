@@ -18,8 +18,10 @@
 @property (strong, nonatomic) IBOutlet UILabel *lblDate;
 @property (strong, nonatomic) IBOutlet UIImageView *imgViewRightArrow;
 @property (strong, nonatomic) IBOutlet UITableView *productsTableView;//tag 1101
+@property (strong, nonatomic) IBOutlet UIView *viewRightBox;
 @property (strong, nonatomic) FactoryCostItemView *costItemView;//tag 1102
 @property (strong, nonatomic) REMenu *menu;
 
 - (IBAction)changeDate:(id)sender;
+- (IBAction)expandOverview:(id)sender;
 @end

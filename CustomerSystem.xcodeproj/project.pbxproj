@@ -186,6 +186,11 @@
 		478E40A0176DA9A8006893BD /* ProductBasicInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 478E409F176DA9A8006893BD /* ProductBasicInfoView.m */; };
 		478E40A7176E1103006893BD /* ProductMaterialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 478E40A6176E1102006893BD /* ProductMaterialView.m */; };
 		478E40AB176E22F0006893BD /* shuini.png in Resources */ = {isa = PBXBuildFile; fileRef = 478E40AA176E22F0006893BD /* shuini.png */; };
+		47A49F0C176F812F00580CA7 /* JWFolders.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F07176F812F00580CA7 /* JWFolders.m */; };
+		47A49F0D176F812F00580CA7 /* UIScreen+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F09176F812F00580CA7 /* UIScreen+Scale.m */; };
+		47A49F0E176F812F00580CA7 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F0B176F812F00580CA7 /* UIView+Screenshot.m */; };
+		47A49F11176F826000580CA7 /* OverviewChild1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F10176F826000580CA7 /* OverviewChild1ViewController.m */; };
+		47A49F13176F830C00580CA7 /* OverviewChild1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A49F12176F830C00580CA7 /* OverviewChild1ViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -443,6 +448,15 @@
 		478E40A5176E1102006893BD /* ProductMaterialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductMaterialView.h; sourceTree = "<group>"; };
 		478E40A6176E1102006893BD /* ProductMaterialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMaterialView.m; sourceTree = "<group>"; };
 		478E40AA176E22F0006893BD /* shuini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuini.png; sourceTree = "<group>"; };
+		47A49F06176F812F00580CA7 /* JWFolders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWFolders.h; sourceTree = "<group>"; };
+		47A49F07176F812F00580CA7 /* JWFolders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWFolders.m; sourceTree = "<group>"; };
+		47A49F08176F812F00580CA7 /* UIScreen+Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScreen+Scale.h"; sourceTree = "<group>"; };
+		47A49F09176F812F00580CA7 /* UIScreen+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+Scale.m"; sourceTree = "<group>"; };
+		47A49F0A176F812F00580CA7 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
+		47A49F0B176F812F00580CA7 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
+		47A49F0F176F826000580CA7 /* OverviewChild1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewChild1ViewController.h; sourceTree = "<group>"; };
+		47A49F10176F826000580CA7 /* OverviewChild1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewChild1ViewController.m; sourceTree = "<group>"; };
+		47A49F12176F830C00580CA7 /* OverviewChild1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverviewChild1ViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -686,6 +700,9 @@
 				0EA12441176F05C40070DEA5 /* ProductEnergyView.m */,
 				0EA12428176EAE3E0070DEA5 /* FactoryCostItemView.h */,
 				0EA12429176EAE3E0070DEA5 /* FactoryCostItemView.m */,
+				47A49F0F176F826000580CA7 /* OverviewChild1ViewController.h */,
+				47A49F10176F826000580CA7 /* OverviewChild1ViewController.m */,
+				47A49F12176F830C00580CA7 /* OverviewChild1ViewController.xib */,
 			);
 			name = ProductOverview;
 			sourceTree = "<group>";
@@ -773,6 +790,7 @@
 		0E93831917411190004C3947 /* Thrid-party */ = {
 			isa = PBXGroup;
 			children = (
+				47A49F05176F812F00580CA7 /* JWFolders */,
 				0EA12438176EF8B70070DEA5 /* LHDropDownControlView */,
 				0EA1242B176EBCAD0070DEA5 /* REMenu */,
 				0E9EF7711755DF500079BD54 /* TSPopoverPopoverView.h */,
@@ -907,6 +925,19 @@
 				0E9E41F01734DC1F008D8739 /* EquipmentStopRecordViewController.m */,
 			);
 			name = ViewController;
+			sourceTree = "<group>";
+		};
+		47A49F05176F812F00580CA7 /* JWFolders */ = {
+			isa = PBXGroup;
+			children = (
+				47A49F06176F812F00580CA7 /* JWFolders.h */,
+				47A49F07176F812F00580CA7 /* JWFolders.m */,
+				47A49F08176F812F00580CA7 /* UIScreen+Scale.h */,
+				47A49F09176F812F00580CA7 /* UIScreen+Scale.m */,
+				47A49F0A176F812F00580CA7 /* UIView+Screenshot.h */,
+				47A49F0B176F812F00580CA7 /* UIView+Screenshot.m */,
+			);
+			path = JWFolders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1063,6 +1094,7 @@
 				0ED841E5176F3B090079F77E /* back@2x.png in Resources */,
 				0ED841EA176F3BCF0079F77E /* navigationBar.png in Resources */,
 				0ED841EB176F3BCF0079F77E /* navigationBar@2x.png in Resources */,
+				47A49F13176F830C00580CA7 /* OverviewChild1ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,6 +1173,10 @@
 				0EA12437176EBCAD0070DEA5 /* REMenuItemView.m in Sources */,
 				0EA1243F176EF8B70070DEA5 /* LHDropDownControlView.m in Sources */,
 				0EA12442176F05C40070DEA5 /* ProductEnergyView.m in Sources */,
+				47A49F0C176F812F00580CA7 /* JWFolders.m in Sources */,
+				47A49F0D176F812F00580CA7 /* UIScreen+Scale.m in Sources */,
+				47A49F0E176F812F00580CA7 /* UIView+Screenshot.m in Sources */,
+				47A49F11176F826000580CA7 /* OverviewChild1ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -76,6 +76,12 @@
     self.frontView = self.basicInfoView;
     self.materials = [[NSMutableArray alloc] initWithArray:0];
     self.energys = [[NSMutableArray alloc] initWithArray:0];
+    //set right box view
+    self.viewRightBox.layer.shadowOffset = CGSizeMake(1, 1);
+    self.viewRightBox.layer.shadowOpacity = 1;
+    self.viewRightBox.layer.shadowColor = [UIColor colorWithRed:166.0/255 green:187.0/255 blue:200.0/255 alpha:1.0].CGColor;
+    self.viewRightBox.layer.borderWidth = 1;
+    self.viewRightBox.layer.borderColor = [UIColor colorWithRed:75.0/255 green:102.0/255 blue:121.0/255 alpha:1.0].CGColor;
     //send request
     [self sendRequest];
 }
@@ -237,6 +243,7 @@
     [self setScrollViewContainer:nil];
     [self setBgContainer:nil];
     [self setBasicInfoView:nil];
+    [self setViewRightBox:nil];
     [super viewDidUnload];
 }
 

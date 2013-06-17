@@ -20,6 +20,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *imgViewArr;
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollViewContainer;
 @property (strong, nonatomic) IBOutlet UIView *bgContainer;
+@property (strong, nonatomic) IBOutlet UIView *viewRightBox;
 
 @property (nonatomic,retain) ProductBasicInfoView *basicInfoView;//tag 1201
 @property (nonatomic,retain) ProductMaterialView *materialView;//tag 1202
