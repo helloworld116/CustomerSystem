@@ -10,4 +10,6 @@
 
 @interface ProductMaterialView : UIWebView<UIWebViewDelegate>
 
+@property (nonatomic,retain) NSArray *materials;
+
 @end

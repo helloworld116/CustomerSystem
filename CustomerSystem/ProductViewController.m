@@ -12,7 +12,10 @@
 #define kDuration 0.7   // 动画持续时间(秒)
 
 @interface ProductViewController ()
-
+@property (nonatomic,retain) UIView *frontView;//用于指示当前哪个view在前端显示
+@property (nonatomic,retain) NSMutableArray *materials;
+@property (nonatomic,retain) NSMutableArray *energys;
+@property (nonatomic,retain) ASIFormDataRequest *request;
 @end
 
 @implementation ProductViewController
@@ -28,6 +31,21 @@
 
 - (void)backAction {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) sendRequest{
+    [SVProgressHUD showWithStatus:@"正在加载..."];
+    self.request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:kProductDetail]];
+    [self.request setPostValue:kSharedApp.accessToken forKey:@"accessToken"];
+    [self.request setPostValue:kSharedApp.factoryId forKey:@"factoryId"];
+    [self.request setPostValue:[NSNumber numberWithLong:[[self.productBasicInfo objectForKey:@"id"] longValue]] forKey:@"productId"];
+    [self.request setPostValue:@"2013" forKey:@"periodUnit"];//(0：天  1:月  2:季度  3:年)
+    [self.request setPostValue:@"1" forKey:@"year"];
+    [self.request setPostValue:@"1" forKey:@"quarter"];
+    [self.request setPostValue:@"1" forKey:@"month"];
+    [self.request setPostValue:@"1" forKey:@"day"];
+    [self.request setDelegate:self];
+    [self.request startAsynchronous];
 }
 
 - (void)viewDidLoad
@@ -53,7 +71,18 @@
     self.bgContainer.layer.masksToBounds = YES;
     self.title = [self.productBasicInfo objectForKey:@"productName"];
     
+    [self initBasicInfoView];
+    //init local var
+    self.frontView = self.basicInfoView;
+    self.materials = [[NSMutableArray alloc] initWithArray:0];
+    self.energys = [[NSMutableArray alloc] initWithArray:0];
+    //send request
+    [self sendRequest];
+}
+
+-(void)initBasicInfoView{
     self.basicInfoView = (ProductBasicInfoView *)[[[NSBundle mainBundle] loadNibNamed:@"ProductBasicInfoView" owner:self options:nil] objectAtIndex:0];
+    self.basicInfoView.tag = 1201;
     self.basicInfoView.lblTotalCost.text = [[self.productBasicInfo objectForKey:@"totalCost"] stringValue];
     self.basicInfoView.lblUnitCost.text = [[self.productBasicInfo objectForKey:@"unitCost"] stringValue];;
     self.basicInfoView.lblTotalOutput.text = [[self.productBasicInfo objectForKey:@"output"] stringValue];;
@@ -210,22 +239,140 @@
     [self setBasicInfoView:nil];
     [super viewDidUnload];
 }
-- (IBAction)changeView:(id)sender {
+
+#pragma mark -------------ASIHTTPRequestDelegate-------------
+
+- (void)requestFinished:(ASIHTTPRequest *)request
+{
+    // Use when fetching text data
+    NSDictionary *dict = [Tool stringToDictionary:request.responseString];
+    if ([[dict objectForKey:@"error"] intValue]==0) {
+        [SVProgressHUD showSuccessWithStatus: @"解析成功"];
+        NSDictionary *data = [dict objectForKey:@"data"];
+        [self.materials addObjectsFromArray:[data objectForKey:@"materialUsage"]];
+        [self.energys addObjectsFromArray:[data objectForKey:@"energeUsage"]];
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"解析失败"];
+        debugLog(@"");
+    }
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    //    NSError *error = [request error];
+    [SVProgressHUD showErrorWithStatus:@"网络错误"];
+}
+
+
+//- (IBAction)changeView:(id)sender {
+//    CATransition *animation = [CATransition animation];
+//    animation.delegate = self;
+//    animation.duration = kDuration;
+//    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+//    animation.type = @"oglFlip";
+//    animation.subtype = kCATransitionFromLeft;
+//    if (self.materialView==nil) {
+//        self.materialView = [[ProductMaterialView alloc] initWithFrame:self.scrollViewContainer.bounds];
+//        [(UIScrollView *)[[self.materialView subviews] objectAtIndex:0] setBounces:NO];
+//        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ProductCostItem" ofType:@"html"];
+//        [self.materialView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath]]];
+//        [self.scrollViewContainer addSubview:self.materialView];
+//    }else{
+//        [self.scrollViewContainer bringSubviewToFront:self.materialView];
+//    }
+//    [[self.scrollViewContainer layer] addAnimation:animation forKey:@"animation"];
+//}
+
+- (void)changeView:(id)sender{
+    //旋转箭头指向
+    CGAffineTransform transform = self.imgViewArr.transform;
+    transform = CGAffineTransformRotate(transform, (M_PI));
+    self.imgViewArr.transform = transform;
+    if (_menu.isOpen)
+        return [_menu close];
+    REMenuItem *basicItem = [[REMenuItem alloc] initWithTitle:@"生产总览"
+                                                       subtitle:nil
+                                                          image:nil
+                                               highlightedImage:nil
+                                                         action:^(REMenuItem *item) {
+                                                             //旋转箭头指向
+                                                             CGAffineTransform transform = self.imgViewArr.transform;
+                                                             self.lblTipInfo.text = @"生产总览";
+                                                             transform = CGAffineTransformRotate(transform, M_PI);
+                                                             self.imgViewArr.transform = transform;
+                                                             if (self.frontView!=self.basicInfoView) {
+                                                                 [self showView:self.basicInfoView];
+                                                             }
+                                                         }];
+    REMenuItem *materialItem = [[REMenuItem alloc] initWithTitle:@"原材料损耗"
+                                                    subtitle:nil
+                                                       image:nil
+                                            highlightedImage:nil
+                                                      action:^(REMenuItem *item) {
+                                                          //旋转箭头指向
+                                                          CGAffineTransform transform = self.imgViewArr.transform;
+                                                          transform = CGAffineTransformRotate(transform, M_PI);
+                                                          self.imgViewArr.transform = transform;
+                                                          self.lblTipInfo.text = @"原材料损耗";
+                                                          if (self.frontView!=self.materialView) {
+                                                              if (self.materialView==nil) {
+                                                                  self.materialView = [[ProductMaterialView alloc] initWithFrame:self.scrollViewContainer.bounds];
+                                                                  self.materialView.materials = self.materials;
+                                                                  self.materialView.tag = 1202;
+                                                                  [(UIScrollView *)[[self.materialView subviews] objectAtIndex:0] setBounces:NO];
+                                                                  NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ProductCostItem" ofType:@"html"];
+                                                                  [self.materialView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath]]];
+                                                                  [self.scrollViewContainer addSubview:self.materialView];
+                                                              }
+                                                              [self showView:self.materialView];
+                                                          }
+                                                      }];
+    REMenuItem *energeItem = [[REMenuItem alloc] initWithTitle:@"能源损耗"
+                                                    subtitle:nil
+                                                       image:nil
+                                            highlightedImage:nil
+                                                      action:^(REMenuItem *item) {
+                                                          //旋转箭头指向
+                                                          CGAffineTransform transform = self.imgViewArr.transform;
+                                                          transform = CGAffineTransformRotate(transform, M_PI);
+                                                          self.imgViewArr.transform = transform;
+                                                          self.lblTipInfo.text = @"能源损耗";
+                                                          if (self.frontView!=self.energyView) {
+                                                              if (self.energyView==nil) {
+                                                                  self.energyView = [[ProductEnergyView alloc] initWithFrame:self.scrollViewContainer.bounds];
+                                                                  self.energyView.energys = self.energys;
+                                                                  self.energyView.tag = 1203;
+                                                                  [(UIScrollView *)[[self.energyView subviews] objectAtIndex:0] setBounces:NO];
+                                                                  NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ProductCostItem" ofType:@"html"];
+                                                                  [self.energyView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath]]];
+                                                                  [self.scrollViewContainer addSubview:self.energyView];
+                                                              }
+                                                              [self showView:self.energyView];
+                                                          }
+                                                      }];
+    _menu = [[REMenu alloc] initWithItems:@[basicItem, materialItem,energeItem]];
+    _menu.cornerRadius = 4;
+    _menu.shadowColor = [UIColor blackColor];
+    _menu.shadowOffset = CGSizeMake(0, 1);
+    _menu.shadowOpacity = 1;
+    _menu.imageOffset = CGSizeMake(5, -1);
+    [_menu showFromNavigationController:self.navigationController];
+}
+
+-(void)showView:(UIView *)view{
     CATransition *animation = [CATransition animation];
     animation.delegate = self;
     animation.duration = kDuration;
     animation.timingFunction = UIViewAnimationCurveEaseInOut;
     animation.type = @"oglFlip";
-    animation.subtype = kCATransitionFromLeft;
-    if (self.materialView==nil) {
-        self.materialView = [[ProductMaterialView alloc] initWithFrame:self.scrollViewContainer.bounds];
-        [(UIScrollView *)[[self.materialView subviews] objectAtIndex:0] setBounces:NO];
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ProductCostItem" ofType:@"html"];
-        [self.materialView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath]]];
-        [self.scrollViewContainer addSubview:self.materialView];
+    if (self.frontView.tag>view.tag) {
+        animation.subtype = kCATransitionFromLeft;
     }else{
-        [self.scrollViewContainer bringSubviewToFront:self.materialView];
+        animation.subtype = kCATransitionFromRight;
     }
+    [self.scrollViewContainer bringSubviewToFront:view];
     [[self.scrollViewContainer layer] addAnimation:animation forKey:@"animation"];
+    self.frontView=view;
 }
+
 @end

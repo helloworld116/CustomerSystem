@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductEnergyView : UIWebView
+@interface ProductEnergyView : UIWebView<UIWebViewDelegate>
+
+@property (nonatomic,retain) NSArray *energys;
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FactoryCostItemView : UIWebView
-
+@interface FactoryCostItemView : UIWebView<UIWebViewDelegate>
+@property (nonatomic,retain) NSArray *costItems;
 @end

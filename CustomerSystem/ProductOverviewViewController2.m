@@ -10,6 +10,8 @@
 #import "ProductCell.h"
 #import "ProductViewController.h"
 #import <QuartzCore/QuartzCore.h>
+
+#define kDuration 0.7   // 动画持续时间(秒)
 //生产总览
 //{\"error\":0,\"message\":null,\"data\":{\"overview\":{\"costHuanbiIncrement\":34656,\"outputTongbiIncrement\":5066,\"totalCost\":623589,\"totalOutput\":60000,\"outputTongbiRate\":0.28,\"outputHuanbiRate\":0.21,\"costTongbiIncrement\":54123,\"costTongbiRate\":0.24,\"costHuanbiRate\":0.13,\"outputHuanbiIncrement\":3452},\"products\":[{\"totalCost\":323589,\"outputTongbiRate\":0.28,\"outputHuanbiRate\":0.21,\"costTongbiRate\":0.24,\"costPercent\":0.5,\"id\":1,\"costHuanbiIncrement\":34656,\"outputTongbiIncrement\":5066,\"unitCost\":232,\"costTongbiIncrement\":54123,\"output\":30000,\"costHuanbiRate\":0.13,\"productName\":\"P.O42.5普通硅酸盐水泥\",\"outputHuanbiIncrement\":3452},{\"totalCost\":300000,\"outputTongbiRate\":0.28,\"outputHuanbiRate\":0.21,\"costTongbiRate\":0.24,\"costPercent\":0.5,\"id\":2,\"costHuanbiIncrement\":34656,\"outputTongbiIncrement\":5066,\"unitCost\":232,\"costTongbiIncrement\":54123,\"output\":30000,\"costHuanbiRate\":0.13,\"productName\":\"P.C32.5复合硅酸盐水泥\",\"outputHuanbiIncrement\":3452}],\"costItems\":[{\"costHuanbiIncrement\":24656,\"itemName\":\"原材料\",\"percent\":0.75,\"quantityUnit\":\"T\",\"costTongbiIncrement\":14123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"useQuantity\":\"48267\",\"cost\":\"523589l\"},{\"costHuanbiIncrement\":24656,\"itemName\":\"电耗\",\"percent\":0.15,\"quantityUnit\":\"KWH\",\"costTongbiIncrement\":14123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"useQuantity\":\"38267\",\"cost\":\"523589l\"},{\"costHuanbiIncrement\":4656,\"itemName\":\"固定成本\",\"percent\":0.05,\"costTongbiIncrement\":4123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"cost\":\"23589l\"},{\"costHuanbiIncrement\":4656,\"itemName\":\"管理成本\",\"percent\":0.05,\"costTongbiIncrement\":4123,\"costTongbiRate\":-2.4,\"costHuanbiRate\":-0.18,\"cost\":\"43589l\"}]}}
 //产品详情
@@ -19,6 +21,9 @@
 @property (nonatomic,retain) NSDictionary *overview;
 @property (nonatomic,retain) NSMutableArray *costItems;
 @property (nonatomic,retain) ASIFormDataRequest *request;
+@property (nonatomic,retain) UIView *frontView;//用于指示当前哪个view在前端显示
+@property (nonatomic,retain) UILabel *lblTitle;//navigationBar标题
+@property (nonatomic,retain) UIImageView *imgViewTitleArrow;//navigationBar箭头
 
 @property (nonatomic,retain) UIImageView *leftArrowView;
 @end
@@ -52,20 +57,40 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    //set titleView
+    UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(115, 10, 90, 24)];
+    self.lblTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 80, titleView.frame.size.height)];
+    self.lblTitle.backgroundColor = [UIColor clearColor];
+    self.lblTitle.textAlignment = UITextAlignmentCenter;
+    self.lblTitle.textColor = [UIColor whiteColor];
+    self.lblTitle.adjustsFontSizeToFitWidth=YES;
+    self.lblTitle.font = [UIFont boldSystemFontOfSize:19.f];
+    self.lblTitle.text = @"产品列表";
+    self.imgViewTitleArrow = [[UIImageView alloc] initWithFrame:CGRectMake(85, 10, 5, 4)];
+    self.imgViewTitleArrow.image = [UIImage imageNamed:@"arr2.png"];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn addTarget:self action:@selector(changeView:) forControlEvents:UIControlEventTouchUpInside];
+    btn.frame = titleView.bounds;
+    [titleView addSubview:self.lblTitle];
+    [titleView addSubview:self.imgViewTitleArrow];
+    [titleView addSubview:btn];
+    self.navigationItem.titleView = titleView;
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
-    self.overviewTableView.layer.cornerRadius = 15;
-    self.overviewTableView.layer.masksToBounds = YES;
+    //set container background
+    self.viewBgContainer.layer.cornerRadius = 15;
+    self.viewBgContainer.layer.masksToBounds = YES;
     //init local var
     self.products = [[NSMutableArray alloc] init];
     self.costItems = [[NSMutableArray alloc] init];
-    self.overviewTableView.delegate = self;
-    self.overviewTableView.dataSource = self;
-    
+    self.productsTableView.delegate = self;
+    self.productsTableView.dataSource = self;
+    self.productsTableView.tag = 1101;
+    self.frontView = self.productsTableView;
     UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
     bgView.frame = self.view.bounds;
     [self.view insertSubview:bgView atIndex:0];
     
-    self.overviewTableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg.png"]];
+    self.productsTableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg.png"]];
     //send request
     [self sendRequest];
 }
@@ -77,7 +102,12 @@
 }
 
 - (void)viewDidUnload {
-    [self setOverviewTableView:nil];
+    [self setImgViewLeftArrow:nil];
+    [self setViewBgContainer:nil];
+    [self setLblDate:nil];
+    [self setImgViewRightArrow:nil];
+    [self setProductsTableView:nil];
+    [self setViewContainer:nil];
     [super viewDidUnload];
 }
 
@@ -93,7 +123,7 @@
         self.overview = [data objectForKey:@"overview"];
         [self.costItems addObjectsFromArray:[data objectForKey:@"costItems"]];
         [self.products addObjectsFromArray:[data objectForKey:@"products"]];
-        [self.overviewTableView reloadData];
+        [self.productsTableView reloadData];
     }else{
         [SVProgressHUD showErrorWithStatus:@"解析失败"];
         debugLog(@"");
@@ -107,102 +137,206 @@
 }
 
 
+//#pragma mark -------------UITableViewDatasource-------------
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section==0) {
+//        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"overview"];
+//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"top.png"]];
+//        self.leftArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arr3.png"]];
+//        self.leftArrowView.frame = CGRectMake(15, 8, 14, 14);
+//        UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(230, 5, 73, 20)];
+//        rightView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"box.png"]];
+//        UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 60, 20)];
+//        lblDate.font = [UIFont systemFontOfSize:11.f];
+//        lblDate.backgroundColor = [UIColor clearColor];
+//        lblDate.textColor = [UIColor whiteColor];
+//        lblDate.text = @"2013年5月";
+//        UIImageView *rightArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arr2.png"]];
+//        rightArrowView.frame = CGRectMake(63, 8, 5, 4);
+//        [rightView addSubview:lblDate];
+//        [rightView addSubview:rightArrowView];
+//        
+//        [cell addSubview:self.leftArrowView];
+//        [cell addSubview:rightView];
+//        return cell;
+//    }else{
+//        ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
+//        productCell.backgroundColor = [UIColor clearColor];
+//        productCell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        NSDictionary *product = [self.products objectAtIndex:indexPath.row];
+//        productCell.imgView.image = [UIImage imageNamed:@"shuini.png"];
+//        productCell.lblName.text = [product objectForKey:@"productName"];
+//        productCell.lblCost.text = [NSString stringWithFormat:@"%.2f",[[product objectForKey:@"totalCost"] doubleValue]];
+//        productCell.lblOutput.text = [NSString stringWithFormat:@"%.2f",[[product objectForKey:@"output"]doubleValue]];
+//        return productCell;
+//    }
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    if (section==0) {
+//        return 1;
+//    }else{
+//        return self.products.count;
+//    }
+//}
+//
+//- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
+//    return 2;
+//}
+//
+//#pragma mark -------------UITableViewDelegate-------------
+//-(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section==0) {
+//        if (IS_Pad) {
+//            return 120.f;
+//        }else{
+//            return 30.f;
+//        }
+//    }else{
+//        if (IS_Pad) {
+//            return 120.f;
+//        }else{
+//            ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
+//            return productCell.frame.size.height;
+//        }
+//    }
+//}
+//
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if (indexPath.section==0) {
+//        //旋转代码
+//        CGAffineTransform transform = self.leftArrowView.transform;
+//        transform = CGAffineTransformRotate(transform, (M_PI / 2.0)); 
+//        self.leftArrowView.transform = transform;
+////    EquipmentDetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"equipmentDetailViewController"];
+////    detailViewController.equipment = [self.equipments objectAtIndex:indexPath.row];
+////    self.tableView.scrollEnabled = NO;
+////    UIFolderTableView *folderTableView = (UIFolderTableView *)tableView;
+////    [folderTableView openFolderAtIndexPath:indexPath WithContentView:detailViewController.view
+////                                 openBlock:^(UIView *subClassView, CFTimeInterval duration, CAMediaTimingFunction *timingFunction){
+////                                     // opening actions
+////                                 }
+////                                closeBlock:^(UIView *subClassView, CFTimeInterval duration, CAMediaTimingFunction *timingFunction){
+////                                    // closing actions
+////                                }
+////                           completionBlock:^{
+////                               // completed actions
+////                               self.tableView.scrollEnabled = YES;
+////                           }];
+//    }else{
+////    EquipmentDetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"equipmentDetailViewController"];
+////    detailViewController.hidesBottomBarWhenPushed = YES;
+////    detailViewController.equipment = [self.equipments objectAtIndex:indexPath.row];
+////    [self.navigationController pushViewController:detailViewController animated:YES];
+//        ProductViewController *productViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"productViewController"];
+//        productViewController.productBasicInfo = [self.products objectAtIndex:indexPath.row];
+//        [self.navigationController pushViewController:productViewController animated:YES];
+//    }
+//}
+
 #pragma mark -------------UITableViewDatasource-------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==0) {
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"overview"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"top.png"]];
-        self.leftArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arr3.png"]];
-        self.leftArrowView.frame = CGRectMake(15, 8, 14, 14);
-        UIView *rightView = [[UIView alloc] initWithFrame:CGRectMake(230, 5, 73, 20)];
-        rightView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"box.png"]];
-        UILabel *lblDate = [[UILabel alloc] initWithFrame:CGRectMake(5, 0, 60, 20)];
-        lblDate.font = [UIFont systemFontOfSize:11.f];
-        lblDate.backgroundColor = [UIColor clearColor];
-        lblDate.textColor = [UIColor whiteColor];
-        lblDate.text = @"2013年5月";
-        UIImageView *rightArrowView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"arr2.png"]];
-        rightArrowView.frame = CGRectMake(63, 8, 5, 4);
-        [rightView addSubview:lblDate];
-        [rightView addSubview:rightArrowView];
-        
-        [cell addSubview:self.leftArrowView];
-        [cell addSubview:rightView];
-        return cell;
-    }else{
-        ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
-        productCell.backgroundColor = [UIColor clearColor];
-        productCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSDictionary *product = [self.products objectAtIndex:indexPath.row];
-        productCell.imgView.image = [UIImage imageNamed:@"shuini.png"];
-        productCell.lblName.text = [product objectForKey:@"productName"];
-        productCell.lblCost.text = [NSString stringWithFormat:@"%.2f",[[product objectForKey:@"totalCost"] doubleValue]];
-        productCell.lblOutput.text = [NSString stringWithFormat:@"%.2f",[[product objectForKey:@"output"]doubleValue]];
-        return productCell;
-    }
+    ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
+    productCell.backgroundColor = [UIColor clearColor];
+    productCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    NSDictionary *product = [self.products objectAtIndex:indexPath.row];
+    productCell.imgView.image = [UIImage imageNamed:@"shuini.png"];
+    productCell.lblName.text = [product objectForKey:@"productName"];
+    productCell.lblCost.text = [NSString stringWithFormat:@"%.2f",[[product objectForKey:@"totalCost"] doubleValue]];
+    productCell.lblOutput.text = [NSString stringWithFormat:@"%.2f",[[product objectForKey:@"output"]doubleValue]];
+    return productCell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section==0) {
-        return 1;
-    }else{
-        return self.products.count;
-    }
-}
-
-- (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    return self.products.count;
 }
 
 #pragma mark -------------UITableViewDelegate-------------
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==0) {
-        if (IS_Pad) {
-            return 120.f;
-        }else{
-            return 30.f;
-        }
+    if (IS_Pad) {
+        return 120.f;
     }else{
-        if (IS_Pad) {
-            return 120.f;
-        }else{
-            ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
-            return productCell.frame.size.height;
-        }
+        ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
+        return productCell.frame.size.height;
     }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.section==0) {
-        //旋转代码
-        CGAffineTransform transform = self.leftArrowView.transform;
-        transform = CGAffineTransformRotate(transform, (M_PI / 2.0)); 
-        self.leftArrowView.transform = transform;
-//    EquipmentDetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"equipmentDetailViewController"];
-//    detailViewController.equipment = [self.equipments objectAtIndex:indexPath.row];
-//    self.tableView.scrollEnabled = NO;
-//    UIFolderTableView *folderTableView = (UIFolderTableView *)tableView;
-//    [folderTableView openFolderAtIndexPath:indexPath WithContentView:detailViewController.view
-//                                 openBlock:^(UIView *subClassView, CFTimeInterval duration, CAMediaTimingFunction *timingFunction){
-//                                     // opening actions
-//                                 }
-//                                closeBlock:^(UIView *subClassView, CFTimeInterval duration, CAMediaTimingFunction *timingFunction){
-//                                    // closing actions
-//                                }
-//                           completionBlock:^{
-//                               // completed actions
-//                               self.tableView.scrollEnabled = YES;
-//                           }];
-    }else{
-//    EquipmentDetailViewController *detailViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"equipmentDetailViewController"];
-//    detailViewController.hidesBottomBarWhenPushed = YES;
-//    detailViewController.equipment = [self.equipments objectAtIndex:indexPath.row];
-//    [self.navigationController pushViewController:detailViewController animated:YES];
-        ProductViewController *productViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"productViewController"];
-        productViewController.productBasicInfo = [self.products objectAtIndex:indexPath.row];
-        [self.navigationController pushViewController:productViewController animated:YES];
-    }
+    ProductViewController *productViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"productViewController"];
+    productViewController.productBasicInfo = [self.products objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:productViewController animated:YES];
 }
 
+- (IBAction)changeDate:(id)sender {
+}
+
+- (void)changeView:(id)sender{
+    //旋转箭头指向
+    CGAffineTransform transform = self.imgViewTitleArrow.transform;
+    transform = CGAffineTransformRotate(transform, (M_PI));
+    self.imgViewTitleArrow.transform = transform;
+    if (_menu.isOpen)
+        return [_menu close];
+    REMenuItem *productList = [[REMenuItem alloc] initWithTitle:@"产品列表"
+                                                    subtitle:nil
+                                                       image:nil
+                                            highlightedImage:nil
+                                                      action:^(REMenuItem *item) {
+                                                          //旋转箭头指向
+                                                          CGAffineTransform transform = self.imgViewTitleArrow.transform;
+                                                          transform = CGAffineTransformRotate(transform, M_PI);
+                                                          self.imgViewTitleArrow.transform = transform;
+                                                          self.lblTitle.text = @"产品列表";
+                                                          if (self.frontView!=self.productsTableView) {
+                                                              [self showView:self.productsTableView];
+                                                          }
+                                                      }];
+    REMenuItem *costItem = [[REMenuItem alloc] initWithTitle:@"成本构成"
+                                                       subtitle:nil
+                                                          image:nil
+                                               highlightedImage:nil
+                                                         action:^(REMenuItem *item) {
+                                                             //旋转箭头指向
+                                                             CGAffineTransform transform = self.imgViewTitleArrow.transform;
+                                                             transform = CGAffineTransformRotate(transform, M_PI);
+                                                             self.imgViewTitleArrow.transform = transform;
+                                                             self.lblTitle.text = @"成本构成";
+                                                             if (self.frontView!=self.costItemView) {
+                                                                 if (self.costItemView==nil) {
+                                                                     self.costItemView = [[FactoryCostItemView alloc] initWithFrame:self.productsTableView.bounds];
+                                                                     self.costItemView.costItems = self.costItems;
+                                                                     self.costItemView.tag = 1102;
+                                                                     [(UIScrollView *)[[self.costItemView subviews] objectAtIndex:0] setBounces:NO];
+                                                                     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"ProductCostItem" ofType:@"html"];
+                                                                     [self.costItemView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath]]];
+                                                                     [self.viewContainer addSubview:self.costItemView];
+                                                                 }
+                                                                 [self showView:self.costItemView];
+                                                             }
+                                                        }];
+    _menu = [[REMenu alloc] initWithItems:@[productList, costItem]];
+    _menu.cornerRadius = 4;
+    _menu.shadowColor = [UIColor blackColor];
+    _menu.shadowOffset = CGSizeMake(0, 1);
+    _menu.shadowOpacity = 1;
+    _menu.imageOffset = CGSizeMake(5, -1);
+    [_menu showFromNavigationController:self.navigationController];
+}
+
+-(void)showView:(UIView *)view{
+    CATransition *animation = [CATransition animation];
+    animation.delegate = self;
+    animation.duration = kDuration;
+    animation.timingFunction = UIViewAnimationCurveEaseInOut;
+    animation.type = @"oglFlip";
+    if (self.frontView.tag>view.tag) {
+        animation.subtype = kCATransitionFromLeft;
+    }else{
+        animation.subtype = kCATransitionFromRight;
+    }
+    [self.viewContainer bringSubviewToFront:view];
+    [[self.viewContainer layer] addAnimation:animation forKey:@"animation"];
+    self.frontView=view;
+}
 @end

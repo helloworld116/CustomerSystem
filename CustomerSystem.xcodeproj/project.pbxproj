@@ -132,6 +132,15 @@
 		0EA05B1117461F4100884EDA /* PriceAssaint.html in Resources */ = {isa = PBXBuildFile; fileRef = 0EA05B1017461F4100884EDA /* PriceAssaint.html */; };
 		0EA05B1417461FA000884EDA /* ichart.1.1.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 0EA05B1217461F8A00884EDA /* ichart.1.1.min.js */; };
 		0EA05B15174621F900884EDA /* ProductTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E498E4E1743A92000BD9213 /* ProductTableView.m */; };
+		0EA1242A176EAE3E0070DEA5 /* FactoryCostItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA12429176EAE3E0070DEA5 /* FactoryCostItemView.m */; };
+		0EA12434176EBCAD0070DEA5 /* REMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA1242D176EBCAD0070DEA5 /* REMenu.m */; };
+		0EA12435176EBCAD0070DEA5 /* REMenuContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA1242F176EBCAD0070DEA5 /* REMenuContainerView.m */; };
+		0EA12436176EBCAD0070DEA5 /* REMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA12431176EBCAD0070DEA5 /* REMenuItem.m */; };
+		0EA12437176EBCAD0070DEA5 /* REMenuItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA12433176EBCAD0070DEA5 /* REMenuItemView.m */; };
+		0EA1243D176EF8B70070DEA5 /* dropdown_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA12439176EF8B70070DEA5 /* dropdown_bg.png */; };
+		0EA1243E176EF8B70070DEA5 /* dropdown_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA1243A176EF8B70070DEA5 /* dropdown_bg@2x.png */; };
+		0EA1243F176EF8B70070DEA5 /* LHDropDownControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA1243C176EF8B70070DEA5 /* LHDropDownControlView.m */; };
+		0EA12442176F05C40070DEA5 /* ProductEnergyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA12441176F05C40070DEA5 /* ProductEnergyView.m */; };
 		0EA1E7E817532EAE009553AC /* ProductCell_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EA1E7E717532EAE009553AC /* ProductCell_iPad.xib */; };
 		0EA1E7EA175344E1009553AC /* EquipmentCell_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EA1E7E9175344E1009553AC /* EquipmentCell_iPad.xib */; };
 		0EA1E7EC1753523F009553AC /* EquipmentStopRecordCell_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EA1E7EB1753523F009553AC /* EquipmentStopRecordCell_iPad.xib */; };
@@ -173,7 +182,6 @@
 		478E409D176DA4FA006893BD /* ProductBasicInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478E409C176DA4FA006893BD /* ProductBasicInfoView.xib */; };
 		478E40A0176DA9A8006893BD /* ProductBasicInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 478E409F176DA9A8006893BD /* ProductBasicInfoView.m */; };
 		478E40A7176E1103006893BD /* ProductMaterialView.m in Sources */ = {isa = PBXBuildFile; fileRef = 478E40A6176E1102006893BD /* ProductMaterialView.m */; };
-		478E40A9176E1123006893BD /* ProductMaterialView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 478E40A8176E1122006893BD /* ProductMaterialView.xib */; };
 		478E40AB176E22F0006893BD /* shuini.png in Resources */ = {isa = PBXBuildFile; fileRef = 478E40AA176E22F0006893BD /* shuini.png */; };
 /* End PBXBuildFile section */
 
@@ -442,6 +450,22 @@
 		0EA04A36172BCE1B00A296CA /* EquipmentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentCell.xib; sourceTree = "<group>"; };
 		0EA05B1017461F4100884EDA /* PriceAssaint.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = PriceAssaint.html; sourceTree = "<group>"; };
 		0EA05B1217461F8A00884EDA /* ichart.1.1.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ichart.1.1.min.js; sourceTree = "<group>"; };
+		0EA12428176EAE3E0070DEA5 /* FactoryCostItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FactoryCostItemView.h; sourceTree = "<group>"; };
+		0EA12429176EAE3E0070DEA5 /* FactoryCostItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FactoryCostItemView.m; sourceTree = "<group>"; };
+		0EA1242C176EBCAD0070DEA5 /* REMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenu.h; sourceTree = "<group>"; };
+		0EA1242D176EBCAD0070DEA5 /* REMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenu.m; sourceTree = "<group>"; };
+		0EA1242E176EBCAD0070DEA5 /* REMenuContainerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuContainerView.h; sourceTree = "<group>"; };
+		0EA1242F176EBCAD0070DEA5 /* REMenuContainerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuContainerView.m; sourceTree = "<group>"; };
+		0EA12430176EBCAD0070DEA5 /* REMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItem.h; sourceTree = "<group>"; };
+		0EA12431176EBCAD0070DEA5 /* REMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItem.m; sourceTree = "<group>"; };
+		0EA12432176EBCAD0070DEA5 /* REMenuItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REMenuItemView.h; sourceTree = "<group>"; };
+		0EA12433176EBCAD0070DEA5 /* REMenuItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REMenuItemView.m; sourceTree = "<group>"; };
+		0EA12439176EF8B70070DEA5 /* dropdown_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dropdown_bg.png; sourceTree = "<group>"; };
+		0EA1243A176EF8B70070DEA5 /* dropdown_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "dropdown_bg@2x.png"; sourceTree = "<group>"; };
+		0EA1243B176EF8B70070DEA5 /* LHDropDownControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LHDropDownControlView.h; sourceTree = "<group>"; };
+		0EA1243C176EF8B70070DEA5 /* LHDropDownControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LHDropDownControlView.m; sourceTree = "<group>"; };
+		0EA12440176F05C40070DEA5 /* ProductEnergyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductEnergyView.h; sourceTree = "<group>"; };
+		0EA12441176F05C40070DEA5 /* ProductEnergyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductEnergyView.m; sourceTree = "<group>"; };
 		0EA1E7E717532EAE009553AC /* ProductCell_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductCell_iPad.xib; sourceTree = "<group>"; };
 		0EA1E7E9175344E1009553AC /* EquipmentCell_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentCell_iPad.xib; sourceTree = "<group>"; };
 		0EA1E7EB1753523F009553AC /* EquipmentStopRecordCell_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentStopRecordCell_iPad.xib; sourceTree = "<group>"; };
@@ -489,7 +513,6 @@
 		478E409F176DA9A8006893BD /* ProductBasicInfoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductBasicInfoView.m; sourceTree = "<group>"; };
 		478E40A5176E1102006893BD /* ProductMaterialView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductMaterialView.h; sourceTree = "<group>"; };
 		478E40A6176E1102006893BD /* ProductMaterialView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMaterialView.m; sourceTree = "<group>"; };
-		478E40A8176E1122006893BD /* ProductMaterialView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductMaterialView.xib; sourceTree = "<group>"; };
 		478E40AA176E22F0006893BD /* shuini.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shuini.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -731,7 +754,10 @@
 				478E409F176DA9A8006893BD /* ProductBasicInfoView.m */,
 				478E40A5176E1102006893BD /* ProductMaterialView.h */,
 				478E40A6176E1102006893BD /* ProductMaterialView.m */,
-				478E40A8176E1122006893BD /* ProductMaterialView.xib */,
+				0EA12440176F05C40070DEA5 /* ProductEnergyView.h */,
+				0EA12441176F05C40070DEA5 /* ProductEnergyView.m */,
+				0EA12428176EAE3E0070DEA5 /* FactoryCostItemView.h */,
+				0EA12429176EAE3E0070DEA5 /* FactoryCostItemView.m */,
 			);
 			name = ProductOverview;
 			sourceTree = "<group>";
@@ -908,6 +934,8 @@
 		0E93831917411190004C3947 /* Thrid-party */ = {
 			isa = PBXGroup;
 			children = (
+				0EA12438176EF8B70070DEA5 /* LHDropDownControlView */,
+				0EA1242B176EBCAD0070DEA5 /* REMenu */,
 				0E9EF7711755DF500079BD54 /* TSPopoverPopoverView.h */,
 				0E9EF7721755DF500079BD54 /* TSPopoverPopoverView.m */,
 				0E9EF76B1755DF380079BD54 /* UIBarButtonItem+WEPopover.h */,
@@ -989,6 +1017,32 @@
 				0EA1E7EB1753523F009553AC /* EquipmentStopRecordCell_iPad.xib */,
 			);
 			name = xib;
+			sourceTree = "<group>";
+		};
+		0EA1242B176EBCAD0070DEA5 /* REMenu */ = {
+			isa = PBXGroup;
+			children = (
+				0EA1242C176EBCAD0070DEA5 /* REMenu.h */,
+				0EA1242D176EBCAD0070DEA5 /* REMenu.m */,
+				0EA1242E176EBCAD0070DEA5 /* REMenuContainerView.h */,
+				0EA1242F176EBCAD0070DEA5 /* REMenuContainerView.m */,
+				0EA12430176EBCAD0070DEA5 /* REMenuItem.h */,
+				0EA12431176EBCAD0070DEA5 /* REMenuItem.m */,
+				0EA12432176EBCAD0070DEA5 /* REMenuItemView.h */,
+				0EA12433176EBCAD0070DEA5 /* REMenuItemView.m */,
+			);
+			path = REMenu;
+			sourceTree = "<group>";
+		};
+		0EA12438176EF8B70070DEA5 /* LHDropDownControlView */ = {
+			isa = PBXGroup;
+			children = (
+				0EA12439176EF8B70070DEA5 /* dropdown_bg.png */,
+				0EA1243A176EF8B70070DEA5 /* dropdown_bg@2x.png */,
+				0EA1243B176EF8B70070DEA5 /* LHDropDownControlView.h */,
+				0EA1243C176EF8B70070DEA5 /* LHDropDownControlView.m */,
+			);
+			path = LHDropDownControlView;
 			sourceTree = "<group>";
 		};
 		0EA4C3151761D6EC00B79AB5 /* CustomerView */ = {
@@ -1164,8 +1218,9 @@
 				478E409A176D8F4A006893BD /* production_top.png in Resources */,
 				478E409B176D8F4A006893BD /* production_top@2x.png in Resources */,
 				478E409D176DA4FA006893BD /* ProductBasicInfoView.xib in Resources */,
-				478E40A9176E1123006893BD /* ProductMaterialView.xib in Resources */,
 				478E40AB176E22F0006893BD /* shuini.png in Resources */,
+				0EA1243D176EF8B70070DEA5 /* dropdown_bg.png in Resources */,
+				0EA1243E176EF8B70070DEA5 /* dropdown_bg@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1237,6 +1292,13 @@
 				0E9C67F2176C3F60008528FF /* ProductViewController.m in Sources */,
 				478E40A0176DA9A8006893BD /* ProductBasicInfoView.m in Sources */,
 				478E40A7176E1103006893BD /* ProductMaterialView.m in Sources */,
+				0EA1242A176EAE3E0070DEA5 /* FactoryCostItemView.m in Sources */,
+				0EA12434176EBCAD0070DEA5 /* REMenu.m in Sources */,
+				0EA12435176EBCAD0070DEA5 /* REMenuContainerView.m in Sources */,
+				0EA12436176EBCAD0070DEA5 /* REMenuItem.m in Sources */,
+				0EA12437176EBCAD0070DEA5 /* REMenuItemView.m in Sources */,
+				0EA1243F176EF8B70070DEA5 /* LHDropDownControlView.m in Sources */,
+				0EA12442176F05C40070DEA5 /* ProductEnergyView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,6 +37,7 @@
     #define kPageSize 5
     #define kDateFormatFull @"yyyy-MM-dd HH:mm:ss"
     #define kDateFormatDay @"MM-dd"
+    #define colorList @[@"#4572a7",@"#aa4643",@"#89a54e",@"#80699b",@"#92a8cd",@"#db843d",@"#a47d7c",@"#4572a7"]
 //#define DEBUG 0
     #ifdef DEBUG
     #define debugLog(...) NSLog(__VA_ARGS__)

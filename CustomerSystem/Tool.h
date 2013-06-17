@@ -22,4 +22,6 @@
 + (NSString *)timeIntervalToString:(NSTimeInterval) interval dateformat:(NSString *)dateformat;
 
 + (NSString *)secondsToHour:(long) second;
+
++ (NSString *)objectToString:(NSObject *)object;
 @end
