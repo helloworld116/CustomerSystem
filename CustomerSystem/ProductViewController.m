@@ -57,15 +57,15 @@
 //    [backItem setBackButtonBackgroundImage:[UIImage imageNamed:@"backButton"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];//更改背景图片
 //    self.navigationItem.backBarButtonItem=backItem;
 
-//    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-//    backButton.frame = CGRectMake(0.0, 0.0, 53.0, 41.0);
-//    [backButton setImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
-//    [backButton setImage:[UIImage imageNamed:@"backButton_selected.png"] forState:UIControlStateSelected];
-//    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
-//    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-//    temporaryBarButtonItem.title = @"fb";
-//    temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
-//    self.navigationItem.leftBarButtonItem=temporaryBarButtonItem;
+    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = CGRectMake(0.0, 0.0, 53.0, 41.0);
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"back_selected.png"] forState:UIControlStateSelected];
+    [backButton addTarget:self action:@selector(backAction) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *temporaryBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+    temporaryBarButtonItem.title = @"fb";
+    temporaryBarButtonItem.style = UIBarButtonItemStylePlain;
+    self.navigationItem.leftBarButtonItem=temporaryBarButtonItem;
     
     self.bgContainer.layer.cornerRadius = 15;
     self.bgContainer.layer.masksToBounds = YES;
