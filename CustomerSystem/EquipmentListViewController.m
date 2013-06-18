@@ -72,8 +72,6 @@
     self.isFirstLoad = YES;
     //network
     [self sendRequest];
-    
-    debugLog(@"the subviews is %@",[self.view subviews]);
 }
 
 - (void)didReceiveMemoryWarning

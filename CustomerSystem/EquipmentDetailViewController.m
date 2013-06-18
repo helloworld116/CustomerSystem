@@ -8,6 +8,7 @@
 
 #import "EquipmentDetailViewController.h"
 #import "EquipmentStopRecordViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface EquipmentDetailViewController ()
 
@@ -34,9 +35,27 @@
 //    self.title = [NSString stringWithFormat:@"%@详情",[self.equipment objectForKey:@"name"]];
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"停机记录" style:UIBarButtonItemStyleBordered target:self action:@selector(stopRecord:)];
 
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"equipment_expand_bg.png"]];
-//    self.view.backgroundColor = [UIColor colorWithRed:228 green:231 blue:235 alpha:1];
-////
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"equipment_expand_bg.png"]];
+    self.view.backgroundColor = [UIColor colorWithRed:228 green:231 blue:236 alpha:1];
+    
+    UIView *upLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
+    upLineView.layer.shadowOffset = CGSizeMake(1, 1);
+    upLineView.layer.shadowOpacity = 1;
+    upLineView.layer.shadowColor = [UIColor colorWithRed:218.0/255 green:222.0/255 blue:226.0/255 alpha:1.0].CGColor;
+    upLineView.layer.borderWidth = 1;
+    upLineView.layer.borderColor = [UIColor colorWithRed:209.0/255 green:210.0/255 blue:211.0/255 alpha:1.0].CGColor;
+    
+    UIView *downLineView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height-1, self.view.frame.size.width, 1)];
+    downLineView.backgroundColor = [UIColor colorWithRed:230 green:232 blue:234 alpha:1];
+    downLineView.layer.shadowOffset = CGSizeMake(1, 1);
+    downLineView.layer.shadowOpacity = 1;
+    downLineView.layer.shadowColor = [UIColor colorWithRed:166.0/255 green:187.0/255 blue:200.0/255 alpha:1.0].CGColor;
+    downLineView.layer.borderWidth = 1;
+    downLineView.layer.borderColor = [UIColor colorWithRed:217.0/255 green:221.0/255 blue:225.0/255 alpha:1.0].CGColor;
+    [self.view addSubview:upLineView];
+    [self.view addSubview:downLineView];
+    
+    
     CGRect viewFrame = self.view.frame;
     viewFrame.size.height = 55;
     self.view.frame = viewFrame;

@@ -8,9 +8,11 @@
 
 #import "OverviewChild1ViewController.h"
 #import <QuartzCore/QuartzCore.h>
+#import "JWFolders2.h"
+#import "OverviewChild2ViewController.h"
 
 @interface OverviewChild1ViewController ()
-
+@property (nonatomic,retain) OverviewChild2ViewController *childViewController;
 @end
 
 @implementation OverviewChild1ViewController
@@ -47,6 +49,15 @@
 - (void)viewDidUnload {
     [self setTotalCost:nil];
     [self setTotalOutput:nil];
+    [self setImgViewRightArrow:nil];
     [super viewDidUnload];
+}
+
+- (IBAction)expandOverview:(id)sender {
+     self.childViewController = [[OverviewChild2ViewController alloc] initWithNibName:NSStringFromClass([OverviewChild2ViewController class]) bundle:nil];
+    CGPoint openPoint = CGPointMake(0,79); //arbitrary point,x不起作用，y是展开的起始点
+    //展开
+    [JWFolders2 openFolderWithContentView:self.childViewController.view position:openPoint containerView:self.containerViewController.viewBgContainer sender:self direction:1];
+    
 }
 @end

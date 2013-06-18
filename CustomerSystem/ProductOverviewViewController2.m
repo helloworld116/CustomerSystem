@@ -26,8 +26,8 @@
 @property (nonatomic,retain) UIView *frontView;//用于指示当前哪个view在前端显示
 @property (nonatomic,retain) UILabel *lblTitle;//navigationBar标题
 @property (nonatomic,retain) UIImageView *imgViewTitleArrow;//navigationBar箭头
-
 @property (nonatomic,retain) UIImageView *leftArrowView;
+@property (nonatomic,retain) OverviewChild1ViewController *childViewController;
 @end
 
 @implementation ProductOverviewViewController2
@@ -282,11 +282,11 @@
 }
 
 - (IBAction)expandOverview:(id)sender {
-    OverviewChild1ViewController *child1 = [[OverviewChild1ViewController alloc] initWithNibName:NSStringFromClass([OverviewChild1ViewController class]) bundle:nil];
+    self.childViewController = [[OverviewChild1ViewController alloc] initWithNibName:NSStringFromClass([OverviewChild1ViewController class]) bundle:nil];
+    self.childViewController.containerViewController = self;
     CGPoint openPoint = CGPointMake(0,29); //arbitrary point,x不起作用，y是展开的起始点
     //展开
-    [JWFolders openFolderWithContentView:child1.view position:openPoint containerView:self.viewBgContainer sender:self direction:1];
-
+    [JWFolders openFolderWithContentView:self.childViewController.view position:openPoint containerView:self.viewBgContainer sender:self direction:1];
 }
 
 - (void)changeView:(id)sender{
