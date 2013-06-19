@@ -191,23 +191,18 @@
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView{
-    NSString *data = @"[{ids:1,name:\"UC浏览器\",value:40.0,color:\"#4572a7\"},{ids:2,name:\"QQ浏览器\",value:37.1,color:\"#aa4643\"},{ids:3,name:\"欧朋浏览器\",value:13.8,color:\"#89a54e\"},{ids:4,name:\"百度浏览器\",value:1.6,color:\"#80699b\"},{ids:5,name:\"海豚浏览器\",value:1.4,color:\"#92a8cd\"},{ids:6,name:\"天天浏览器\",value:1.2,color:\"#db843d\"},{ids:7,name:\"其他\",value:4.9,color:\"#a47d7c\"}]";
+//    NSString *data = @"[{ids:1,name:\"UC浏览器\",value:40.0,color:\"#4572a7\"},{ids:2,name:\"QQ浏览器\",value:37.1,color:\"#aa4643\"},{ids:3,name:\"欧朋浏览器\",value:13.8,color:\"#89a54e\"},{ids:4,name:\"百度浏览器\",value:1.6,color:\"#80699b\"},{ids:5,name:\"海豚浏览器\",value:1.4,color:\"#92a8cd\"},{ids:6,name:\"天天浏览器\",value:1.2,color:\"#db843d\"},{ids:7,name:\"其他\",value:4.9,color:\"#a47d7c\"}]";
 //    function drawLineChart(todayPrice,dates,advicePrices,realPrices)
-    NSString *todayPrice = [self.currentProduct objectForKey:@"advicePrice"];//今日推荐售价
+    NSString *todayPrice = [NSString stringWithFormat:@"%.1f",[[self.currentProduct objectForKey:@"advicePrice"] doubleValue]];//今日推荐售价
     NSArray *prices = [self.currentProduct objectForKey:@"chardata"];
     NSMutableString *advicePrice = [NSMutableString string];
     NSMutableString *realPrice = [NSMutableString string];
     NSMutableString *dates = [NSMutableString string];
-//    for (NSDictionary *dict in prices) {
-//        [advicePrice addObject:[dict objectForKey:@"advicePrice"]];
-//        [realPrice addObject:[dict objectForKey:@"price"]];
-//        [dates addObject:[Tool timeIntervalToString:[[dict objectForKey:@"time"] doubleValue] dateformat:kDateFormatDay]];
-//    }
     NSDictionary *dict = nil;
     for (int i=0; i<prices.count; i++) {
         dict = [prices objectAtIndex:i];
-        [advicePrice appendFormat:@"%.0qf",[[dict objectForKey:@"advicePrice"] doubleValue]];
-        [realPrice appendFormat:@"%.0f",[[dict objectForKey:@"price"] doubleValue]];
+        [advicePrice appendFormat:@"%.1f",[[dict objectForKey:@"advicePrice"] doubleValue]];
+        [realPrice appendFormat:@"%.1f",[[dict objectForKey:@"price"] doubleValue]];
         [dates appendString:[Tool timeIntervalToString:[[dict objectForKey:@"time"] doubleValue] dateformat:kDateFormatDay]];
         if (i!=prices.count-1) {
             [advicePrice appendString:@","];

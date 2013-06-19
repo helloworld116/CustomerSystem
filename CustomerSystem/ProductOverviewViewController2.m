@@ -349,39 +349,67 @@
 //    //展开
 //    [JWFolders openFolderWithContentView:self.childViewController.view position:openPoint containerView:self.viewBgContainer sender:self direction:1];
     CGRect rect;
-    if (self.isOverviewViewExpand&&self.productsTableView.frame.origin.y>0) {
+    //旋转箭头指向
+    CGAffineTransform transform = self.imgViewLeftArrow.transform;
+    if (self.isOverviewViewExpand&&self.frontView.frame.origin.y>0) {
+        transform = CGAffineTransformRotate(transform, (-M_PI/2));
         self.isOverviewViewExpand = NO;
-        rect = CGRectMake(self.productsTableView.frame.origin.x, 0, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
+        rect = CGRectMake(self.frontView.frame.origin.x, 0, self.frontView.frame.size.width, self.frontView.frame.size.height);
+        if (self.isOverviewDetailViewExpand) {
+            self.isOverviewDetailViewExpand = NO;
+            CGAffineTransform transform = self.imgViewChildRightArrow.transform;
+            transform = CGAffineTransformRotate(transform, (-M_PI/2));
+            self.imgViewChildRightArrow.transform = transform;
+        }
     }else{
-        rect = CGRectMake(self.productsTableView.frame.origin.x, self.productsTableView.frame.origin.y+49, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
+        transform = CGAffineTransformRotate(transform, (M_PI/2));
         self.isOverviewViewExpand = YES;
+        rect = CGRectMake(self.frontView.frame.origin.x, self.frontView.frame.origin.y+49, self.frontView.frame.size.width, self.productsTableView.frame.size.height);
     }
     [UIView beginAnimations:@"UpDown" context:nil];
     [UIView setAnimationDuration:kDuration];
+    self.imgViewLeftArrow.transform = transform;
     self.frontView.frame = rect;
     [UIView commitAnimations];
 }
 
 - (IBAction)expandChildOverview:(id)sender{
     CGRect rect;
-    if (self.isOverviewDetailViewExpand&&self.productsTableView.frame.origin.y>49) {
+    CGAffineTransform transform = self.imgViewChildRightArrow.transform;
+    if (self.isOverviewDetailViewExpand&&self.frontView.frame.origin.y>49) {
         self.isOverviewDetailViewExpand = NO;
-        rect = CGRectMake(self.productsTableView.frame.origin.x, 49, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
+        transform = CGAffineTransformRotate(transform, (-M_PI/2));
+        rect = CGRectMake(self.frontView.frame.origin.x, 49, self.frontView.frame.size.width, self.frontView.frame.size.height);
     }else{
-        rect =CGRectMake(self.productsTableView.frame.origin.x, self.productsTableView.frame.origin.y+122, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
+        transform = CGAffineTransformRotate(transform, (M_PI/2));
         self.isOverviewDetailViewExpand = YES;
+        rect =CGRectMake(self.frontView.frame.origin.x, self.frontView.frame.origin.y+122, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
     }
     [UIView beginAnimations:@"UpDown" context:nil];
     [UIView setAnimationDuration:kDuration];
+    self.imgViewChildRightArrow.transform = transform;
     self.frontView.frame = rect;
     [UIView commitAnimations];
 }
 
 - (void)changeView:(id)sender{
-    //展开view缩回
+    //隐藏的view缩回
+    if (self.isOverviewViewExpand) {
+        self.isOverviewViewExpand = NO;
+        CGAffineTransform transform = self.imgViewLeftArrow.transform;
+        transform = CGAffineTransformRotate(transform, (-M_PI/2));
+        self.imgViewLeftArrow.transform = transform;
+    }
+    if (self.isOverviewDetailViewExpand) {
+        self.isOverviewDetailViewExpand = NO;
+        CGAffineTransform transform = self.imgViewChildRightArrow.transform;
+        transform = CGAffineTransformRotate(transform, (-M_PI/2));
+        self.imgViewChildRightArrow.transform = transform;
+    }
+    [UIView beginAnimations:@"UpDown" context:nil];
+    [UIView setAnimationDuration:kDuration];
     self.frontView.frame = CGRectMake(self.productsTableView.frame.origin.x, 0, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
-    self.isOverviewViewExpand = NO;
-    self.isOverviewDetailViewExpand = NO;
+    [UIView commitAnimations];
     //旋转箭头指向
     CGAffineTransform transform = self.imgViewTitleArrow.transform;
     transform = CGAffineTransformRotate(transform, (M_PI));

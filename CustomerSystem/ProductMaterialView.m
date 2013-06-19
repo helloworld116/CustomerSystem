@@ -59,6 +59,7 @@
 //    NSString *data = @"[{ids:1,name:\"UC浏览器\",value:40.0,color:\"#4572a7\"},{ids:2,name:\"QQ浏览器\",value:37.1,color:\"#aa4643\"},{ids:3,name:\"欧朋浏览器\",value:13.8,color:\"#89a54e\"},{ids:4,name:\"百度浏览器\",value:1.6,color:\"#80699b\"},{ids:5,name:\"海豚浏览器\",value:1.4,color:\"#92a8cd\"},{ids:6,name:\"天天浏览器\",value:1.2,color:\"#db843d\"},{ids:7,name:\"其他\",value:4.9,color:\"#a47d7c\"}]";
     NSString *title=@"2013年";
     NSString *js = [@"drawPie(" stringByAppendingFormat:@"'%@','%@'%@",data,title,@")"];
+    debugLog(@"product material send to html data is :%@",js);
     [self stringByEvaluatingJavaScriptFromString:js];
 }
 

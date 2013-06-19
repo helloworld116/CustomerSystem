@@ -149,6 +149,7 @@
 		0EA40AB3176FFF3C003D74F2 /* empty_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA40AB1176FFF3C003D74F2 /* empty_circle@2x.png */; };
 		0EA40AB517705D2A003D74F2 /* JWFolders2.h in Resources */ = {isa = PBXBuildFile; fileRef = 0EA40AB417705D2A003D74F2 /* JWFolders2.h */; };
 		0EA40AB717705D4A003D74F2 /* JWFolders2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA40AB617705D49003D74F2 /* JWFolders2.m */; };
+		0EA40ABA1771CBCA003D74F2 /* ichart.1.1.src.js in Resources */ = {isa = PBXBuildFile; fileRef = 0EA40AB81771CB94003D74F2 /* ichart.1.1.src.js */; };
 		0EA4C3031761B40500B79AB5 /* body@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA4C2FD1761B40500B79AB5 /* body@2x.png */; };
 		0EA4C3041761B40500B79AB5 /* login_background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA4C2FE1761B40500B79AB5 /* login_background@2x.png */; };
 		0EA4C3061761B40500B79AB5 /* password@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA4C3001761B40500B79AB5 /* password@2x.png */; };
@@ -412,6 +413,7 @@
 		0EA40AB1176FFF3C003D74F2 /* empty_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_circle@2x.png"; sourceTree = "<group>"; };
 		0EA40AB417705D2A003D74F2 /* JWFolders2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWFolders2.h; sourceTree = "<group>"; };
 		0EA40AB617705D49003D74F2 /* JWFolders2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWFolders2.m; sourceTree = "<group>"; };
+		0EA40AB81771CB94003D74F2 /* ichart.1.1.src.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = ichart.1.1.src.js; sourceTree = "<group>"; };
 		0EA4C2FD1761B40500B79AB5 /* body@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "body@2x.png"; sourceTree = "<group>"; };
 		0EA4C2FE1761B40500B79AB5 /* login_background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "login_background@2x.png"; sourceTree = "<group>"; };
 		0EA4C3001761B40500B79AB5 /* password@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "password@2x.png"; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 		0E3378F31724C6F5000E3769 /* CustomerSystem */ = {
 			isa = PBXGroup;
 			children = (
+				0EA40AB81771CB94003D74F2 /* ichart.1.1.src.js */,
 				0E5FD7901763212300EF4DC0 /* Equipment */,
 				0EA4C3151761D6EC00B79AB5 /* CustomerView */,
 				0ED818A9174B7AD8005CB41B /* RadioButton.h */,
@@ -1011,6 +1014,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EA40ABA1771CBCA003D74F2 /* ichart.1.1.src.js in Resources */,
 				0EA05B1417461FA000884EDA /* ichart.1.1.min.js in Resources */,
 				0E3378F81724C6F5000E3769 /* InfoPlist.strings in Resources */,
 				0E3379001724C6F5000E3769 /* Default.png in Resources */,
