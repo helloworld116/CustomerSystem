@@ -1320,6 +1320,7 @@
                                       this.canvas = h;
                                       var ctx = this.canvas.getContext("2d")
                                       var ratio = window.devicePixelRatio || 1;
+//                                      var ratio = 2;
                                       if (1 != ratio) {
                                           this.canvas.style.width = this.canvas.width + 'px';
                                           this.canvas.style.height = this.canvas.height + 'px';
@@ -1973,8 +1974,9 @@
                                       },
                                       fillRect: function(a, b, c, d) {
 //                                      var pixelTatio = window.devicePixelRatio || 1;
-                                      var pixelTatio = 2;
-                                      this.c.fillRect(a, b, c*pixelTatio, d*pixelTatio);
+//                                      var pixelTatio = 2;
+//                                      this.c.fillRect(a, b, c*pixelTatio, d*pixelTatio);
+                                      this.c.fillRect(a, b, c, d);
                                       return this
                                       },
                                       translate: function(a, b) {
