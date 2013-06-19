@@ -28,6 +28,9 @@
 @property (nonatomic,retain) UIImageView *imgViewTitleArrow;//navigationBar箭头
 @property (nonatomic,retain) UIImageView *leftArrowView;
 @property (nonatomic,retain) OverviewChild1ViewController *childViewController;
+
+@property BOOL isOverviewViewExpand;
+@property BOOL isOverviewDetailViewExpand;
 @end
 
 @implementation ProductOverviewViewController2
@@ -94,6 +97,7 @@
     self.productsTableView.dataSource = self;
     self.productsTableView.tag = 1101;
     self.frontView = self.productsTableView;
+    [self.viewContainer bringSubviewToFront:self.productsTableView];//默认tableview显示在最上面
     UIImageView *bgView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"background.png"]];
     bgView.frame = self.view.bounds;
     [self.view insertSubview:bgView atIndex:0];
@@ -117,7 +121,63 @@
     [self setProductsTableView:nil];
     [self setViewContainer:nil];
     [self setViewRightBox:nil];
+    [self setExpandHiddenView:nil];
+    
+    [self setExpandHiddenView:nil];
+    [self setTotalCost:nil];
+    [self setTotalOutput:nil];
+    [self setImgViewRightArrow:nil];
+    
+    self.lblCostHuanbi=nil;
+    self.lblCostHuanbiRate=nil;
+    self.lblCostTongbi=nil;
+    self.lblCostTongbiRate=nil;
+    self.lblOutputHuanbi=nil;
+    self.lblOutputHuanbiRate=nil;
+    self.lblOutputTongbi=nil;
+    self.lblOutputTongbiRate=nil;
+    self.lblTagCostHuanbi=nil;
+    self.lblTagCostTongbi=nil;
+    self.lblTagOutputHuanbi=nil;
+    self.lblTagOutputTongbi=nil;
     [super viewDidUnload];
+}
+
+-(void)setHiddenViewValue{
+    self.totalCost.text = [NSString stringWithFormat:@"%.2f",[[self.overview objectForKey:@"totalCost"] doubleValue]];
+    self.totalOutput.text = [NSString stringWithFormat:@"%.2f",[[self.overview objectForKey:@"totalOutput"] doubleValue]];
+    double costHuanbiIncrement = [[self.overview objectForKey:@"costHuanbiIncrement"] doubleValue];
+    if (costHuanbiIncrement<0) {
+        self.lblTagCostHuanbi.text = @"成本环比减少：";
+        self.lblCostHuanbi.text = [NSString stringWithFormat:@"%.2f",fabs(costHuanbiIncrement)];
+    }else{
+        self.lblCostHuanbi.text = [NSString stringWithFormat:@"%.2f",costHuanbiIncrement];
+    }
+    double costTongbiIncrement = [[self.overview objectForKey:@"costTongbiIncrement"] doubleValue];
+    if (costHuanbiIncrement<0) {
+        self.lblTagCostTongbi.text = @"成本同比减少：";
+        self.lblCostTongbi.text = [NSString stringWithFormat:@"%.2f",fabs(costTongbiIncrement)];
+    }else{
+        self.lblCostTongbi.text = [NSString stringWithFormat:@"%.2f",costTongbiIncrement];
+    }
+    double outputHuanbiIncrement = [[self.overview objectForKey:@"outputHuanbiIncrement"] doubleValue];
+    if (costHuanbiIncrement<0) {
+        self.lblTagOutputHuanbi.text = @"产量环比减少：";
+        self.lblOutputHuanbi.text = [NSString stringWithFormat:@"%.2f",fabs(outputHuanbiIncrement)];
+    }else{
+        self.lblOutputHuanbi.text = [NSString stringWithFormat:@"%.2f",outputHuanbiIncrement];
+    }
+    double outputTongbiIncrement = [[self.overview objectForKey:@"outputTongbiIncrement"] doubleValue];
+    if (costHuanbiIncrement<0) {
+        self.lblTagOutputTongbi.text = @"产量同比减少：";
+        self.lblOutputTongbi.text = [NSString stringWithFormat:@"%.2f",fabs(outputTongbiIncrement)];
+    }else{
+        self.lblOutputTongbi.text = [NSString stringWithFormat:@"%.2f",outputTongbiIncrement];
+    }
+    self.lblCostHuanbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[[self.overview objectForKey:@"costHuanbiRate"] doubleValue],@"%"];
+    self.lblCostTongbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[[self.overview objectForKey:@"costTongbiRate"] doubleValue],@"%"];
+    self.lblOutputHuanbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[[self.overview objectForKey:@"outputHuanbiRate"] doubleValue],@"%"];
+    self.lblOutputTongbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[[self.overview objectForKey:@"outputTongbiRate"] doubleValue],@"%"];
 }
 
 #pragma mark -------------ASIHTTPRequestDelegate-------------
@@ -132,6 +192,7 @@
         self.overview = [data objectForKey:@"overview"];
         [self.costItems addObjectsFromArray:[data objectForKey:@"costItems"]];
         [self.products addObjectsFromArray:[data objectForKey:@"products"]];
+        [self setHiddenViewValue];
         [self.productsTableView reloadData];
     }else{
         [SVProgressHUD showErrorWithStatus:@"解析失败"];
@@ -282,14 +343,45 @@
 }
 
 - (IBAction)expandOverview:(id)sender {
-    self.childViewController = [[OverviewChild1ViewController alloc] initWithNibName:NSStringFromClass([OverviewChild1ViewController class]) bundle:nil];
-    self.childViewController.containerViewController = self;
-    CGPoint openPoint = CGPointMake(0,29); //arbitrary point,x不起作用，y是展开的起始点
-    //展开
-    [JWFolders openFolderWithContentView:self.childViewController.view position:openPoint containerView:self.viewBgContainer sender:self direction:1];
+//    self.childViewController = [[OverviewChild1ViewController alloc] initWithNibName:NSStringFromClass([OverviewChild1ViewController class]) bundle:nil];
+//    self.childViewController.containerViewController = self;
+//    CGPoint openPoint = CGPointMake(0,29); //arbitrary point,x不起作用，y是展开的起始点
+//    //展开
+//    [JWFolders openFolderWithContentView:self.childViewController.view position:openPoint containerView:self.viewBgContainer sender:self direction:1];
+    CGRect rect;
+    if (self.isOverviewViewExpand&&self.productsTableView.frame.origin.y>0) {
+        self.isOverviewViewExpand = NO;
+        rect = CGRectMake(self.productsTableView.frame.origin.x, 0, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
+    }else{
+        rect = CGRectMake(self.productsTableView.frame.origin.x, self.productsTableView.frame.origin.y+49, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
+        self.isOverviewViewExpand = YES;
+    }
+    [UIView beginAnimations:@"UpDown" context:nil];
+    [UIView setAnimationDuration:kDuration];
+    self.frontView.frame = rect;
+    [UIView commitAnimations];
+}
+
+- (IBAction)expandChildOverview:(id)sender{
+    CGRect rect;
+    if (self.isOverviewDetailViewExpand&&self.productsTableView.frame.origin.y>49) {
+        self.isOverviewDetailViewExpand = NO;
+        rect = CGRectMake(self.productsTableView.frame.origin.x, 49, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
+    }else{
+        rect =CGRectMake(self.productsTableView.frame.origin.x, self.productsTableView.frame.origin.y+122, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
+        self.isOverviewDetailViewExpand = YES;
+    }
+    [UIView beginAnimations:@"UpDown" context:nil];
+    [UIView setAnimationDuration:kDuration];
+    self.frontView.frame = rect;
+    [UIView commitAnimations];
 }
 
 - (void)changeView:(id)sender{
+    //展开view缩回
+    self.frontView.frame = CGRectMake(self.productsTableView.frame.origin.x, 0, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
+    self.isOverviewViewExpand = NO;
+    self.isOverviewDetailViewExpand = NO;
     //旋转箭头指向
     CGAffineTransform transform = self.imgViewTitleArrow.transform;
     transform = CGAffineTransformRotate(transform, (M_PI));
@@ -354,6 +446,7 @@
         animation.subtype = kCATransitionFromRight;
     }
     [self.viewContainer bringSubviewToFront:view];
+    [self.viewContainer sendSubviewToBack:self.frontView];//将最前端的view显示到最后端，中间的隐藏层不被遮住
     [[self.viewContainer layer] addAnimation:animation forKey:@"animation"];
     self.frontView=view;
 }

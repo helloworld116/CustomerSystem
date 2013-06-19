@@ -699,6 +699,242 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             </tableView>
+                                            <view contentMode="scaleToFill" id="YtI-BM-ZZT">
+                                                <rect key="frame" x="0.0" y="0.0" width="300" height="318"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" id="cA7-ro-EbH">
+                                                        <rect key="frame" x="0.0" y="49" width="300" height="122"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" id="nQX-ga-nyr">
+                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="1"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" red="0.86274509799999999" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </view>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="1Qh-ui-OYw">
+                                                                <rect key="frame" x="84" y="15" width="66" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="成本环比增加：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nDy-o4-MA7">
+                                                                <rect key="frame" x="15" y="15" width="70" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="产量环比增加：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="79u-WG-q2P">
+                                                                <rect key="frame" x="165" y="15" width="70" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="产量环比增长率：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lDm-hq-pQu">
+                                                                <rect key="frame" x="165" y="39" width="80" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="产量同比增加：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="sD5-f6-HfB">
+                                                                <rect key="frame" x="165" y="63" width="70" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="产量同比增长率：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="gqO-eL-WS8">
+                                                                <rect key="frame" x="165" y="87" width="80" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="成本环比增长率：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="F0V-ED-JSl">
+                                                                <rect key="frame" x="15" y="39" width="80" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="成本同比增加：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qs3-9M-t05">
+                                                                <rect key="frame" x="15" y="63" width="70" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="成本同比增长率：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TFo-Yg-dXA">
+                                                                <rect key="frame" x="15" y="87" width="80" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8z1-5j-JcR">
+                                                                <rect key="frame" x="234" y="15" width="66" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="g1g-Hh-48s">
+                                                                <rect key="frame" x="94" y="39" width="56" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="69c-oc-9uD">
+                                                                <rect key="frame" x="244" y="39" width="56" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mlW-RK-RJQ">
+                                                                <rect key="frame" x="84" y="63" width="66" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dIo-8Y-8tl">
+                                                                <rect key="frame" x="234" y="63" width="66" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Nt2-u6-02H">
+                                                                <rect key="frame" x="94" y="87" width="56" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mvy-ur-cyb">
+                                                                <rect key="frame" x="244" y="87" width="56" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <view contentMode="scaleToFill" id="2QY-0e-7wI">
+                                                                <rect key="frame" x="0.0" y="120" width="300" height="2"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" red="0.86274509799999999" green="0.86666666670000003" blue="0.86666666670000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </view>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="hPl-dC-qKt">
+                                                                <rect key="frame" x="7" y="23" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="Lbi-08-S05">
+                                                                <rect key="frame" x="7" y="47" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="T6A-aT-b8J">
+                                                                <rect key="frame" x="7" y="71" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="PzZ-Mr-hBx">
+                                                                <rect key="frame" x="7" y="94" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="Uuy-9k-f4S">
+                                                                <rect key="frame" x="157" y="23" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="uq9-y6-jaN">
+                                                                <rect key="frame" x="157" y="47" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="jhe-CY-fNl">
+                                                                <rect key="frame" x="157" y="71" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="tXh-q0-80Z">
+                                                                <rect key="frame" x="157" y="94" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.84313725490000002" green="0.86666666670000003" blue="0.88235294119999996" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                                                        <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" id="EdG-T5-zkQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="XzN-8P-Swk">
+                                                                <rect key="frame" x="0.0" y="0.0" width="300" height="50"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                                <state key="normal">
+                                                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <state key="highlighted">
+                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                </state>
+                                                                <connections>
+                                                                    <action selector="expandChildOverview:" destination="zab-AC-X9k" eventType="touchUpInside" id="aM3-rG-eyv"/>
+                                                                </connections>
+                                                            </button>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cnl-yd-Stt">
+                                                                <rect key="frame" x="62" y="15" width="87" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="总成本：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NGq-eq-Lo5">
+                                                                <rect key="frame" x="15" y="15" width="48" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="总产量：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J8q-hW-P04">
+                                                                <rect key="frame" x="165" y="15" width="48" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" red="0.87058823529999996" green="0.8980392157" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8t5-ub-Cxb">
+                                                                <rect key="frame" x="212" y="15" width="68" height="20"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <color key="backgroundColor" red="0.87058823529999996" green="0.8980392157" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                <color key="textColor" red="0.60784313729999995" green="0.60784313729999995" blue="0.60784313729999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="HfA-hx-9oB">
+                                                                <rect key="frame" x="7" y="22" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="empty_circle.png" id="9Jr-sy-3OO">
+                                                                <rect key="frame" x="157" y="22" width="6" height="6"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="arr3.png" id="Ant-yc-PJs">
+                                                                <rect key="frame" x="279" y="18" width="14" height="14"/>
+                                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" red="0.87058823529999996" green="0.8980392157" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                                                        <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -710,10 +946,26 @@
                     </view>
                     <navigationItem key="navigationItem" id="7sV-HN-Ez5"/>
                     <connections>
+                        <outlet property="expandHiddenView" destination="YtI-BM-ZZT" id="FWh-zw-Ssb"/>
+                        <outlet property="imgViewChildRightArrow" destination="Ant-yc-PJs" id="Qse-vY-Ev8"/>
                         <outlet property="imgViewLeftArrow" destination="JiC-ae-XjW" id="dX7-kS-qrX"/>
                         <outlet property="imgViewRightArrow" destination="j4B-XK-uHI" id="jZd-Io-ZR0"/>
+                        <outlet property="lblCostHuanbi" destination="1Qh-ui-OYw" id="azv-Mw-2Ru"/>
+                        <outlet property="lblCostHuanbiRate" destination="g1g-Hh-48s" id="cg5-Qm-mL2"/>
+                        <outlet property="lblCostTongbi" destination="mlW-RK-RJQ" id="YVk-wt-yY3"/>
+                        <outlet property="lblCostTongbiRate" destination="Nt2-u6-02H" id="rED-yi-KKU"/>
                         <outlet property="lblDate" destination="KDb-e3-R8r" id="lXE-xP-U3V"/>
+                        <outlet property="lblOutputHuanbi" destination="8z1-5j-JcR" id="Rbu-VT-dqy"/>
+                        <outlet property="lblOutputHuanbiRate" destination="69c-oc-9uD" id="l8b-fI-nBI"/>
+                        <outlet property="lblOutputTongbi" destination="dIo-8Y-8tl" id="C9P-KB-TXR"/>
+                        <outlet property="lblOutputTongbiRate" destination="mvy-ur-cyb" id="zVf-5c-1TI"/>
+                        <outlet property="lblTagCostHuanbi" destination="nDy-o4-MA7" id="boY-D6-pYu"/>
+                        <outlet property="lblTagCostTongbi" destination="Qs3-9M-t05" id="43C-t5-YJY"/>
+                        <outlet property="lblTagOutputHuanbi" destination="79u-WG-q2P" id="64m-E8-isP"/>
+                        <outlet property="lblTagOutputTongbi" destination="sD5-f6-HfB" id="WCU-A8-I6l"/>
                         <outlet property="productsTableView" destination="uNs-N5-MKy" id="GYY-mP-X6R"/>
+                        <outlet property="totalCost" destination="Cnl-yd-Stt" id="ge9-Sr-9RQ"/>
+                        <outlet property="totalOutput" destination="8t5-ub-Cxb" id="jXi-0c-ZN2"/>
                         <outlet property="viewBgContainer" destination="7N9-6j-TJs" id="qkn-Xc-cAM"/>
                         <outlet property="viewContainer" destination="0UO-O7-f8H" id="zje-QH-reQ"/>
                         <outlet property="viewRightBox" destination="sDb-fM-Z4a" id="IgP-8O-Wky"/>
@@ -1119,6 +1371,7 @@
         <image name="arr2.png" width="5" height="4"/>
         <image name="arr3.png" width="14" height="14"/>
         <image name="background.png" width="320" height="460"/>
+        <image name="empty_circle.png" width="6" height="6"/>
         <image name="equipmentList.png" width="16" height="17"/>
         <image name="login.png" width="226" height="33"/>
         <image name="priceAssaint.png" width="20" height="21"/>
@@ -1127,6 +1380,145 @@
         <image name="top.png" width="301" height="15"/>
         <image name="userinfo.png" width="14" height="16"/>
     </resources>
+    <classes>
+        <class className="ConditionViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ConditionViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="endDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="startDate" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EquipmentDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentDetailViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lblContinuousTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblMomentflow" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblMonthlyAccumulation" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblMonthlyStopNum" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblMonthlyStopTime" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblSN" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblSetflow" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="EquipmentListViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentListViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UIFolderTableView"/>
+            </relationships>
+        </class>
+        <class className="EquipmentStopRecordViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentStopRecordViewController.h"/>
+        </class>
+        <class className="EquipmentViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="bgImgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="headerImgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="InsetsTextField" superclassName="UITextField">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/InsetsTextField.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouch:"/>
+                <relationship kind="action" name="doLogin:"/>
+                <relationship kind="outlet" name="btnLogin" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="continerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="password" candidateClass="InsetsTextField"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="titleImgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="username" candidateClass="InsetsTextField"/>
+            </relationships>
+        </class>
+        <class className="PriceAssaint2ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PriceAssaint2ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="contentScrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="titleScrollView" candidateClass="UIScrollView"/>
+            </relationships>
+        </class>
+        <class className="PriceAssaintViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PriceAssaintViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="productPriceTableview" candidateClass="UIFolderTableView"/>
+            </relationships>
+        </class>
+        <class className="ProductOverviewViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductOverviewViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="productDetailView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="segment" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="ProductOverviewViewController2" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductOverviewViewController2.h"/>
+            <relationships>
+                <relationship kind="action" name="changeDate:"/>
+                <relationship kind="action" name="expandChildOverview:"/>
+                <relationship kind="action" name="expandOverview:"/>
+                <relationship kind="outlet" name="expandHiddenView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="expandView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="imgViewChildRightArrow" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="imgViewLeftArrow" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="imgViewRightArrow" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblCostHuanbi" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblCostHuanbiRate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblCostTongbi" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblCostTongbiRate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblOutputHuanbi" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblOutputHuanbiRate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblOutputTongbi" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblOutputTongbiRate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblTagCostHuanbi" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblTagCostTongbi" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblTagOutputHuanbi" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblTagOutputTongbi" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="productsTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="totalCost" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="totalOutput" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="viewBgContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="viewContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="viewRightBox" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="ProductPriceDetailViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductPriceDetailViewController.h"/>
+        </class>
+        <class className="ProductViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ProductViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="changeView:"/>
+                <relationship kind="outlet" name="bgContainer" candidateClass="UIView"/>
+                <relationship kind="outlet" name="imgViewArr" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblDate" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblTipInfo" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="scrollViewContainer" candidateClass="UIScrollView"/>
+                <relationship kind="outlet" name="viewRightBox" candidateClass="UIView"/>
+            </relationships>
+        </class>
+        <class className="UIFolderTableView" superclassName="UITableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UIFolderTableView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="folderDelegate"/>
+            </relationships>
+        </class>
+        <class className="UpdatePasswordViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UpdatePasswordViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouch:"/>
+                <relationship kind="action" name="doUpdatePassword:"/>
+                <relationship kind="outlet" name="nPassword2TextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="nPasswordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="oldPasswordTextfield" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

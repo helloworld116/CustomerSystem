@@ -22,6 +22,30 @@
 @property (strong, nonatomic) FactoryCostItemView *costItemView;//tag 1102
 @property (strong, nonatomic) REMenu *menu;
 
+@property (strong, nonatomic) IBOutlet UIView *expandHiddenView;
+
+//child1
+@property (strong, nonatomic) IBOutlet UILabel *totalCost;
+@property (strong, nonatomic) IBOutlet UILabel *totalOutput;
+@property (strong, nonatomic) IBOutlet UIImageView *imgViewChildRightArrow;
+
+//child2
+@property (strong, nonatomic) IBOutlet UILabel *lblCostHuanbi;
+@property (strong, nonatomic) IBOutlet UILabel *lblCostHuanbiRate;
+@property (strong, nonatomic) IBOutlet UILabel *lblCostTongbi;
+@property (strong, nonatomic) IBOutlet UILabel *lblCostTongbiRate;
+@property (strong, nonatomic) IBOutlet UILabel *lblOutputHuanbi;
+@property (strong, nonatomic) IBOutlet UILabel *lblOutputHuanbiRate;
+@property (strong, nonatomic) IBOutlet UILabel *lblOutputTongbi;
+@property (strong, nonatomic) IBOutlet UILabel *lblOutputTongbiRate;
+
+
+@property (strong, nonatomic) IBOutlet UILabel *lblTagCostHuanbi;
+@property (strong, nonatomic) IBOutlet UILabel *lblTagCostTongbi;
+@property (strong, nonatomic) IBOutlet UILabel *lblTagOutputHuanbi;
+@property (strong, nonatomic) IBOutlet UILabel *lblTagOutputTongbi;
+
 - (IBAction)changeDate:(id)sender;
 - (IBAction)expandOverview:(id)sender;
+- (IBAction)expandChildOverview:(id)sender;
 @end
