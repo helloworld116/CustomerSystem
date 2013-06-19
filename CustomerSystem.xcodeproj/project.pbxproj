@@ -198,6 +198,8 @@
 		47A49F0E176F812F00580CA7 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F0B176F812F00580CA7 /* UIView+Screenshot.m */; };
 		47A49F11176F826000580CA7 /* OverviewChild1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F10176F826000580CA7 /* OverviewChild1ViewController.m */; };
 		47A49F13176F830C00580CA7 /* OverviewChild1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A49F12176F830C00580CA7 /* OverviewChild1ViewController.xib */; };
+		47AEE6B617721E9400935123 /* ChoiceDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AEE6B417721E9400935123 /* ChoiceDateView.m */; };
+		47AEE6B717721E9400935123 /* ChoiceDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AEE6B517721E9400935123 /* ChoiceDateView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -472,6 +474,9 @@
 		47A49F0F176F826000580CA7 /* OverviewChild1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewChild1ViewController.h; sourceTree = "<group>"; };
 		47A49F10176F826000580CA7 /* OverviewChild1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewChild1ViewController.m; sourceTree = "<group>"; };
 		47A49F12176F830C00580CA7 /* OverviewChild1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverviewChild1ViewController.xib; sourceTree = "<group>"; };
+		47AEE6B317721E9400935123 /* ChoiceDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceDateView.h; sourceTree = "<group>"; };
+		47AEE6B417721E9400935123 /* ChoiceDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceDateView.m; sourceTree = "<group>"; };
+		47AEE6B517721E9400935123 /* ChoiceDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceDateView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -689,6 +694,9 @@
 		0E498E1E1743254800BD9213 /* ProductOverview */ = {
 			isa = PBXGroup;
 			children = (
+				47AEE6B317721E9400935123 /* ChoiceDateView.h */,
+				47AEE6B417721E9400935123 /* ChoiceDateView.m */,
+				47AEE6B517721E9400935123 /* ChoiceDateView.xib */,
 				0E498E1F174325F600BD9213 /* ProductOutlineView.xib */,
 				0E498E211743282700BD9213 /* ProductOutlineView.h */,
 				0E498E221743282700BD9213 /* ProductOutlineView.m */,
@@ -1123,6 +1131,7 @@
 				0EA40AB2176FFF3C003D74F2 /* empty_circle.png in Resources */,
 				0EA40AB3176FFF3C003D74F2 /* empty_circle@2x.png in Resources */,
 				0EA40AB517705D2A003D74F2 /* JWFolders2.h in Resources */,
+				47AEE6B717721E9400935123 /* ChoiceDateView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1207,6 +1216,7 @@
 				47A49F11176F826000580CA7 /* OverviewChild1ViewController.m in Sources */,
 				0EA40AAE176FF78E003D74F2 /* OverviewChild2ViewController.m in Sources */,
 				0EA40AB717705D4A003D74F2 /* JWFolders2.m in Sources */,
+				47AEE6B617721E9400935123 /* ChoiceDateView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

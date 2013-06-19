@@ -10,7 +10,7 @@
 #import "ProductCell.h"
 #import "ProductViewController.h"
 #import <QuartzCore/QuartzCore.h>
-#import "JWFolders.h"
+#import "ChoiceDateView.h"
 #import "OverviewChild1ViewController.h"
 
 #define kDuration 0.7   // 动画持续时间(秒)
@@ -27,6 +27,7 @@
 @property (nonatomic,retain) UILabel *lblTitle;//navigationBar标题
 @property (nonatomic,retain) UIImageView *imgViewTitleArrow;//navigationBar箭头
 @property (nonatomic,retain) UIImageView *leftArrowView;
+@property (nonatomic,retain) ChoiceDateView *dateView;
 @property (nonatomic,retain) OverviewChild1ViewController *childViewController;
 
 @property BOOL isOverviewViewExpand;
@@ -140,6 +141,8 @@
     self.lblTagCostTongbi=nil;
     self.lblTagOutputHuanbi=nil;
     self.lblTagOutputTongbi=nil;
+    
+    self.dateView = nil;
     [super viewDidUnload];
 }
 
@@ -339,7 +342,10 @@
 }
 
 - (IBAction)changeDate:(id)sender {
-    debugLog(@"changeDate");
+//    debugLog(@"changeDate");
+    self.dateView = [[ChoiceDateView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 255)];
+    [self.dateView show];
+    
 }
 
 - (IBAction)expandOverview:(id)sender {
