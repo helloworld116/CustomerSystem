@@ -11,5 +11,7 @@
 
 @interface EquipmentListViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIFolderTableView *tableView;
+@property (strong, nonatomic) IBOutlet UIImageView *backgroundImgView;
+@property (strong, nonatomic) IBOutlet UIView *containerView;
 
 @end

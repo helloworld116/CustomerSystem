@@ -30,6 +30,7 @@
 }
 
 - (void)backAction {
+    [self.menu close];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -39,11 +40,19 @@
     [self.request setPostValue:kSharedApp.accessToken forKey:@"accessToken"];
     [self.request setPostValue:kSharedApp.factoryId forKey:@"factoryId"];
     [self.request setPostValue:[NSNumber numberWithLong:[[self.productBasicInfo objectForKey:@"id"] longValue]] forKey:@"productId"];
-    [self.request setPostValue:@"2013" forKey:@"periodUnit"];//(0：天  1:月  2:季度  3:年)
-    [self.request setPostValue:@"1" forKey:@"year"];
-    [self.request setPostValue:@"1" forKey:@"quarter"];
-    [self.request setPostValue:@"1" forKey:@"month"];
-    [self.request setPostValue:@"1" forKey:@"day"];
+    int periodUnit = 3;
+    if (self.querydate.quarterly==0&&self.querydate.month==0) {
+        periodUnit = 3;
+    }else if (self.querydate.quarterly!=0&&self.querydate.month==0){
+        periodUnit = 2;
+    }else if (self.querydate.quarterly==0&&self.querydate.month!=0){
+        periodUnit = 1;
+    }
+    [self.request setPostValue:[NSNumber numberWithInt:periodUnit] forKey:@"periodUnit"];//(0：天  1:月  2:季度  3:年)
+    [self.request setPostValue:[NSNumber numberWithInt:self.querydate.year] forKey:@"year"];
+    [self.request setPostValue:[NSNumber numberWithInt:self.querydate.quarterly] forKey:@"quarter"];
+    [self.request setPostValue:[NSNumber numberWithInt:self.querydate.month] forKey:@"month"];
+    [self.request setPostValue:@"0" forKey:@"day"];
     [self.request setDelegate:self];
     [self.request startAsynchronous];
 }
@@ -70,7 +79,7 @@
     self.bgContainer.layer.cornerRadius = 15;
     self.bgContainer.layer.masksToBounds = YES;
     self.title = [self.productBasicInfo objectForKey:@"productName"];
-    
+    self.lblDate.text = self.date;
     [self initBasicInfoView];
     //init local var
     self.frontView = self.basicInfoView;

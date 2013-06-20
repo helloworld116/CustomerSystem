@@ -11,10 +11,13 @@
 #import "ProductMaterialView.h"
 #import "ProductEnergyView.h"
 #import "REMenu.h"
+#import "ChoiceDateView.h"
 
 @interface ProductViewController : UIViewController
 
 @property (nonatomic,retain) NSDictionary *productBasicInfo;
+@property (nonatomic,retain) QueryDate *querydate;
+@property (nonatomic,retain) NSString *date;
 @property (strong, nonatomic) IBOutlet UILabel *lblDate;
 @property (strong, nonatomic) IBOutlet UILabel *lblTipInfo;
 @property (strong, nonatomic) IBOutlet UIImageView *imgViewArr;

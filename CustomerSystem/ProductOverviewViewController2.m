@@ -29,6 +29,7 @@
 @property (nonatomic,retain) UIImageView *leftArrowView;
 @property (nonatomic,retain) ChoiceDateView *dateView;
 @property (nonatomic,retain) OverviewChild1ViewController *childViewController;
+@property (nonatomic,retain) QueryDate *querydate;
 
 @property BOOL isOverviewViewExpand;
 @property BOOL isOverviewDetailViewExpand;
@@ -50,11 +51,19 @@
     self.request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:kProductOverview]];
     [self.request setPostValue:kSharedApp.accessToken forKey:@"accessToken"];
     [self.request setPostValue:kSharedApp.factoryId forKey:@"factoryId"];
-    [self.request setPostValue:@"2013" forKey:@"periodUnit"];//(0：天  1:月  2:季度  3:年)
-    [self.request setPostValue:@"1" forKey:@"year"];
-    [self.request setPostValue:@"1" forKey:@"quarter"];
-    [self.request setPostValue:@"1" forKey:@"month"];
-    [self.request setPostValue:@"1" forKey:@"day"];
+    int periodUnit = 3;
+    if (self.querydate.quarterly==0&&self.querydate.month==0) {
+        periodUnit = 3;
+    }else if (self.querydate.quarterly!=0&&self.querydate.month==0){
+        periodUnit = 2;
+    }else if (self.querydate.quarterly==0&&self.querydate.month!=0){
+        periodUnit = 1;
+    }
+    [self.request setPostValue:[NSNumber numberWithInt:periodUnit] forKey:@"periodUnit"];//(0：天  1:月  2:季度  3:年)
+    [self.request setPostValue:[NSNumber numberWithInt:self.querydate.year] forKey:@"year"];
+    [self.request setPostValue:[NSNumber numberWithInt:self.querydate.quarterly] forKey:@"quarter"];
+    [self.request setPostValue:[NSNumber numberWithInt:self.querydate.month] forKey:@"month"];
+    [self.request setPostValue:@"0" forKey:@"day"];
     [self.request setDelegate:self];
     [self.request startAsynchronous];
 }
@@ -104,7 +113,19 @@
     [self.view insertSubview:bgView atIndex:0];
     
     self.productsTableView.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"table_bg.png"]];
-    //send request
+    //日期选择视图
+    self.dateView = [[ChoiceDateView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 255)];
+    [self.dateView addObserver:self forKeyPath:@"querydate" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:nil];
+    //send request(默认查询当前月份)
+    //获取当前时间
+    NSDate *now = [NSDate date];
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSUInteger unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit ;
+    NSDateComponents *dateComponent = [calendar components:unitFlags fromDate:now];
+    int year = [dateComponent year];
+    int month = [dateComponent month];
+    self.lblDate.text = [NSString stringWithFormat:@"%d年%d月",year,month];
+    self.querydate = [[QueryDate alloc] initWithYear:year quarterly:0 month:month];
     [self sendRequest];
 }
 
@@ -143,6 +164,7 @@
     self.lblTagOutputTongbi=nil;
     
     self.dateView = nil;
+    [self removeObserver:self.dateView forKeyPath:@"querydate"];
     [super viewDidUnload];
 }
 
@@ -192,11 +214,18 @@
     if ([[dict objectForKey:@"error"] intValue]==0) {
         [SVProgressHUD showSuccessWithStatus: @"解析成功"];
         NSDictionary *data = [dict objectForKey:@"data"];
+        //先清空
+        [self.costItems removeAllObjects];
+        [self.products removeAllObjects];
+        //在加载新数据
         self.overview = [data objectForKey:@"overview"];
         [self.costItems addObjectsFromArray:[data objectForKey:@"costItems"]];
         [self.products addObjectsFromArray:[data objectForKey:@"products"]];
         [self setHiddenViewValue];
         [self.productsTableView reloadData];
+        if (self.costItemView) {
+            [self.costItemView reload];
+        }
     }else{
         [SVProgressHUD showErrorWithStatus:@"解析失败"];
         debugLog(@"");
@@ -337,15 +366,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ProductViewController *productViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"productViewController"];
+    productViewController.date = self.lblDate.text;
+    productViewController.querydate = self.querydate;
     productViewController.productBasicInfo = [self.products objectAtIndex:indexPath.row];
     [self.navigationController pushViewController:productViewController animated:YES];
 }
 
 - (IBAction)changeDate:(id)sender {
-//    debugLog(@"changeDate");
-    self.dateView = [[ChoiceDateView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 255)];
     [self.dateView show];
-    
 }
 
 - (IBAction)expandOverview:(id)sender {
@@ -398,8 +426,8 @@
     [UIView commitAnimations];
 }
 
-- (void)changeView:(id)sender{
-    //隐藏的view缩回
+//隐藏的view缩回
+-(void)hiddenExpandView{
     if (self.isOverviewViewExpand) {
         self.isOverviewViewExpand = NO;
         CGAffineTransform transform = self.imgViewLeftArrow.transform;
@@ -416,6 +444,10 @@
     [UIView setAnimationDuration:kDuration];
     self.frontView.frame = CGRectMake(self.productsTableView.frame.origin.x, 0, self.productsTableView.frame.size.width, self.productsTableView.frame.size.height);
     [UIView commitAnimations];
+}
+
+- (void)changeView:(id)sender{
+    [self hiddenExpandView];
     //旋转箭头指向
     CGAffineTransform transform = self.imgViewTitleArrow.transform;
     transform = CGAffineTransformRotate(transform, (M_PI));
@@ -483,5 +515,29 @@
     [self.viewContainer sendSubviewToBack:self.frontView];//将最前端的view显示到最后端，中间的隐藏层不被遮住
     [[self.viewContainer layer] addAnimation:animation forKey:@"animation"];
     self.frontView=view;
+}
+
+#pragma mark observe
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context{
+    if ([keyPath isEqualToString:@"querydate"]) {
+        QueryDate *oldQ = [change objectForKey:@"old"];
+        QueryDate *newQ = [change objectForKey:@"new"];
+        //改变了查看时间才发请求
+        if (oldQ.year!=newQ.year||oldQ.quarterly!=newQ.quarterly||oldQ.month!=newQ.month) {
+            QueryDate *querydate = (QueryDate *)[self.dateView valueForKey:@"querydate"];
+            NSString *lblDateStr = nil;
+            if (querydate.quarterly==0&&querydate.month==0) {
+                lblDateStr = [NSString stringWithFormat:@"%d年",querydate.year];
+            }else if (querydate.quarterly!=0&&querydate.month==0){
+                lblDateStr = [NSString stringWithFormat:@"%d年%d季度",querydate.year,querydate.quarterly];
+            }else if (querydate.quarterly==0&&querydate.month!=0){
+                lblDateStr = [NSString stringWithFormat:@"%d年%d月",querydate.year,querydate.month];
+            }
+            self.lblDate.text = lblDateStr;
+            [self hiddenExpandView];
+            self.querydate = querydate;
+            [self performSelector:@selector(sendRequest) withObject:nil afterDelay:1];
+        }
+    }
 }
 @end

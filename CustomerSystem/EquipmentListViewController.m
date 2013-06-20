@@ -65,6 +65,9 @@
     self.currentPage = 1;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    //
+    self.containerView.layer.cornerRadius = 10;
+    self.containerView.layer.masksToBounds = YES;
     //bottom
     self.loadMoreTableFooterView = [[LoadMoreTableFooterView alloc] initWithFrame:CGRectZero];
     self.equipments = [[NSMutableArray alloc] init];
@@ -260,6 +263,8 @@
 
 - (void)viewDidUnload {
     [self setTableView:nil];
+    [self setBackgroundImgView:nil];
+    [self setContainerView:nil];
     [super viewDidUnload];
 }
 @end

@@ -12,8 +12,7 @@
 @interface LoginViewController ()
 @property (nonatomic,copy) NSString *uname;
 @property (nonatomic,copy) NSString *pword;
-@property BOOL keyboardWasShown;
-@property CGRect inputElementFrame;
+@property BOOL keyboardWasShow;
 @end
 //{"error":0,"message":null,"data":{"factoryId":1,"accessToken":"sertf231412312342wer","expiresIn":10000,"modules":["productionView","priceAssistant","equipmentManagement"]}}
 
@@ -29,7 +28,7 @@
 }
 
 - (void)setBackground{
-    self.scrollView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"login_background.png"]];
+    self.backgroundImgView.image = [UIImage imageNamed:@"login_background.png"];
     self.continerView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"body.png"]];
     self.titleImgView.image = [UIImage imageNamed:@"title.png"];
     self.username.background = [UIImage imageNamed:@"username.png"];
@@ -47,9 +46,6 @@
     self.password.delegate = self;
     self.username.text = @"646767424@qq.com";
     self.password.text = @"123456";
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHiden:) name:UIKeyboardWillHideNotification object:nil];
-//    [self registerForKeyboardNotifications];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,11 +61,10 @@
   
     self.uname = nil;
     self.pword = nil;
-    [self removeForKeyboardNotifications];
-    [self setScrollView:nil];
     [self setContinerView:nil];
     [self setTitleImgView:nil];
     [self setBtnLogin:nil];
+    [self setBackgroundImgView:nil];
     [super viewDidUnload];
 }
 
@@ -89,6 +84,7 @@
 
 -(BOOL)validate{
     //键盘缩回
+    self.keyboardWasShow = NO;
     [self.username resignFirstResponder];
     [self.password resignFirstResponder];
     //过滤左右空格
@@ -120,6 +116,7 @@
 }
 
 - (IBAction)backgroundTouch:(id)sender {
+    self.keyboardWasShow = NO;
     [self.username resignFirstResponder];
     [self.password resignFirstResponder];
 }
@@ -151,80 +148,37 @@
         NSString *msg = [dict objectForKey:@"description"];
         [SVProgressHUD showErrorWithStatus:msg];
     }
-
-//    [SVProgressHUD dismissWithSuccess:@"登录成功"];
-//    AppDelegate *app = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-//    UITabBarController *tab = [app.storyboard instantiateViewControllerWithIdentifier:@"tab"];
-//    [tab.tabBar setBackgroundImage:[UIImage imageNamed:@"tabBar.png"]];
-//    CATransition *animation = [CATransition animation];
-//    [animation setDuration:1.0];
-//    [animation setType: kCATransitionFade];
-//    [animation setSubtype: kCATransitionFromTop];
-//    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
-//    [self.navigationController setNavigationBarHidden:YES animated:NO];
-//    [self.navigationController pushViewController:tab animated:NO];
-//    [self.navigationController.view.layer addAnimation:animation forKey:nil];
 }
 
-
-- (void) registerForKeyboardNotifications{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasShown:) name:UIKeyboardDidShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWasHidden:) name:UIKeyboardDidHideNotification object:nil];
-    
-}
-
-- (void) removeForKeyboardNotifications{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
-}
-
-
-- (void) keyboardWasShown:(NSNotification *) notif{
-    if (!self.keyboardWasShown) {
-        NSDictionary *info = [notif userInfo];
-        
-        NSValue *value = [info objectForKey:UIKeyboardBoundsUserInfoKey];
-        CGSize keyboardSize = [value CGRectValue].size;
-        
-        CGRect scrollViewFrame= [self.scrollView frame];
-        scrollViewFrame.size.height -= keyboardSize.height;
-        self.scrollView.frame = scrollViewFrame;
-        [self.scrollView scrollRectToVisible:self.inputElementFrame animated:YES];
-        self.keyboardWasShown = YES;
-    }
-}
-
-- (void) keyboardWasHidden:(NSNotification *) notif{
-    if (!self.keyboardWasShown) {
-        NSDictionary *info = [notif userInfo];
-        
-        NSValue *value = [info objectForKey:UIKeyboardBoundsUserInfoKey];
-        CGSize keyboardSize = [value CGRectValue].size;
-        
-        CGRect scrollViewFrame= [self.scrollView frame];
-        scrollViewFrame.size.height += keyboardSize.height;
-        self.scrollView.frame = scrollViewFrame;
-        self.keyboardWasShown = NO;
-    }
-}
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    // When the user presses return, take focus away from the text field so that the keyboard is dismissed.
-    self.keyboardWasShown = NO;
-    NSTimeInterval animationDuration = 0.30f;
-    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
-    [UIView setAnimationDuration:animationDuration];
-    CGRect rect = CGRectMake(0.0f, 0.0f, self.view.frame.size.width, self.view.frame.size.height);
-    self.view.frame = rect;
-    [UIView commitAnimations];
+- (BOOL)textFieldShouldReturn:(UITextField *)textField{
+    self.keyboardWasShow = NO;
     [textField resignFirstResponder];
     return YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    CGRect frame = textField.frame;
-    self.inputElementFrame = frame;
+    
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if (!self.keyboardWasShow) {
+        NSTimeInterval animationDuration = 0.30f;
+        [UIView beginAnimations:@"DownKeyboard" context:nil];
+        [UIView setAnimationDuration:animationDuration];
+        CGRect rect = self.continerView.frame;
+        rect.origin.y += 80;
+        self.continerView.frame = rect;
+        [UIView commitAnimations];
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (!self.keyboardWasShow) {
+        NSTimeInterval animationDuration = 0.30f;
+        [UIView beginAnimations:@"UpKeyboard" context:nil];
+        [UIView setAnimationDuration:animationDuration];
+        CGRect rect = self.continerView.frame;
+        rect.origin.y -= 80;
+        self.continerView.frame = rect;
+        [UIView commitAnimations];
+        self.keyboardWasShow = YES;
+    }
 }
 @end

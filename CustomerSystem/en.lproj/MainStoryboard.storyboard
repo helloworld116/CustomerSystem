@@ -12,7 +12,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="9lL-Oe-rVW" kind="relationship" relationship="rootViewController" id="la1-zf-42s"/>
+                        <segue destination="9lL-Oe-rVW" kind="relationship" relationship="rootViewController" id="Iou-aH-hPq"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8dC-pT-xxD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -23,12 +23,16 @@
         <scene sceneID="fc4-F6-Ztl">
             <objects>
                 <viewController id="9lL-Oe-rVW" customClass="LoginViewController" sceneMemberID="viewController">
-                    <scrollView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="839-Sm-Idf">
+                    <view key="view" contentMode="scaleToFill" id="chl-Mj-Azj" customClass="UIControl">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="rIW-sQ-Pne">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
                             <view contentMode="scaleToFill" id="ZtJ-Ng-hJ1">
-                                <rect key="frame" x="32" y="104" width="257" height="219"/>
+                                <rect key="frame" x="32" y="105" width="257" height="219"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2mE-NV-lyO">
@@ -64,20 +68,24 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="河南丰博自动化有限公司" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HJH-HP-FEd">
-                                <rect key="frame" x="60" y="425" width="200" height="21"/>
+                                <rect key="frame" x="60" y="426" width="200" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                    </scrollView>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <connections>
+                            <action selector="backgroundTouch:" destination="9lL-Oe-rVW" eventType="touchUpInside" id="ItB-dW-bFT"/>
+                        </connections>
+                    </view>
                     <navigationItem key="navigationItem" id="g2Y-UL-UpD"/>
                     <connections>
+                        <outlet property="backgroundImgView" destination="rIW-sQ-Pne" id="g2X-FM-jZ4"/>
                         <outlet property="btnLogin" destination="2mE-NV-lyO" id="yEL-Wk-RyG"/>
                         <outlet property="continerView" destination="ZtJ-Ng-hJ1" id="APE-4w-8LB"/>
                         <outlet property="password" destination="Dsj-9J-oae" id="h0h-Ka-9yx"/>
-                        <outlet property="scrollView" destination="839-Sm-Idf" id="lfi-xV-xuV"/>
                         <outlet property="titleImgView" destination="1do-if-pbj" id="Atw-jH-bQV"/>
                         <outlet property="username" destination="9FK-u0-QRa" id="b47-pr-Tr4"/>
                     </connections>
@@ -265,57 +273,40 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="367"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5qc-v8-Yhs" customClass="UIFolderTableView">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="background.png" id="U6K-GI-Kxy">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="6r3-ZD-VsH">
+                                <rect key="frame" x="10" y="10" width="300" height="347"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" id="IMh-uc-AUK">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" red="0.50980392159999999" green="0.61176470589999998" blue="0.68235294120000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    </view>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="5qc-v8-Yhs" customClass="UIFolderTableView">
+                                        <rect key="frame" x="0.0" y="14" width="320" height="333"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="M64-0a-UFn"/>
                     <connections>
+                        <outlet property="backgroundImgView" destination="U6K-GI-Kxy" id="PFo-6l-y7I"/>
+                        <outlet property="containerView" destination="6r3-ZD-VsH" id="2yv-g3-irm"/>
                         <outlet property="tableView" destination="5qc-v8-Yhs" id="h25-RT-CtG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ixb-QL-Q5g" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-109" y="39"/>
-        </scene>
-        <!--Equipment View Controller-->
-        <scene sceneID="xya-Vg-eeE">
-            <objects>
-                <viewController id="J4P-7P-daF" customClass="EquipmentViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8II-te-zHf">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="background.png" id="YvG-fp-v32">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="367"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="top.png" id="aqi-hi-bsf">
-                                <rect key="frame" x="5" y="5" width="310" height="108"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mKH-vK-AEd">
-                                <rect key="frame" x="5" y="19" width="310" height="436"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="B48-yl-sOJ"/>
-                    <connections>
-                        <outlet property="bgImgView" destination="YvG-fp-v32" id="vZe-oZ-EkW"/>
-                        <outlet property="headerImgView" destination="aqi-hi-bsf" id="zkd-Qm-yWR"/>
-                        <outlet property="tableView" destination="mKH-vK-AEd" id="Nr4-rF-D1s"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="irr-bJ-NjI" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="69" y="-232"/>
         </scene>
         <!--Equipment Detail View Controller-->
         <scene sceneID="nOr-2V-e8F">
@@ -673,7 +664,7 @@
                                                             <action selector="changeDate:" destination="zab-AC-X9k" eventType="touchUpInside" id="EV2-jE-P8G"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2013年4季度" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KDb-e3-R8r">
+                                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KDb-e3-R8r">
                                                         <rect key="frame" x="0.0" y="0.0" width="75" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -681,7 +672,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="arr2.png" id="j4B-XK-uHI">
-                                                        <rect key="frame" x="75" y="8" width="5" height="4"/>
+                                                        <rect key="frame" x="73" y="8" width="5" height="4"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                 </subviews>
@@ -995,7 +986,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="2013年5月" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L81-D8-EAi">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L81-D8-EAi">
                                                 <rect key="frame" x="20" y="5" width="80" height="20"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -1377,7 +1368,6 @@
         <image name="priceAssaint.png" width="20" height="21"/>
         <image name="productOverview.png" width="19" height="21"/>
         <image name="production_top.png" width="301" height="28"/>
-        <image name="top.png" width="301" height="15"/>
         <image name="userinfo.png" width="14" height="16"/>
     </resources>
     <classes>
@@ -1403,19 +1393,13 @@
         <class className="EquipmentListViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentListViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="backgroundImgView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="containerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="tableView" candidateClass="UIFolderTableView"/>
             </relationships>
         </class>
         <class className="EquipmentStopRecordViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentStopRecordViewController.h"/>
-        </class>
-        <class className="EquipmentViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/EquipmentViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="bgImgView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="headerImgView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
         </class>
         <class className="InsetsTextField" superclassName="UITextField">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/InsetsTextField.h"/>
@@ -1425,10 +1409,10 @@
             <relationships>
                 <relationship kind="action" name="backgroundTouch:"/>
                 <relationship kind="action" name="doLogin:"/>
+                <relationship kind="outlet" name="backgroundImgView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="btnLogin" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="continerView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="password" candidateClass="InsetsTextField"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
                 <relationship kind="outlet" name="titleImgView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="username" candidateClass="InsetsTextField"/>
             </relationships>
@@ -1462,7 +1446,6 @@
                 <relationship kind="action" name="expandChildOverview:"/>
                 <relationship kind="action" name="expandOverview:"/>
                 <relationship kind="outlet" name="expandHiddenView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="expandView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="imgViewChildRightArrow" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="imgViewLeftArrow" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="imgViewRightArrow" candidateClass="UIImageView"/>
