@@ -15,6 +15,7 @@
                 return Math.min.apply(null, this);
             };
             function drawLineChart(todayPrice, dates, advicePrices, realPrices) {
+                var ratio = window.devicePixelRatio;//retina屏幕支持
                 dates = dates.split(',');
                 advicePrices = advicePrices.split(',');
                 realPrices = realPrices.split(',');
@@ -48,7 +49,7 @@
                     title: {
                       offsety:-10,
                       text:'今日推荐售价' + todayPrice + '元/吨',
-                      fontsize:14
+                      fontsize:14*ratio
                     },
                     fit: true,
                     background_color: '#FEFEFE',
@@ -113,7 +114,7 @@
                         },
                         scale: [{
                             position: 'left',
-                            fontsize: 11,
+                            fontsize: 11*ratio,
                             which: 'v',
                             start_scale: min,
                             end_scale: max,

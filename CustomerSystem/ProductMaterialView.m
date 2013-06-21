@@ -7,6 +7,7 @@
 //
 
 #import "ProductMaterialView.h"
+#import "RNBlurModalView.h"
 
 @implementation ProductMaterialView
 
@@ -15,6 +16,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.scalesPageToFit =IS_RETINA;
         self.delegate = self;
     }
     return self;
@@ -35,7 +37,14 @@
     NSString *requestString = [[request URL] absoluteString];
     NSArray *components = [requestString componentsSeparatedByString:@":"];
     if(([[components objectAtIndex:0] isEqualToString:@"sector"]&&[[components objectAtIndex:1] isEqualToString:@"false"])||([[components objectAtIndex:0] isEqualToString:@"legend"])){
-//        [self showCostItemDetail];
+            debugLog(@"the dict is %@",[self.materials objectAtIndex:[[components objectAtIndex:2] intValue]]);
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+            view.backgroundColor = [UIColor redColor];
+            view.layer.cornerRadius = 5.f;
+            view.layer.borderColor = [UIColor blackColor].CGColor;
+            view.layer.borderWidth = 5.f;
+            RNBlurModalView *modal = [[RNBlurModalView alloc] initWithViewController:[self viewController] view:view];
+            [modal show];
         return NO;
     }
     return YES;
@@ -53,6 +62,7 @@
         [newDict setValue:[dict objectForKey:@"material"] forKey:@"name"];
         [newDict setValue:[NSNumber numberWithDouble:[[dict objectForKey:@"usagePercent"] doubleValue]*100] forKey:@"value"];
         [newDict setValue:[colorList objectAtIndex:i] forKey:@"color"];
+        [newDict setValue:[NSNumber numberWithInt:i] forKey:@"ids"];
         [arr addObject:newDict];
     }
     NSString *data = [Tool objectToString:arr];
@@ -68,5 +78,14 @@
 }
 #pragma mark end webviewDelegate
 
-
+//UIView获取所属的UIViewController范例
+-(UIViewController *)viewController{
+    for (UIView *next = [self superview]; next; next = [next superview]) {
+        UIResponder *nextResponder = [next nextResponder];
+        if ([nextResponder isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)nextResponder;
+        }
+    }
+    return nil;
+}
 @end

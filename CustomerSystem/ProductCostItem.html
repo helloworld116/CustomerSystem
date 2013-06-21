@@ -17,6 +17,7 @@
             document.location = url;
         }
         function drawPie(data,title) {
+            var ratio = window.devicePixelRatio;//retina屏幕支持
             data = eval('(' + data + ')');
             var chart = new iChart.Pie3D({
                 animation: true,
@@ -66,21 +67,21 @@
                         enable: true,
                         color: '#D7D8D9',
                         style: 'solid',
-                        width: 2,
-                        radius: 10
+                        width: 2*ratio,
+                        radius: 10*ratio
                     },
-                    padding: 5,
+                    padding: 5*ratio,
                     //设置内边距
-                    legend_space: 30,
+                    legend_space: 30*ratio,
                     //图例间距
-                    line_height: 30,
+                    line_height: 30*ratio,
                     //设置行高
-                    sign_space: 5,
+                    sign_space: 5*ratio,
                     //小图标与文本间距
-                    sign_size: 12,
+                    sign_size: 12*ratio,
                     //小图标大小
                     color: '#ffffff',
-                    fontsize: 10,
+                    fontsize: 10*ratio,
                     //文本大小
                     valign: 'bottom',
                     align: 'center'
@@ -95,20 +96,20 @@
                         }
                     },
                     label: {
-                        fontsize: 12,
-                        line_thickness:2,
+                        fontsize: 12*ratio,
+                        line_thickness:2*ratio,
                         color_factor : 0.5,
                         text_with_sign_color:true,
-                        line_height: 20,
+                        line_height: 20*ratio,
                         strokeStyle:'red',
-                        background_color: 'rgba(224,228,232,0.5)',
+//                        background_color: 'rgba(224,228,232,0.5)',
                         //透明背景
                         sign: false,
                         //设置禁用label的小图标
                         padding: 0,
                         border: {
                             enable: false,
-                            radius: 4,
+                            radius: 4*ratio,
                             //圆角设置
                             color: '#e0e5e8'
                         }

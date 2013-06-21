@@ -11,7 +11,6 @@
 #import "ProductViewController.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ChoiceDateView.h"
-#import "OverviewChild1ViewController.h"
 
 #define kDuration 0.7   // 动画持续时间(秒)
 //生产总览
@@ -28,7 +27,6 @@
 @property (nonatomic,retain) UIImageView *imgViewTitleArrow;//navigationBar箭头
 @property (nonatomic,retain) UIImageView *leftArrowView;
 @property (nonatomic,retain) ChoiceDateView *dateView;
-@property (nonatomic,retain) OverviewChild1ViewController *childViewController;
 @property (nonatomic,retain) QueryDate *querydate;
 
 @property BOOL isOverviewViewExpand;

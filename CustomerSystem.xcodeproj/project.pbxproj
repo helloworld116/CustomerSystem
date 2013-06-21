@@ -145,8 +145,9 @@
 		0EA1E7EC1753523F009553AC /* EquipmentStopRecordCell_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EA1E7EB1753523F009553AC /* EquipmentStopRecordCell_iPad.xib */; };
 		0EA1FFE41772981F009D38B0 /* right.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA1FFE31772981F009D38B0 /* right.png */; };
 		0EA1FFE61772982D009D38B0 /* right@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA1FFE51772982D009D38B0 /* right@2x.png */; };
-		0EA40AAE176FF78E003D74F2 /* OverviewChild2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA40AAC176FF78D003D74F2 /* OverviewChild2ViewController.m */; };
-		0EA40AAF176FF78E003D74F2 /* OverviewChild2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EA40AAD176FF78D003D74F2 /* OverviewChild2ViewController.xib */; };
+		0EA255B21773EF9B006010DE /* RNBlurModalView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EA255B11773EF9B006010DE /* RNBlurModalView.m */; };
+		0EA255B41773F03C006010DE /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA255B31773F03C006010DE /* CoreImage.framework */; };
+		0EA255B61773F057006010DE /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA255B51773F057006010DE /* Accelerate.framework */; };
 		0EA40AB2176FFF3C003D74F2 /* empty_circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA40AB0176FFF3B003D74F2 /* empty_circle.png */; };
 		0EA40AB3176FFF3C003D74F2 /* empty_circle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA40AB1176FFF3C003D74F2 /* empty_circle@2x.png */; };
 		0EA40AB517705D2A003D74F2 /* JWFolders2.h in Resources */ = {isa = PBXBuildFile; fileRef = 0EA40AB417705D2A003D74F2 /* JWFolders2.h */; };
@@ -177,6 +178,8 @@
 		0EA8C44C1762D961001D0AFB /* userinfo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0EA8C4441762D961001D0AFB /* userinfo@2x.png */; };
 		0EB310F6172550EE008C1148 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EB310F5172550EE008C1148 /* LoginViewController.m */; };
 		0EC5A2EE1769553600ADB6E2 /* ProductOverviewViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC5A2ED1769553600ADB6E2 /* ProductOverviewViewController2.m */; };
+		0EC609C617745048001F81D2 /* ProductMaterialItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0EC609C517745048001F81D2 /* ProductMaterialItemView.xib */; };
+		0EC609C91774505D001F81D2 /* ProductMaterialItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0EC609C81774505D001F81D2 /* ProductMaterialItemView.m */; };
 		0ED818AD174B7AD8005CB41B /* RadioButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ED818AA174B7AD8005CB41B /* RadioButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0ED818AE174B7AD8005CB41B /* RadioButton-Selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED818AB174B7AD8005CB41B /* RadioButton-Selected.png */; };
 		0ED818AF174B7AD8005CB41B /* RadioButton-Unselected.png in Resources */ = {isa = PBXBuildFile; fileRef = 0ED818AC174B7AD8005CB41B /* RadioButton-Unselected.png */; };
@@ -198,8 +201,6 @@
 		47A49F0C176F812F00580CA7 /* JWFolders.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F07176F812F00580CA7 /* JWFolders.m */; };
 		47A49F0D176F812F00580CA7 /* UIScreen+Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F09176F812F00580CA7 /* UIScreen+Scale.m */; };
 		47A49F0E176F812F00580CA7 /* UIView+Screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F0B176F812F00580CA7 /* UIView+Screenshot.m */; };
-		47A49F11176F826000580CA7 /* OverviewChild1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 47A49F10176F826000580CA7 /* OverviewChild1ViewController.m */; };
-		47A49F13176F830C00580CA7 /* OverviewChild1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47A49F12176F830C00580CA7 /* OverviewChild1ViewController.xib */; };
 		47AEE6B617721E9400935123 /* ChoiceDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 47AEE6B417721E9400935123 /* ChoiceDateView.m */; };
 		47AEE6B717721E9400935123 /* ChoiceDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 47AEE6B517721E9400935123 /* ChoiceDateView.xib */; };
 /* End PBXBuildFile section */
@@ -412,9 +413,10 @@
 		0EA1E7EB1753523F009553AC /* EquipmentStopRecordCell_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EquipmentStopRecordCell_iPad.xib; sourceTree = "<group>"; };
 		0EA1FFE31772981F009D38B0 /* right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right.png; sourceTree = "<group>"; };
 		0EA1FFE51772982D009D38B0 /* right@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "right@2x.png"; sourceTree = "<group>"; };
-		0EA40AAB176FF78D003D74F2 /* OverviewChild2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewChild2ViewController.h; sourceTree = "<group>"; };
-		0EA40AAC176FF78D003D74F2 /* OverviewChild2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewChild2ViewController.m; sourceTree = "<group>"; };
-		0EA40AAD176FF78D003D74F2 /* OverviewChild2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverviewChild2ViewController.xib; sourceTree = "<group>"; };
+		0EA255B01773EF9B006010DE /* RNBlurModalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RNBlurModalView.h; sourceTree = "<group>"; };
+		0EA255B11773EF9B006010DE /* RNBlurModalView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RNBlurModalView.m; sourceTree = "<group>"; };
+		0EA255B31773F03C006010DE /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		0EA255B51773F057006010DE /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		0EA40AB0176FFF3B003D74F2 /* empty_circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty_circle.png; sourceTree = "<group>"; };
 		0EA40AB1176FFF3C003D74F2 /* empty_circle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "empty_circle@2x.png"; sourceTree = "<group>"; };
 		0EA40AB417705D2A003D74F2 /* JWFolders2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWFolders2.h; sourceTree = "<group>"; };
@@ -448,6 +450,9 @@
 		0EB310F5172550EE008C1148 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		0EC5A2EC1769553600ADB6E2 /* ProductOverviewViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductOverviewViewController2.h; sourceTree = "<group>"; };
 		0EC5A2ED1769553600ADB6E2 /* ProductOverviewViewController2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductOverviewViewController2.m; sourceTree = "<group>"; };
+		0EC609C517745048001F81D2 /* ProductMaterialItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductMaterialItemView.xib; sourceTree = "<group>"; };
+		0EC609C71774505D001F81D2 /* ProductMaterialItemView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductMaterialItemView.h; sourceTree = "<group>"; };
+		0EC609C81774505D001F81D2 /* ProductMaterialItemView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductMaterialItemView.m; sourceTree = "<group>"; };
 		0ED818A9174B7AD8005CB41B /* RadioButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadioButton.h; sourceTree = "<group>"; };
 		0ED818AA174B7AD8005CB41B /* RadioButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadioButton.m; sourceTree = "<group>"; };
 		0ED818AB174B7AD8005CB41B /* RadioButton-Selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RadioButton-Selected.png"; sourceTree = "<group>"; };
@@ -475,9 +480,6 @@
 		47A49F09176F812F00580CA7 /* UIScreen+Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScreen+Scale.m"; sourceTree = "<group>"; };
 		47A49F0A176F812F00580CA7 /* UIView+Screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Screenshot.h"; sourceTree = "<group>"; };
 		47A49F0B176F812F00580CA7 /* UIView+Screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Screenshot.m"; sourceTree = "<group>"; };
-		47A49F0F176F826000580CA7 /* OverviewChild1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverviewChild1ViewController.h; sourceTree = "<group>"; };
-		47A49F10176F826000580CA7 /* OverviewChild1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverviewChild1ViewController.m; sourceTree = "<group>"; };
-		47A49F12176F830C00580CA7 /* OverviewChild1ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OverviewChild1ViewController.xib; sourceTree = "<group>"; };
 		47AEE6B317721E9400935123 /* ChoiceDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoiceDateView.h; sourceTree = "<group>"; };
 		47AEE6B417721E9400935123 /* ChoiceDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoiceDateView.m; sourceTree = "<group>"; };
 		47AEE6B517721E9400935123 /* ChoiceDateView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceDateView.xib; sourceTree = "<group>"; };
@@ -488,6 +490,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EA255B61773F057006010DE /* Accelerate.framework in Frameworks */,
+				0EA255B41773F03C006010DE /* CoreImage.framework in Frameworks */,
 				0E33795917250D50000E3769 /* QuartzCore.framework in Frameworks */,
 				0E3379371724DCC2000E3769 /* libz.1.2.5.dylib in Frameworks */,
 				0E3379351724DC87000E3769 /* MobileCoreServices.framework in Frameworks */,
@@ -522,6 +526,8 @@
 		0E3378EC1724C6F5000E3769 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0EA255B51773F057006010DE /* Accelerate.framework */,
+				0EA255B31773F03C006010DE /* CoreImage.framework */,
 				0E33795817250D50000E3769 /* QuartzCore.framework */,
 				0E3379361724DCC2000E3769 /* libz.1.2.5.dylib */,
 				0E3379341724DC87000E3769 /* MobileCoreServices.framework */,
@@ -728,12 +734,9 @@
 				0EA12441176F05C40070DEA5 /* ProductEnergyView.m */,
 				0EA12428176EAE3E0070DEA5 /* FactoryCostItemView.h */,
 				0EA12429176EAE3E0070DEA5 /* FactoryCostItemView.m */,
-				47A49F0F176F826000580CA7 /* OverviewChild1ViewController.h */,
-				47A49F10176F826000580CA7 /* OverviewChild1ViewController.m */,
-				47A49F12176F830C00580CA7 /* OverviewChild1ViewController.xib */,
-				0EA40AAB176FF78D003D74F2 /* OverviewChild2ViewController.h */,
-				0EA40AAC176FF78D003D74F2 /* OverviewChild2ViewController.m */,
-				0EA40AAD176FF78D003D74F2 /* OverviewChild2ViewController.xib */,
+				0EC609C517745048001F81D2 /* ProductMaterialItemView.xib */,
+				0EC609C71774505D001F81D2 /* ProductMaterialItemView.h */,
+				0EC609C81774505D001F81D2 /* ProductMaterialItemView.m */,
 			);
 			name = ProductOverview;
 			sourceTree = "<group>";
@@ -825,6 +828,8 @@
 		0E93831917411190004C3947 /* Thrid-party */ = {
 			isa = PBXGroup;
 			children = (
+				0EA255B01773EF9B006010DE /* RNBlurModalView.h */,
+				0EA255B11773EF9B006010DE /* RNBlurModalView.m */,
 				47A49F05176F812F00580CA7 /* JWFolders */,
 				0EA12438176EF8B70070DEA5 /* LHDropDownControlView */,
 				0EA1242B176EBCAD0070DEA5 /* REMenu */,
@@ -1132,14 +1137,13 @@
 				0ED841E5176F3B090079F77E /* back@2x.png in Resources */,
 				0ED841EA176F3BCF0079F77E /* navigationBar.png in Resources */,
 				0ED841EB176F3BCF0079F77E /* navigationBar@2x.png in Resources */,
-				47A49F13176F830C00580CA7 /* OverviewChild1ViewController.xib in Resources */,
-				0EA40AAF176FF78E003D74F2 /* OverviewChild2ViewController.xib in Resources */,
 				0EA40AB2176FFF3C003D74F2 /* empty_circle.png in Resources */,
 				0EA40AB3176FFF3C003D74F2 /* empty_circle@2x.png in Resources */,
 				0EA40AB517705D2A003D74F2 /* JWFolders2.h in Resources */,
 				47AEE6B717721E9400935123 /* ChoiceDateView.xib in Resources */,
 				0EA1FFE41772981F009D38B0 /* right.png in Resources */,
 				0EA1FFE61772982D009D38B0 /* right@2x.png in Resources */,
+				0EC609C617745048001F81D2 /* ProductMaterialItemView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1221,10 +1225,10 @@
 				47A49F0C176F812F00580CA7 /* JWFolders.m in Sources */,
 				47A49F0D176F812F00580CA7 /* UIScreen+Scale.m in Sources */,
 				47A49F0E176F812F00580CA7 /* UIView+Screenshot.m in Sources */,
-				47A49F11176F826000580CA7 /* OverviewChild1ViewController.m in Sources */,
-				0EA40AAE176FF78E003D74F2 /* OverviewChild2ViewController.m in Sources */,
 				0EA40AB717705D4A003D74F2 /* JWFolders2.m in Sources */,
 				47AEE6B617721E9400935123 /* ChoiceDateView.m in Sources */,
+				0EA255B21773EF9B006010DE /* RNBlurModalView.m in Sources */,
+				0EC609C91774505D001F81D2 /* ProductMaterialItemView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

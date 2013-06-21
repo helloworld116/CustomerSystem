@@ -133,6 +133,7 @@
         webView = [[UIWebView alloc] initWithFrame:CGRectMake(index*self.contentScrollView.bounds.size.width, 0, self.contentScrollView.bounds.size.width, self.contentScrollView.bounds.size.height)];
         [(UIScrollView *)[[webView subviews] objectAtIndex:0] setBounces:NO];//禁用上下拖拽
         webView.delegate = self;
+        webView.scalesPageToFit = IS_RETINA;
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"PriceAssaint" ofType:@"html"];
         [webView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath:filePath]]];
         [self.contentScrollView addSubview:webView];

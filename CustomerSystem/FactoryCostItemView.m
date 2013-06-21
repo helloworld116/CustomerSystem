@@ -15,6 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+        self.scalesPageToFit =IS_RETINA;
         self.delegate = self;
     }
     return self;
@@ -34,7 +35,7 @@
     NSString *requestString = [[request URL] absoluteString];
     NSArray *components = [requestString componentsSeparatedByString:@":"];
     if(([[components objectAtIndex:0] isEqualToString:@"sector"]&&[[components objectAtIndex:1] isEqualToString:@"false"])||([[components objectAtIndex:0] isEqualToString:@"legend"])){
-        //        [self showCostItemDetail];
+             debugLog(@"the dict is %@",[self.costItems objectAtIndex:[[components objectAtIndex:2] intValue]]);
         return NO;
     }
     return YES;
@@ -52,6 +53,7 @@
         [newDict setValue:[dict objectForKey:@"itemName"] forKey:@"name"];
         [newDict setValue:[NSNumber numberWithDouble:[[dict objectForKey:@"percent"] doubleValue]*100] forKey:@"value"];
         [newDict setValue:[colorList objectAtIndex:i] forKey:@"color"];
+        [newDict setValue:[NSNumber numberWithInt:i] forKey:@"ids"];
         [arr addObject:newDict];
     }
     NSString *data = [Tool objectToString:arr];
