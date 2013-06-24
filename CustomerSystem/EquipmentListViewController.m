@@ -57,11 +57,24 @@
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
     self.title = @"设备列表";
     //headerView
-    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,  -REFRESHINGVIEW_HEIGHT, kScreenWidth,REFRESHINGVIEW_HEIGHT)];
-    self.refreshHeaderView.backgroundColor = kHeaderViewBackgroundColor;
-    [self.view addSubview:self.refreshHeaderView];
-    self.refreshHeaderView.delegate = self;
-    [self.refreshHeaderView refreshLastUpdatedDate];
+//    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,  -REFRESHINGVIEW_HEIGHT, kScreenWidth,REFRESHINGVIEW_HEIGHT)];
+//    self.refreshHeaderView.backgroundColor = kHeaderViewBackgroundColor;
+//    [self.view addSubview:self.refreshHeaderView];
+//    self.refreshHeaderView.delegate = self;
+//    [self.refreshHeaderView refreshLastUpdatedDate];
+
+    __weak EquipmentListViewController *weakSelf = self;
+    
+    // setup pull-to-refresh
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf insertRowAtTop];
+    }];
+    
+    // setup infinite scrolling
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf insertRowAtBottom];
+    }];
+
     self.currentPage = 1;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -75,6 +88,37 @@
     self.isFirstLoad = YES;
     //network
     [self sendRequest];
+}
+
+- (void)insertRowAtTop {
+    __weak EquipmentListViewController *weakSelf = self;
+    
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.tableView beginUpdates];
+//        [weakSelf.dataSource insertObject:[NSDate date] atIndex:0];
+        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+        [weakSelf.tableView endUpdates];
+        
+        [weakSelf.tableView.pullToRefreshView stopAnimating];
+    });
+}
+
+
+- (void)insertRowAtBottom {
+    __weak EquipmentListViewController *weakSelf = self;
+    
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.tableView beginUpdates];
+//        [weakSelf.dataSource addObject:[weakSelf.dataSource.lastObject dateByAddingTimeInterval:-90]];
+//        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [weakSelf.tableView endUpdates];
+        
+        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+    });
 }
 
 - (void)didReceiveMemoryWarning

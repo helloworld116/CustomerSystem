@@ -18,6 +18,7 @@
     #import "ASIHTTPRequestConfig.h"
     #import "LoadMoreTableFooterView.h"
     #import "EGORefreshTableHeaderView.h"
+    #import "SVPullToRefresh.h"
     #import "MBProgressHUD.h"
     #import "SVProgressHUD.h"
     #import "InsetsTextField.h"
