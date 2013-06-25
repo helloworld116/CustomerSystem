@@ -58,8 +58,8 @@
     #define kSharedApp ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 
 //接口地址
-#define kServerURL @"http://121.199.6.98/"
-//http://192.168.1.90:8080/dynamicmeasurement/
+//#define kServerURL @"http://121.199.6.98/"
+#define kServerURL @"http://192.168.1.90:8080/dynamicmeasurement/"
 #define kLoginURL [kServerURL stringByAppendingString:@"mobile/login"]
 #define kEquipmentList [kServerURL stringByAppendingString:@"mobile/equipment/list"]
 #define kEquipmentStopRecord [kServerURL stringByAppendingString:@"mobile/equipment/stoprecord"]

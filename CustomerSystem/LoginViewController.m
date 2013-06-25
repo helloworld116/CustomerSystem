@@ -44,8 +44,8 @@
     self.navigationController.navigationBarHidden = YES;
     self.username.delegate = self;
     self.password.delegate = self;
-    self.username.text = @"646767424@qq.com";
-    self.password.text = @"123456";
+    self.username.text = @"lizhibo";
+    self.password.text = @"lizhibo";
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,7 +127,6 @@
 }
 
 -(void)requestLogin:(ASIHTTPRequest *)request{
-    debugLog(@"the string is %@",request.responseString);
     NSDictionary *dict = [Tool stringToDictionary:request.responseString];
     if ([[dict objectForKey:@"error"] intValue]==0) {
         [SVProgressHUD showSuccessWithStatus:@"登录成功"];
