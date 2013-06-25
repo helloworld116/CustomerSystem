@@ -364,6 +364,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     ProductViewController *productViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"productViewController"];
+    productViewController.hidesBottomBarWhenPushed = YES;
     productViewController.date = self.lblDate.text;
     productViewController.querydate = self.querydate;
     productViewController.productBasicInfo = [self.products objectAtIndex:indexPath.row];
