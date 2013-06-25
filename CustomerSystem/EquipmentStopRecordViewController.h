@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EquipmentStopRecordViewController : UITableViewController
+@interface EquipmentStopRecordViewController : UIViewController
 @property long equipmentId;
+@property (strong, nonatomic) IBOutlet UIView *containerView;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @end

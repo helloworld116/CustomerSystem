@@ -14,14 +14,13 @@
 #define kHeaderViewBackgroundColor [UIColor redColor]
 #define kFooterViewBackgroundColr [UIColor whiteColor]
 
-@interface EquipmentListViewController ()<UITableViewDataSource,UITableViewDelegate,EGORefreshTableHeaderDelegate,LoadMoreTableFooterDelegate>
+@interface EquipmentListViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,retain) ASIFormDataRequest *request;
 @property (nonatomic,retain) NSMutableArray *equipments;
-@property (nonatomic,retain) EGORefreshTableHeaderView *refreshHeaderView;
-@property (nonatomic,retain) LoadMoreTableFooterView *loadMoreTableFooterView;
 @property NSUInteger currentPage;//当前显示页数
-@property BOOL isRefreshing;//是否正在刷新
 @property BOOL isLoadingmore;//是否有更多页
+@property BOOL isRefreshing;//是否正在刷新
+@property BOOL isLoding;//是否正在加载更多
 
 @property BOOL isFirstLoad;//是否是第一次加载页面
 @end
@@ -56,20 +55,12 @@
 	// Do any additional setup after loading the view.
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"navigationBar.png"] forBarMetrics:UIBarMetricsDefault];
     self.title = @"设备列表";
-    //headerView
-//    self.refreshHeaderView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0.0f,  -REFRESHINGVIEW_HEIGHT, kScreenWidth,REFRESHINGVIEW_HEIGHT)];
-//    self.refreshHeaderView.backgroundColor = kHeaderViewBackgroundColor;
-//    [self.view addSubview:self.refreshHeaderView];
-//    self.refreshHeaderView.delegate = self;
-//    [self.refreshHeaderView refreshLastUpdatedDate];
-
+    //headerView&bottomView
     __weak EquipmentListViewController *weakSelf = self;
-    
     // setup pull-to-refresh
     [self.tableView addPullToRefreshWithActionHandler:^{
         [weakSelf insertRowAtTop];
     }];
-    
     // setup infinite scrolling
     [self.tableView addInfiniteScrollingWithActionHandler:^{
         [weakSelf insertRowAtBottom];
@@ -81,8 +72,6 @@
     //
     self.containerView.layer.cornerRadius = 10;
     self.containerView.layer.masksToBounds = YES;
-    //bottom
-    self.loadMoreTableFooterView = [[LoadMoreTableFooterView alloc] initWithFrame:CGRectZero];
     self.equipments = [[NSMutableArray alloc] init];
     [SVProgressHUD showWithStatus:@"正在加载..."];
     self.isFirstLoad = YES;
@@ -96,28 +85,24 @@
     int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [weakSelf.tableView beginUpdates];
-//        [weakSelf.dataSource insertObject:[NSDate date] atIndex:0];
-        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
-        [weakSelf.tableView endUpdates];
-        
-        [weakSelf.tableView.pullToRefreshView stopAnimating];
+        [weakSelf.equipments removeAllObjects];
+        weakSelf.isRefreshing = YES;
+        weakSelf.currentPage=1;
+        [weakSelf sendRequest];
     });
 }
 
 
 - (void)insertRowAtBottom {
     __weak EquipmentListViewController *weakSelf = self;
-    
     int64_t delayInSeconds = 2.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [weakSelf.tableView beginUpdates];
-//        [weakSelf.dataSource addObject:[weakSelf.dataSource.lastObject dateByAddingTimeInterval:-90]];
-//        [weakSelf.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:weakSelf.dataSource.count-1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
-        [weakSelf.tableView endUpdates];
-        
-        [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        if (weakSelf.isLoadingmore) {
+            weakSelf.isLoding = YES;
+            weakSelf.currentPage++;
+            [weakSelf sendRequest];
+        }
     });
 }
 
@@ -129,34 +114,20 @@
 
 #pragma mark -------------UITableViewDatasource-------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row<self.equipments.count) {
-        NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:@"EquipmentCell"
-                                                        owner:self options:nil];
-        EquipmentCell * cell = (EquipmentCell *)[bundle objectAtIndex:0];
-        NSDictionary *equipment = [self.equipments objectAtIndex:indexPath.row];
-        cell.equipmentId = [[equipment objectForKey:@"id"] longValue];
-        cell.lblName.text = [equipment objectForKey:@"name"];
-        cell.lblSN.text = [equipment objectForKey:@"sn"];
-        cell.imgBackground.image = [UIImage imageNamed:@"equipment.jpg"];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
-    }else{
-        static NSString *loadmoreCell = @"loadmoreCell";
-        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:loadmoreCell];
-        self.loadMoreTableFooterView.hidden = NO;
-        self.loadMoreTableFooterView.frame = cell.frame;
-        [cell addSubview:self.loadMoreTableFooterView];
-        return cell;
-//        [self.tableView addSubview:self.loadMoreTableFooterView];
-    }
+    NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:@"EquipmentCell"
+                                                    owner:self options:nil];
+    EquipmentCell * cell = (EquipmentCell *)[bundle objectAtIndex:0];
+    NSDictionary *equipment = [self.equipments objectAtIndex:indexPath.row];
+    cell.equipmentId = [[equipment objectForKey:@"id"] longValue];
+    cell.lblName.text = [equipment objectForKey:@"name"];
+    cell.lblSN.text = [equipment objectForKey:@"sn"];
+    cell.imgBackground.image = [UIImage imageNamed:@"equipment.jpg"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (self.isLoadingmore) {
-        return [self.equipments count]+1;
-    }else{
-        return [self.equipments count];
-    }
+    return [self.equipments count];
 }
 
 #pragma mark -------------UITableViewDelegate-------------
@@ -201,6 +172,7 @@
 
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
+    __weak EquipmentListViewController *weakSelf = self;
     // Use when fetching text data
     NSDictionary *dict = [Tool stringToDictionary:request.responseString];
     if ([[dict objectForKey:@"error"] intValue]==0) {
@@ -210,9 +182,17 @@
         NSDictionary *data = [dict objectForKey:@"data"];
         [self.equipments addObjectsFromArray:[data objectForKey:@"equipments"]];
         [self.tableView reloadData];
+        if (self.isRefreshing) {
+            [weakSelf.tableView.pullToRefreshView stopAnimating];
+        }
+        if (self.isLoding) {
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        }
         if ([[data objectForKey:@"totalCount"] intValue]>(self.currentPage*kPageSize)) {
             self.isLoadingmore = YES;
+            weakSelf.tableView.showsInfiniteScrolling = YES;
         }else{
+            weakSelf.tableView.showsInfiniteScrolling = NO;
             self.isLoadingmore = NO;
         }
     }else{
@@ -228,81 +208,6 @@
 {
     //    NSError *error = [request error];
     [SVProgressHUD showErrorWithStatus:@"网络错误"];
-}
-
-#pragma mark -------------EGORefreshTableHeaderDelegate-------------
-- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
-    self.isRefreshing = YES;
-    self.currentPage = 1;
-    [self performSelector:@selector(doneLoadingTableViewData) withObject:self afterDelay:3.0f];  //make a delay to show loading process for a while
-}
-
-- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
-    return self.isRefreshing;
-}
-
-- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
-    return [NSDate date]; 
-}
-
-#pragma mark -------------LoadMoreTableFooterDelegate-------------
-- (void)loadMoreTableFooterDidTriggerRefresh:(LoadMoreTableFooterView *)view{
-    [self reloadTableViewDataSource];
-	[self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:3.0];
-}
-
-- (BOOL)loadMoreTableFooterDataSourceIsLoading:(LoadMoreTableFooterView *)view{
-    return self.isLoadingmore;
-}
-
-#pragma mark 重新加载表格数据
-- (void)doneLoadingTableViewData{
-    if (self.isRefreshing||self.isLoadingmore) {
-        if (self.isRefreshing)
-        {
-            self.isRefreshing = NO;
-            [self.refreshHeaderView egoRefreshScrollViewDataSourceDidFinishedLoading:self.tableView];
-            [self.equipments removeAllObjects];
-        }
-        if (self.isLoadingmore) {
-//            self.isLoadingmore = NO;
-            [self.loadMoreTableFooterView loadMoreScrollViewDataSourceDidFinishedLoading:self.tableView];
-        }
-        [self sendRequest];
-        [self.tableView reloadData];
-    }
-}
-
-- (void)reloadTableViewDataSource{
-    
-	//  should be calling your tableviews data source model to reload
-	//  put here just for demo
-	self.isLoadingmore = YES;
-    self.currentPage++;
-}
-
-
-
-#pragma mark- UIScrollViewDelegate
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    [self.refreshHeaderView egoRefreshScrollViewDidScroll:scrollView];
-}
-
-- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
-{
-	[self.refreshHeaderView egoRefreshScrollViewDidEndDragging:scrollView];
-}
-
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
-{
-    float bottomEdge = scrollView.contentOffset.y + scrollView.frame.size.height;
-    if (bottomEdge >= scrollView.contentSize.height )
-    {
-        if (!self.isLoadingmore) return;
-        self.currentPage ++;
-        [self performSelector:@selector(doneLoadingTableViewData) withObject:self afterDelay:1.0f]; //make a delay to show loading process for a while
-    }
 }
 
 - (void)viewDidUnload {

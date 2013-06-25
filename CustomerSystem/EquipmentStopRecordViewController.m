@@ -9,25 +9,18 @@
 #import "EquipmentStopRecordViewController.h"
 #import "EquipmentStopRecordCell.h"
 
-@interface EquipmentStopRecordViewController ()
+@interface EquipmentStopRecordViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,retain) NSMutableArray *records;
 @property (nonatomic,retain) ASIFormDataRequest *request;
 @property NSUInteger currentPage;
 @property BOOL isRefreshing;//是否正在刷新
 @property BOOL isLoadingmore;//是否有更多页
+@property BOOL isFirstLoad;//是否是第一次加载
+@property BOOL isLoding;//是否正在加载更多
 @end
 
 //{\"error\":0,\"message\":null,\"data\":{\"totalCount\":7,\"stopRecords\":[{\"reason\":\"检修\",\"stopDuration\":2099700,\"recoverTime\":1369207875218,\"stopTime\":1369205775518},{\"reason\":\"故障\",\"stopDuration\":2099700,\"recoverTime\":1369207895218,\"stopTime\":1369205875518},{\"reason\":\"停电\",\"stopDuration\":2099700,\"recoverTime\":1369227875218,\"stopTime\":1369205895518}]}}
 @implementation EquipmentStopRecordViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void) recordsData:(NSUInteger)page {
     for (int i=(page-1)*10+1; i<=10*page; i++) {
@@ -49,6 +42,21 @@
     }
 }
 
+- (void)sendRequest{
+    if (self.isFirstLoad) {
+        [SVProgressHUD showWithStatus:@"正在加载..."];
+    }
+    self.request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:kEquipmentStopRecord]];
+    [self.request setPostValue:kSharedApp.accessToken forKey:@"accessToken"];
+    [self.request setPostValue:kSharedApp.factoryId forKey:@"factoryId"];
+    [self.request setPostValue:[NSNumber numberWithLong:self.equipmentId] forKey:@"equipmentId"];
+    [self.request setPostValue:[NSNumber numberWithInt:((self.currentPage-1)*kPageSize)] forKey:@"offset"];
+    [self.request setPostValue:[NSNumber numberWithInt:kPageSize] forKey:@"count"];
+    [self.request setDelegate:self];
+    [self.request startAsynchronous];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -63,24 +71,54 @@
     [backBtn setBackgroundImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
     [backBtn setTitle:@"返回" forState:UIControlStateNormal];
     self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backBtn];
-    
-    self.records = [[NSMutableArray alloc] init];
-    self.currentPage = 1;
     self.title = @"停机记录列表";
+    //headerView&bottomView
+    __weak EquipmentStopRecordViewController *weakSelf = self;
+    // setup pull-to-refresh
+    [self.tableView addPullToRefreshWithActionHandler:^{
+        [weakSelf insertRowAtTop];
+    }];
+    // setup infinite scrolling
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        [weakSelf insertRowAtBottom];
+    }];
+    //
+    self.containerView.layer.cornerRadius = 10;
+    self.containerView.layer.masksToBounds = YES;
+    self.records = [[NSMutableArray alloc] init];
+    self.isFirstLoad = YES;
+    self.currentPage = 1;
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    
-    [SVProgressHUD showWithStatus:@"正在加载..."];
-    self.request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:kEquipmentStopRecord]];
-    [self.request setUseCookiePersistence:YES];
-    [self.request setPostValue:kSharedApp.accessToken forKey:@"accessToken"];
-    [self.request setPostValue:kSharedApp.factoryId forKey:@"factoryId"];
-    [self.request setPostValue:[NSNumber numberWithLong:self.equipmentId] forKey:@"equipmentId"];
-    [self.request setPostValue:[NSNumber numberWithInt:((self.currentPage-1)*kPageSize)] forKey:@"offset"];
-    [self.request setPostValue:[NSNumber numberWithInt:kPageSize] forKey:@"count"];
-    [self.request setDelegate:self];
-    [self.request startAsynchronous];
+    [self sendRequest];
 }
+
+- (void)insertRowAtTop {
+    __weak EquipmentStopRecordViewController *weakSelf = self;
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [weakSelf.records removeAllObjects];
+        weakSelf.isRefreshing = YES;
+        weakSelf.currentPage=1;
+        [weakSelf sendRequest];
+    });
+}
+
+
+- (void)insertRowAtBottom {
+    __weak EquipmentStopRecordViewController *weakSelf = self;
+    int64_t delayInSeconds = 2.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        if (weakSelf.isLoadingmore) {
+            weakSelf.isLoding = YES;
+            weakSelf.currentPage++;
+            [weakSelf sendRequest];
+        }
+    });
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -190,16 +228,25 @@
 {
     // Use when fetching text data
     //    NSString *responseString = [request responseString];
+    __weak EquipmentStopRecordViewController *weakSelf = self;
     NSDictionary *dict = [Tool stringToDictionary:request.responseString];
     if ([[dict objectForKey:@"error"] intValue]==0) {
         [SVProgressHUD showSuccessWithStatus:@"解析成功"];
         NSDictionary *data = [dict objectForKey:@"data"];
         [self.records addObjectsFromArray:[data objectForKey:@"stopRecords"]];
         [self.tableView reloadData];
+        if (self.isRefreshing) {
+            [weakSelf.tableView.pullToRefreshView stopAnimating];
+        }
+        if (self.isLoding) {
+            [weakSelf.tableView.infiniteScrollingView stopAnimating];
+        }
         if ([[data objectForKey:@"totalCount"] intValue]>(self.currentPage*kPageSize)) {
             self.isLoadingmore = YES;
+            weakSelf.tableView.showsInfiniteScrolling = YES;
         }else{
             self.isLoadingmore = NO;
+            weakSelf.tableView.showsInfiniteScrolling = NO;
         }
     }else{
         [SVProgressHUD showErrorWithStatus:@"解析失败"];
@@ -213,4 +260,9 @@
     [SVProgressHUD showErrorWithStatus:@"网络错误"];
 }
 
+- (void)viewDidUnload {
+    [self setContainerView:nil];
+    [self setTableView:nil];
+    [super viewDidUnload];
+}
 @end
