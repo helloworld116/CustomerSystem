@@ -833,7 +833,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view contentMode="scaleToFill" id="xnz-Zf-kZ0">
-                                <rect key="frame" x="10" y="10" width="300" height="350"/>
+                                <rect key="frame" x="10" y="10" width="300" height="396"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="P6s-wP-Wxz">
@@ -884,7 +884,7 @@
                                         <color key="backgroundColor" red="0.50980392156862742" green="0.61176470588235299" blue="0.68235294117647061" alpha="1" colorSpace="calibratedRGB"/>
                                     </view>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="CsS-aM-pbx">
-                                        <rect key="frame" x="0.0" y="29" width="300" height="321"/>
+                                        <rect key="frame" x="0.0" y="29" width="300" height="367"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </scrollView>
                                 </subviews>

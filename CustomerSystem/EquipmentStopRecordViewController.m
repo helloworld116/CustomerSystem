@@ -49,13 +49,14 @@
     self.request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:kEquipmentStopRecord]];
     [self.request setPostValue:kSharedApp.accessToken forKey:@"accessToken"];
     [self.request setPostValue:kSharedApp.factoryId forKey:@"factoryId"];
-    [self.request setPostValue:[NSNumber numberWithLong:self.equipmentId] forKey:@"equipmentId"];
+    [self.request setPostValue:[NSNumber numberWithLong:self.equipmentId] forKey:@"equipmentCode"];
     [self.request setPostValue:[NSNumber numberWithInt:((self.currentPage-1)*kPageSize)] forKey:@"offset"];
     [self.request setPostValue:[NSNumber numberWithInt:kPageSize] forKey:@"count"];
     [self.request setDelegate:self];
     [self.request startAsynchronous];
 
 }
+
 
 - (void)viewDidLoad
 {
@@ -67,6 +68,9 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 //    [self.navigationItem.backBarButtonItem setBackButtonBackgroundImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//    UIButton* backButton = [self.navigationController.navigationBar backButtonWith:[UIImage imageNamed:@"navigationBarBackButton.png"] highlight:nil leftCapWidth:25.0];
+//    backButton.titleLabel.textColor = [UIColor colorWithRed:254.0/255.0 green:239.0/255.0 blue:218.0/225.0 alpha:1];
+    
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBtn setBackgroundImage:[UIImage imageNamed:@"backButton.png"] forState:UIControlStateNormal];
     [backBtn setTitle:@"返回" forState:UIControlStateNormal];

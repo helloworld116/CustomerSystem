@@ -61,9 +61,9 @@
     self.view.frame = viewFrame;
     
     self.lblSN.text = [self.equipment objectForKey:@"sn"];
-    self.lblSetflow.text = [NSString stringWithFormat:@"%.1f",[[self.equipment objectForKey:@"settingFlowRate"] doubleValue]];
-    self.lblMomentflow.text = [NSString stringWithFormat:@"%.1f",[[self.equipment objectForKey:@"instantFlowRate"] doubleValue]];
-    self.lblMonthlyAccumulation.text = [NSString stringWithFormat:@"%.1f",[[self.equipment objectForKey:@"partialOutput"] doubleValue]];
+    self.lblSetflow.text = [NSString stringWithFormat:@"%.1fT/H",[[self.equipment objectForKey:@"settingFlowRate"] doubleValue]];
+    self.lblMomentflow.text = [NSString stringWithFormat:@"%.1fT/H",[[self.equipment objectForKey:@"instantFlowRate"] doubleValue]];
+    self.lblMonthlyAccumulation.text = [NSString stringWithFormat:@"%.1fT",[[self.equipment objectForKey:@"partialOutput"] doubleValue]];
     self.lblMonthlyStopNum.text = [NSString stringWithFormat:@"%d",[[self.equipment objectForKey:@"stopCountMonthly"] intValue]];
     self.lblMonthlyStopTime.text = [Tool secondsToHour:[[self.equipment objectForKey:@"stopDurationMonthly"] longValue]];
     self.lblContinuousTime.text = [Tool secondsToHour:[[self.equipment objectForKey:@"runDuration"] longValue]];

@@ -10,6 +10,8 @@
 		0E022C1D176AAC94006394FC /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E022C1A176AAC94006394FC /* SVProgressHUD.bundle */; };
 		0E022C1E176AAC94006394FC /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E022C1C176AAC94006394FC /* SVProgressHUD.m */; };
 		0E089BB9176464DA007FF9E9 /* equipment.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0E089BB8176464D6007FF9E9 /* equipment.jpg */; };
+		0E2EC28A177AFFC500970BFC /* navigationBarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EC288177AFFC500970BFC /* navigationBarBackButton.png */; };
+		0E2EC28B177AFFC500970BFC /* navigationBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EC289177AFFC500970BFC /* navigationBarBackButton@2x.png */; };
 		0E3240B7177971E700E812BC /* FolderCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3240B2177971E700E812BC /* FolderCoverView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0E3240B8177971E700E812BC /* UIFolderTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3240B4177971E700E812BC /* UIFolderTableView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0E3240B9177971E700E812BC /* UIView+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3240B6177971E700E812BC /* UIView+screenshot.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -178,6 +180,8 @@
 		0E022C1B176AAC94006394FC /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		0E022C1C176AAC94006394FC /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		0E089BB8176464D6007FF9E9 /* equipment.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = equipment.jpg; sourceTree = "<group>"; };
+		0E2EC288177AFFC500970BFC /* navigationBarBackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBarBackButton.png; sourceTree = "<group>"; };
+		0E2EC289177AFFC500970BFC /* navigationBarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBarBackButton@2x.png"; sourceTree = "<group>"; };
 		0E3240B1177971E700E812BC /* FolderCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCoverView.h; sourceTree = "<group>"; };
 		0E3240B2177971E700E812BC /* FolderCoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FolderCoverView.m; sourceTree = "<group>"; };
 		0E3240B3177971E700E812BC /* UIFolderTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIFolderTableView.h; sourceTree = "<group>"; };
@@ -679,6 +683,8 @@
 		0E764BF51731FD0B0052C7DB /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0E2EC288177AFFC500970BFC /* navigationBarBackButton.png */,
+				0E2EC289177AFFC500970BFC /* navigationBarBackButton@2x.png */,
 				0EA1FFE51772982D009D38B0 /* right@2x.png */,
 				0EA1FFE31772981F009D38B0 /* right.png */,
 				0EA40AB0176FFF3B003D74F2 /* empty_circle.png */,
@@ -992,6 +998,8 @@
 				0E9F2FD6177834E6005C8B52 /* Default.png in Resources */,
 				0E9F2FD7177834E6005C8B52 /* Default@2x.png in Resources */,
 				0E3240C2177977D900E812BC /* MainStoryboard_iPhone5.storyboard in Resources */,
+				0E2EC28A177AFFC500970BFC /* navigationBarBackButton.png in Resources */,
+				0E2EC28B177AFFC500970BFC /* navigationBarBackButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
