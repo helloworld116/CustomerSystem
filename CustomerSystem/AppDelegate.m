@@ -46,7 +46,7 @@
     [hostReach startNotifier];
     
     if (IS_Pad) {
-        self.storyboard = [UIStoryboard storyboardWithName:@"Storyboard_iPad" bundle:nil];
+        self.storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPad2" bundle:nil];
     }else if (IS_IPHONE_5){
         self.storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone5" bundle:nil];
     }else{

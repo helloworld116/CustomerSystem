@@ -33,7 +33,6 @@
     self.titleImgView.image = [UIImage imageNamed:@"title.png"];
     self.username.background = [UIImage imageNamed:@"username.png"];
     self.password.background = [UIImage imageNamed:@"password.png"];
-    self.username.background = [UIImage imageNamed:@"username.png"];
 }
 
 - (void)viewDidLoad
