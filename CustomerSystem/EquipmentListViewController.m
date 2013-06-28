@@ -114,9 +114,12 @@
 
 #pragma mark -------------UITableViewDatasource-------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSArray *bundle = [[NSBundle mainBundle] loadNibNamed:@"EquipmentCell"
-                                                    owner:self options:nil];
-    EquipmentCell * cell = (EquipmentCell *)[bundle objectAtIndex:0];
+    EquipmentCell * cell = nil;
+    if (IS_Pad) {
+        cell = (EquipmentCell *)[[[NSBundle mainBundle] loadNibNamed:@"EquipmentCell_iPad" owner:self options:nil] objectAtIndex:0];
+    }else{
+        cell = (EquipmentCell *)[[[NSBundle mainBundle] loadNibNamed:@"EquipmentCell" owner:self options:nil] objectAtIndex:0];
+    }
     NSDictionary *equipment = [self.equipments objectAtIndex:indexPath.row];
     cell.equipmentId = [[equipment objectForKey:@"id"] longValue];
     cell.lblName.text = [equipment objectForKey:@"name"];

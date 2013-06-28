@@ -36,7 +36,11 @@
 - (id)initWithFrame:(CGRect)frame
 {
 //    self = [super initWithFrame:frame];
-    self = (ChoiceDateView *)[[[NSBundle mainBundle] loadNibNamed:@"ChoiceDateView" owner:self options:nil] objectAtIndex:0];
+    if (IS_Pad) {
+        self = (ChoiceDateView *)[[[NSBundle mainBundle] loadNibNamed:@"ChoiceDateView_iPad" owner:self options:nil] objectAtIndex:0];
+    }else{
+        self = (ChoiceDateView *)[[[NSBundle mainBundle] loadNibNamed:@"ChoiceDateView" owner:self options:nil] objectAtIndex:0];
+    }
     if (self) {
         // Initialization code
         self.years = [[NSMutableArray alloc] initWithCapacity:200];
@@ -226,9 +230,17 @@
 
 - (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component{
     if (self.segControl.selectedSegmentIndex==0) {
-        return 320.f;
+        if (IS_Pad) {
+            return 768.f;
+        }else{
+            return 320.f;
+        }
     }else{
-        return 160;
+        if (IS_Pad) {
+            return 384.f;
+        }else{
+            return 160.f;
+        }
     }
 }
 

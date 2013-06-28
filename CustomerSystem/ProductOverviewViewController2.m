@@ -337,7 +337,12 @@
 
 #pragma mark -------------UITableViewDatasource-------------
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
+    ProductCell *productCell = nil;
+    if (IS_Pad) {
+        productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell_iPad" owner:self options:nil] objectAtIndex:0];
+    }else{
+        productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
+    }
     productCell.backgroundColor = [UIColor clearColor];
     productCell.selectionStyle = UITableViewCellSelectionStyleNone;
     NSDictionary *product = [self.products objectAtIndex:indexPath.row];
@@ -354,12 +359,13 @@
 
 #pragma mark -------------UITableViewDelegate-------------
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    ProductCell *productCell = nil;
     if (IS_Pad) {
-        return 120.f;
+        productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell_iPad" owner:self options:nil] objectAtIndex:0];
     }else{
-        ProductCell *productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
-        return productCell.frame.size.height;
+        productCell = (ProductCell *)[[[NSBundle mainBundle] loadNibNamed:@"ProductCell" owner:self options:nil] objectAtIndex:0];
     }
+    return productCell.frame.size.height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{

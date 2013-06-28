@@ -96,7 +96,11 @@
 }
 
 -(void)initBasicInfoView{
-    self.basicInfoView = (ProductBasicInfoView *)[[[NSBundle mainBundle] loadNibNamed:@"ProductBasicInfoView" owner:self options:nil] objectAtIndex:0];
+    if (IS_Pad) {
+        self.basicInfoView = (ProductBasicInfoView *)[[[NSBundle mainBundle] loadNibNamed:@"ProductBasicInfoView_iPad" owner:self options:nil] objectAtIndex:0];
+    }else{
+        self.basicInfoView = (ProductBasicInfoView *)[[[NSBundle mainBundle] loadNibNamed:@"ProductBasicInfoView" owner:self options:nil] objectAtIndex:0];
+    }
     self.basicInfoView.tag = 1201;
     self.basicInfoView.lblTotalCost.text = [[self.productBasicInfo objectForKey:@"totalCost"] stringValue];
     self.basicInfoView.lblUnitCost.text = [[self.productBasicInfo objectForKey:@"unitCost"] stringValue];;

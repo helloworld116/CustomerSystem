@@ -49,7 +49,7 @@
     self.request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:kEquipmentStopRecord]];
     [self.request setPostValue:kSharedApp.accessToken forKey:@"accessToken"];
     [self.request setPostValue:kSharedApp.factoryId forKey:@"factoryId"];
-    [self.request setPostValue:[NSNumber numberWithLong:self.equipmentId] forKey:@"equipmentCode"];
+    [self.request setPostValue:[NSNumber numberWithLong:self.equipmentId] forKey:@"equipmentId"];
     [self.request setPostValue:[NSNumber numberWithInt:((self.currentPage-1)*kPageSize)] forKey:@"offset"];
     [self.request setPostValue:[NSNumber numberWithInt:kPageSize] forKey:@"count"];
     [self.request setDelegate:self];
