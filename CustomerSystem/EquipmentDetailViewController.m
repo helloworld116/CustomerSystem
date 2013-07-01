@@ -57,7 +57,7 @@
     
     
     CGRect viewFrame = self.view.frame;
-    viewFrame.size.height = 55;
+    viewFrame.size.height = 70;
     self.view.frame = viewFrame;
     
     self.lblSN.text = [self.equipment objectForKey:@"sn"];

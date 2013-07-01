@@ -61,7 +61,7 @@
     [self.request setPostValue:[NSNumber numberWithInt:self.querydate.year] forKey:@"year"];
     [self.request setPostValue:[NSNumber numberWithInt:self.querydate.quarterly] forKey:@"quarter"];
     [self.request setPostValue:[NSNumber numberWithInt:self.querydate.month] forKey:@"month"];
-    [self.request setPostValue:@"0" forKey:@"day"];
+    [self.request setPostValue:[NSNumber numberWithInt:0] forKey:@"day"];
     [self.request setDelegate:self];
     [self.request startAsynchronous];
 }
