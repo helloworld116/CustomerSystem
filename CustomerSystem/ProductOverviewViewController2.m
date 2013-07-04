@@ -50,17 +50,27 @@
     [self.request setPostValue:kSharedApp.accessToken forKey:@"accessToken"];
     [self.request setPostValue:kSharedApp.factoryId forKey:@"factoryId"];
     int periodUnit = 3;
+    int year = 0;
+    int quarter = 0;
+    int month = 0;
     if (self.querydate.quarterly==0&&self.querydate.month==0) {
         periodUnit = 3;
+        year = self.querydate.year;
     }else if (self.querydate.quarterly!=0&&self.querydate.month==0){
         periodUnit = 2;
+        year = self.querydate.year;
+        quarter = self.querydate.quarterly;
     }else if (self.querydate.quarterly==0&&self.querydate.month!=0){
         periodUnit = 1;
+        year = self.querydate.year;
+        month = self.querydate.month;
     }
+#warning test
+    month = 0;
     [self.request setPostValue:[NSNumber numberWithInt:periodUnit] forKey:@"periodUnit"];//(0：天  1:月  2:季度  3:年)
-    [self.request setPostValue:[NSNumber numberWithInt:self.querydate.year] forKey:@"year"];
-    [self.request setPostValue:[NSNumber numberWithInt:self.querydate.quarterly] forKey:@"quarter"];
-    [self.request setPostValue:[NSNumber numberWithInt:self.querydate.month] forKey:@"month"];
+    [self.request setPostValue:[NSNumber numberWithInt:year] forKey:@"year"];
+    [self.request setPostValue:[NSNumber numberWithInt:quarter] forKey:@"quarter"];
+    [self.request setPostValue:[NSNumber numberWithInt:month] forKey:@"month"];
     [self.request setPostValue:[NSNumber numberWithInt:0] forKey:@"day"];
     [self.request setDelegate:self];
     [self.request startAsynchronous];
