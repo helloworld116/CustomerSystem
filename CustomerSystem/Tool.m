@@ -89,4 +89,11 @@
     }
     return @"";
 }
+
++ (double)objectToDouble:(id)d{
+    if(d==[NSNull null]){
+        return 0.f;
+    }
+    return [d doubleValue];
+}
 @end

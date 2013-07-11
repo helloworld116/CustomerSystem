@@ -177,40 +177,40 @@
 }
 
 -(void)setHiddenViewValue{
-    self.totalCost.text = [NSString stringWithFormat:@"%.2f",[[self.overview objectForKey:@"totalCost"] doubleValue]];
-    self.totalOutput.text = [NSString stringWithFormat:@"%.2f",[[self.overview objectForKey:@"totalOutput"] doubleValue]];
-    double costHuanbiIncrement = [[self.overview objectForKey:@"costHuanbiIncrement"] doubleValue];
+    self.totalCost.text = [NSString stringWithFormat:@"%.2f",[Tool objectToDouble:[self.overview objectForKey:@"totalCost"]]];
+    self.totalOutput.text = [NSString stringWithFormat:@"%.2f",[Tool objectToDouble:[self.overview objectForKey:@"totalOutput"]]];
+    double costHuanbiIncrement = [Tool objectToDouble:[self.overview objectForKey:@"costHuanbiIncrement"]];
     if (costHuanbiIncrement<0) {
         self.lblTagCostHuanbi.text = @"成本环比减少：";
         self.lblCostHuanbi.text = [NSString stringWithFormat:@"%.2f",fabs(costHuanbiIncrement)];
     }else{
         self.lblCostHuanbi.text = [NSString stringWithFormat:@"%.2f",costHuanbiIncrement];
     }
-    double costTongbiIncrement = [[self.overview objectForKey:@"costTongbiIncrement"] doubleValue];
+    double costTongbiIncrement = [Tool objectToDouble:[self.overview objectForKey:@"costTongbiIncrement"]];
     if (costHuanbiIncrement<0) {
         self.lblTagCostTongbi.text = @"成本同比减少：";
         self.lblCostTongbi.text = [NSString stringWithFormat:@"%.2f",fabs(costTongbiIncrement)];
     }else{
         self.lblCostTongbi.text = [NSString stringWithFormat:@"%.2f",costTongbiIncrement];
     }
-    double outputHuanbiIncrement = [[self.overview objectForKey:@"outputHuanbiIncrement"] doubleValue];
+    double outputHuanbiIncrement = [Tool objectToDouble:[self.overview objectForKey:@"outputHuanbiIncrement"]];
     if (costHuanbiIncrement<0) {
         self.lblTagOutputHuanbi.text = @"产量环比减少：";
         self.lblOutputHuanbi.text = [NSString stringWithFormat:@"%.2f",fabs(outputHuanbiIncrement)];
     }else{
         self.lblOutputHuanbi.text = [NSString stringWithFormat:@"%.2f",outputHuanbiIncrement];
     }
-    double outputTongbiIncrement = [[self.overview objectForKey:@"outputTongbiIncrement"] doubleValue];
+    double outputTongbiIncrement = [Tool objectToDouble:[self.overview objectForKey:@"outputTongbiIncrement"]];
     if (costHuanbiIncrement<0) {
         self.lblTagOutputTongbi.text = @"产量同比减少：";
         self.lblOutputTongbi.text = [NSString stringWithFormat:@"%.2f",fabs(outputTongbiIncrement)];
     }else{
         self.lblOutputTongbi.text = [NSString stringWithFormat:@"%.2f",outputTongbiIncrement];
     }
-    self.lblCostHuanbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[[self.overview objectForKey:@"costHuanbiRate"] doubleValue],@"%"];
-    self.lblCostTongbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[[self.overview objectForKey:@"costTongbiRate"] doubleValue],@"%"];
-    self.lblOutputHuanbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[[self.overview objectForKey:@"outputHuanbiRate"] doubleValue],@"%"];
-    self.lblOutputTongbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[[self.overview objectForKey:@"outputTongbiRate"] doubleValue],@"%"];
+    self.lblCostHuanbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[Tool objectToDouble:[self.overview objectForKey:@"costHuanbiRate"]],@"%"];
+    self.lblCostTongbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[Tool objectToDouble:[self.overview objectForKey:@"costTongbiRate"]],@"%"];
+    self.lblOutputHuanbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[Tool objectToDouble:[self.overview objectForKey:@"outputHuanbiRate"]],@"%"];
+    self.lblOutputTongbiRate.text = [NSString stringWithFormat:@"%.2f%@",100*[Tool objectToDouble:[self.overview objectForKey:@"outputTongbiRate"]],@"%"];
 }
 
 #pragma mark -------------ASIHTTPRequestDelegate-------------

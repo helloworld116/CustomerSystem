@@ -24,4 +24,6 @@
 + (NSString *)secondsToHour:(long) second;
 
 + (NSString *)objectToString:(NSObject *)object;
+
++ (double)objectToDouble:(id)d;
 @end

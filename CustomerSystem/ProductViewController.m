@@ -95,6 +95,13 @@
     [self sendRequest];
 }
 
+- (NSString *)objectToString:(id)o{
+    if(o==[NSNull null]){
+        return @"-";
+    }
+    return [o stringValue];
+}
+
 -(void)initBasicInfoView{
     if (IS_Pad) {
         self.basicInfoView = (ProductBasicInfoView *)[[[NSBundle mainBundle] loadNibNamed:@"ProductBasicInfoView_iPad" owner:self options:nil] objectAtIndex:0];
@@ -109,18 +116,18 @@
         }
     }
     self.basicInfoView.tag = 1201;
-    self.basicInfoView.lblTotalCost.text = [[self.productBasicInfo objectForKey:@"totalCost"] stringValue];
-    self.basicInfoView.lblUnitCost.text = [[self.productBasicInfo objectForKey:@"unitCost"] stringValue];;
-    self.basicInfoView.lblTotalOutput.text = [[self.productBasicInfo objectForKey:@"output"] stringValue];;
-    self.basicInfoView.lblCostPercent.text = [[self.productBasicInfo objectForKey:@"costPercent"] stringValue];;
-    self.basicInfoView.lblOutputHuanbiIncrement.text = [[self.productBasicInfo objectForKey:@"outputHuanbiIncrement"] stringValue];;
-    self.basicInfoView.lblOutputHuanbiRate.text = [[self.productBasicInfo objectForKey:@"outputHuanbiRate"] stringValue];;
-    self.basicInfoView.lblOutputTongbiIncrement.text = [[self.productBasicInfo objectForKey:@"outputTongbiIncrement"] stringValue];;
-    self.basicInfoView.lblOutputTongbiRate.text = [[self.productBasicInfo objectForKey:@"outputTongbiRate"] stringValue];;
-    self.basicInfoView.lblCostHuanbiIncrement.text = [[self.productBasicInfo objectForKey:@"costHuanbiIncrement"] stringValue];;
-    self.basicInfoView.lblCostHuanbiRate.text = [[self.productBasicInfo objectForKey:@"costHuanbiRate"] stringValue];;
-    self.basicInfoView.lblCostTongbiIncrement.text = [[self.productBasicInfo objectForKey:@"costTongbiIncrement"] stringValue];;
-    self.basicInfoView.lblCostTongbiRate.text = [[self.productBasicInfo objectForKey:@"costTongbiRate"] stringValue];;
+    self.basicInfoView.lblTotalCost.text = [self objectToString:[self.productBasicInfo objectForKey:@"totalCost"]];
+    self.basicInfoView.lblUnitCost.text = [self objectToString:[self.productBasicInfo objectForKey:@"unitCost"]];
+    self.basicInfoView.lblTotalOutput.text = [self objectToString:[self.productBasicInfo objectForKey:@"output"]];
+    self.basicInfoView.lblCostPercent.text = [self.productBasicInfo objectForKey:@"costPercent"];
+    self.basicInfoView.lblOutputHuanbiIncrement.text = [self objectToString:[self.productBasicInfo objectForKey:@"outputHuanbiIncrement"]];
+    self.basicInfoView.lblOutputHuanbiRate.text = [self objectToString:[self.productBasicInfo objectForKey:@"outputHuanbiRate"]];
+    self.basicInfoView.lblOutputTongbiIncrement.text = [self objectToString:[self.productBasicInfo objectForKey:@"outputTongbiIncrement"]];
+    self.basicInfoView.lblOutputTongbiRate.text = [self objectToString:[self.productBasicInfo objectForKey:@"outputTongbiRate"]];
+    self.basicInfoView.lblCostHuanbiIncrement.text = [self objectToString:[self.productBasicInfo objectForKey:@"costHuanbiIncrement"]];
+    self.basicInfoView.lblCostHuanbiRate.text = [self objectToString:[self.productBasicInfo objectForKey:@"costHuanbiRate"]];
+    self.basicInfoView.lblCostTongbiIncrement.text = [self objectToString:[self.productBasicInfo objectForKey:@"costTongbiIncrement"]];
+    self.basicInfoView.lblCostTongbiRate.text = [self objectToString:[self.productBasicInfo objectForKey:@"costTongbiRate"]];
     self.scrollViewContainer.contentSize = self.basicInfoView.frame.size;
     [self.scrollViewContainer addSubview:self.basicInfoView];
 }

@@ -10,6 +10,8 @@
 		0E022C1D176AAC94006394FC /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0E022C1A176AAC94006394FC /* SVProgressHUD.bundle */; };
 		0E022C1E176AAC94006394FC /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E022C1C176AAC94006394FC /* SVProgressHUD.m */; };
 		0E089BB9176464DA007FF9E9 /* equipment.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0E089BB8176464D6007FF9E9 /* equipment.jpg */; };
+		0E2AA46E178E3CAC00F2EDDF /* Default@2x~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2AA46C178E3CAC00F2EDDF /* Default@2x~iPad.png */; };
+		0E2AA46F178E3CAC00F2EDDF /* Default~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2AA46D178E3CAC00F2EDDF /* Default~iPad.png */; };
 		0E2EC28A177AFFC500970BFC /* navigationBarBackButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EC288177AFFC500970BFC /* navigationBarBackButton.png */; };
 		0E2EC28B177AFFC500970BFC /* navigationBarBackButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E2EC289177AFFC500970BFC /* navigationBarBackButton@2x.png */; };
 		0E3240B7177971E700E812BC /* FolderCoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E3240B2177971E700E812BC /* FolderCoverView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -79,8 +81,6 @@
 		0E8EE84C178D75780029A47C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E8EE847178D75780029A47C /* Default-568h@2x.png */; };
 		0E8EE84D178D75780029A47C /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E8EE848178D75780029A47C /* Default.png */; };
 		0E8EE84E178D75780029A47C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E8EE849178D75780029A47C /* Default@2x.png */; };
-		0E8EE84F178D75780029A47C /* Default@2x~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E8EE84A178D75780029A47C /* Default@2x~iPad.png */; };
-		0E8EE850178D75780029A47C /* Default~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 0E8EE84B178D75780029A47C /* Default~iPad.png */; };
 		0E90BC821728CDFD0036119F /* EquipmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E90BC811728CDFD0036119F /* EquipmentListViewController.m */; };
 		0E93831C174111B2004C3947 /* PopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E93831B174111B2004C3947 /* PopoverView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		0E95F49F1749B4830083413B /* ProductCostItemDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0E95F49E1749B4830083413B /* ProductCostItemDetailView.m */; };
@@ -203,6 +203,8 @@
 		0E022C1B176AAC94006394FC /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
 		0E022C1C176AAC94006394FC /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		0E089BB8176464D6007FF9E9 /* equipment.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = equipment.jpg; sourceTree = "<group>"; };
+		0E2AA46C178E3CAC00F2EDDF /* Default@2x~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x~iPad.png"; sourceTree = "<group>"; };
+		0E2AA46D178E3CAC00F2EDDF /* Default~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iPad.png"; sourceTree = "<group>"; };
 		0E2EC288177AFFC500970BFC /* navigationBarBackButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = navigationBarBackButton.png; sourceTree = "<group>"; };
 		0E2EC289177AFFC500970BFC /* navigationBarBackButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBarBackButton@2x.png"; sourceTree = "<group>"; };
 		0E3240B1177971E700E812BC /* FolderCoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FolderCoverView.h; sourceTree = "<group>"; };
@@ -300,8 +302,6 @@
 		0E8EE847178D75780029A47C /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		0E8EE848178D75780029A47C /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		0E8EE849178D75780029A47C /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		0E8EE84A178D75780029A47C /* Default@2x~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x~iPad.png"; sourceTree = "<group>"; };
-		0E8EE84B178D75780029A47C /* Default~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iPad.png"; sourceTree = "<group>"; };
 		0E90BC801728CDFD0036119F /* EquipmentListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EquipmentListViewController.h; sourceTree = "<group>"; };
 		0E90BC811728CDFD0036119F /* EquipmentListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EquipmentListViewController.m; sourceTree = "<group>"; };
 		0E93831A174111B2004C3947 /* PopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopoverView.h; sourceTree = "<group>"; };
@@ -592,11 +592,11 @@
 		0E3378F41724C6F5000E3769 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0E2AA46C178E3CAC00F2EDDF /* Default@2x~iPad.png */,
+				0E2AA46D178E3CAC00F2EDDF /* Default~iPad.png */,
 				0E8EE847178D75780029A47C /* Default-568h@2x.png */,
 				0E8EE848178D75780029A47C /* Default.png */,
 				0E8EE849178D75780029A47C /* Default@2x.png */,
-				0E8EE84A178D75780029A47C /* Default@2x~iPad.png */,
-				0E8EE84B178D75780029A47C /* Default~iPad.png */,
 				0E3378F51724C6F5000E3769 /* CustomerSystem-Info.plist */,
 				0E3378F61724C6F5000E3769 /* InfoPlist.strings */,
 				0E3378F91724C6F5000E3769 /* main.m */,
@@ -1090,8 +1090,8 @@
 				0E8EE84C178D75780029A47C /* Default-568h@2x.png in Resources */,
 				0E8EE84D178D75780029A47C /* Default.png in Resources */,
 				0E8EE84E178D75780029A47C /* Default@2x.png in Resources */,
-				0E8EE84F178D75780029A47C /* Default@2x~iPad.png in Resources */,
-				0E8EE850178D75780029A47C /* Default~iPad.png in Resources */,
+				0E2AA46E178E3CAC00F2EDDF /* Default@2x~iPad.png in Resources */,
+				0E2AA46F178E3CAC00F2EDDF /* Default~iPad.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

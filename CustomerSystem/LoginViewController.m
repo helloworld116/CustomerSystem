@@ -43,8 +43,8 @@
     self.navigationController.navigationBarHidden = YES;
     self.username.delegate = self;
     self.password.delegate = self;
-//    self.username.text = @"fengbo";
-//    self.password.text = @"123456";
+    self.username.text = @"fengbo";
+    self.password.text = @"123456";
 }
 
 - (void)didReceiveMemoryWarning
